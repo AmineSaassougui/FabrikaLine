@@ -3,10 +3,7 @@ package com.example.fabrikaline_backend.Entities;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -20,5 +17,9 @@ public class Order implements Serializable {
     private Long id ;
     private String description ;
     private Date orderdate ;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
+    private User user;
 
 }
