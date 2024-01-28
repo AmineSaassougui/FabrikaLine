@@ -28,15 +28,16 @@ public class CountryRestController implements IAbstractController<Country> {
     //region Methods
 
     @Override
-    public ResponseEntity<Country> load(int id) {
+    public ResponseEntity<Country> load(Long id) {
         return null;
     }
 
     @Override
-    public void delete(int id) {
-
+    @DeleteMapping("/Delete/{id}")
+    public void delete(@PathVariable Long id) {
+        countryService.delete(id);    
     }
-    @PostMapping("/addCountry")
+    @PostMapping("/Save")
     @ResponseBody
     @Override
     public ResponseEntity<Country> save(@RequestBody Country entity) throws Exception {
@@ -49,35 +50,30 @@ public class CountryRestController implements IAbstractController<Country> {
     public ResponseEntity<List<Country>> saveAll(List<Country> entities) throws Exception {
         return null;
     }
-
+    @GetMapping("/GetAll")
     @Override
     public ResponseEntity<List<Country>> getAll() throws Exception {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Country> update(int id, Country entity) throws Exception {
-        return null;
-    }
+        List<Country> countries = countryService.getAll();
+        return new ResponseEntity<>(countries, HttpStatus.OK);    }
 
     @Override
     public ResponseEntity<List<Country>> search(SearchCriteria criteria) throws Exception {
-        return null;
+        return null; //TODO
     }
 
     @Override
-    public ResponseEntity<List<Country>> getAll(int page, int size) throws Exception {
-        return null;
+    public ResponseEntity<List<Country>> getAll(Long page, Long size) throws Exception {
+        return null; //TODO
     }
 
     @Override
     public ResponseEntity<Long> count() throws Exception {
-        return null;
+        return null; //TODO
     }
 
     @Override
     public ResponseEntity<Void> deleteAll(List<Integer> ids) throws Exception {
-        return null;
+        return null; //TODO
     }
     //endregion
 }
