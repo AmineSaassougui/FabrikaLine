@@ -3,8 +3,10 @@ package com.example.fabrikaline_backend.Controllers;
 import com.example.fabrikaline_backend.ABC.IAbstractController;
 import com.example.fabrikaline_backend.Entities.Country;
 import com.example.fabrikaline_backend.Models.SearchCriteria;
+import com.example.fabrikaline_backend.Services.CountryServiceImpl;
 import com.example.fabrikaline_backend.Services.ICountryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,17 +21,11 @@ public class CountryRestController implements IAbstractController<Country> {
     //region Construct
 
     @Autowired
-    ICountryService countryService;
+    CountryServiceImpl countryService;
 
     //endregion
 
     //region Methods
-
-    @PostMapping("/addCountry")
-    @ResponseBody
-    public Country addCountry(@RequestBody Country country){
-        return countryService.addCountry(country) ;
-    }
 
     @Override
     public ResponseEntity<Country> load(int id) {
@@ -40,11 +36,14 @@ public class CountryRestController implements IAbstractController<Country> {
     public void delete(int id) {
 
     }
-
+    @PostMapping("/addCountry")
+    @ResponseBody
     @Override
-    public ResponseEntity<Country> save(Country entity) throws Exception {
-        return null;
+    public ResponseEntity<Country> save(@RequestBody Country entity) throws Exception {
+        Country res = countryService.save(entity);
+        return new ResponseEntity<Country>(res, HttpStatus.OK);
     }
+
 
     @Override
     public ResponseEntity<List<Country>> saveAll(List<Country> entities) throws Exception {
