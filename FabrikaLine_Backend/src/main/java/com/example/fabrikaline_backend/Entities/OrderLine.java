@@ -14,7 +14,7 @@ public class OrderLine implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
     private Long quantity ;
-    private String totalprice ;
+    private double totalPrice ;
 
     @ManyToOne
     @JoinColumn(name = "order_id",nullable = false)
