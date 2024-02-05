@@ -5,24 +5,18 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 @Data
 @NoArgsConstructor
 @Entity
-public class Item implements Serializable {
+public class AttachmentCategory implements Serializable {
     private  static  final long serialVersionUID = 1L ;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
-    private String name ;
-    // we have to make a field name here beacuse its items
+    private Long code ;
     private String description ;
-    private double price ;
-    private boolean avaiblity ;
-    private Long quantity ;
 
-    @ManyToOne
-    @JoinColumn(name = "itemcategory_id",nullable = false)
-    private ItemCategory itemCategory;
 
 
 }

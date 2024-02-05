@@ -25,12 +25,16 @@ public class User implements Serializable {
     private String password ;
 
     @ManyToOne
-    @JoinColumn(name = "userType_id",nullable = false)
+    @JoinColumn(name = "usertype_id",nullable = false)
     private UserType userType;
 
     @ManyToOne
-    @JoinColumn(name = "status_id",nullable = false)
-    private Status status;
+    @JoinColumn(name = "usergender_id",nullable = false)
+    private UserGender userGender;
+
+    @ManyToOne
+    @JoinColumn(name = "userstatus_id",nullable = false)
+    private UserStatus userStatus;
 
     @ManyToOne
     @JoinColumn(name = "city_id",nullable = false)

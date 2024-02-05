@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @Entity
-public class Category implements Serializable {
+public class UserStatus implements Serializable {
     private  static  final long serialVersionUID = 1L ;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
