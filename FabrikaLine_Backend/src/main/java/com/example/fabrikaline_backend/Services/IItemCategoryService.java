@@ -1,4 +1,4 @@
 package com.example.fabrikaline_backend.Services;
 
-public interface ICountryService  {
+public interface IItemCategoryService {
 }
