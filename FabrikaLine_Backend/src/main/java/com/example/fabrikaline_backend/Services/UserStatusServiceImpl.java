@@ -2,8 +2,10 @@ package com.example.fabrikaline_backend.Services;
 
 import com.example.fabrikaline_backend.ABC.IAbstractService;
 import com.example.fabrikaline_backend.Entities.AttachmentCategory;
+import com.example.fabrikaline_backend.Entities.UserStatus;
 import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Repositories.IAttachmentCategoryRepository;
+import com.example.fabrikaline_backend.Repositories.IUserStatusRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,33 +17,33 @@ import java.util.List;
 @Service
 @Slf4j
 @AllArgsConstructor
-public class AttachmentCategoryServiceImpl implements IAttachmentCategoryService, IAbstractService<AttachmentCategory> {
+public class UserStatusServiceImpl implements IUserStatusService, IAbstractService<UserStatus> {
     @Autowired
-    IAttachmentCategoryRepository attachmentCategoryRepository;
+    IUserStatusRepository userStatusRepository;
 
 
     @Override
-    public AttachmentCategory save(AttachmentCategory entity) throws Exception {
-        return attachmentCategoryRepository.save(entity);
+    public UserStatus save(UserStatus entity) throws Exception {
+        return userStatusRepository.save(entity);
     }
 
     @Override
     public void delete(Long id) {
-        attachmentCategoryRepository.deleteById(id);
+        userStatusRepository.deleteById(id);
     }
 
     @Override
-    public List<AttachmentCategory> getAll() {
-        return attachmentCategoryRepository.findAll();
+    public List<UserStatus> getAll() {
+        return userStatusRepository.findAll();
     }
 
     @Override
-    public List<AttachmentCategory> saveAll(List<AttachmentCategory> entities) throws Exception {
+    public List<UserStatus> saveAll(List<UserStatus> entities) throws Exception {
         return null; //TODO
     }
 
     @Override
-    public List<AttachmentCategory> search(SearchCriteria criteria) {
+    public List<UserStatus> search(SearchCriteria criteria) {
         return null; //TODO
     }
 
@@ -51,12 +53,12 @@ public class AttachmentCategoryServiceImpl implements IAttachmentCategoryService
     }
 
     @Override
-    public void validate(AttachmentCategory entity) throws ValidationException {
+    public void validate(UserStatus entity) throws ValidationException {
         //TODO
     }
 
     @Override
-    public AttachmentCategory getById(int id) {
+    public UserStatus getById(int id) {
         return null; //TODO
     }
 }
