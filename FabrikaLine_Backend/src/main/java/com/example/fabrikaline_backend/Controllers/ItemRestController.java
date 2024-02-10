@@ -2,6 +2,7 @@ package com.example.fabrikaline_backend.Controllers;
 
 import com.example.fabrikaline_backend.ABC.IAbstractController;
 import com.example.fabrikaline_backend.Entities.Item;
+import com.example.fabrikaline_backend.Entities.ItemCategory;
 import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Services.ItemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,9 +38,9 @@ public class ItemRestController implements IAbstractController<Item> {
     }
 
     @Override
-    public void delete(Long id) {
+    @DeleteMapping("/Delete/{id}")
+    public void delete(@PathVariable Long id) { itemService.delete(id);}
 
-    }
 
     @Override
     public ResponseEntity<Item> save(Item entity) throws Exception {
@@ -52,8 +53,11 @@ public class ItemRestController implements IAbstractController<Item> {
     }
 
     @Override
+    @GetMapping("/GetAll")
+
     public ResponseEntity<List<Item>> getAll() throws Exception {
-        return null;
+        List<Item> items = itemService.getAll();
+        return new ResponseEntity<>(items,HttpStatus.OK);
     }
 
     @Override

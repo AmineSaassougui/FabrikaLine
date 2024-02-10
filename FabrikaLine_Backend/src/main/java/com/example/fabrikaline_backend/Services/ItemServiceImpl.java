@@ -41,12 +41,12 @@ public class ItemServiceImpl implements IItemService, IAbstractService<Item> {
 
     @Override
     public void delete(Long id) {
-
+        iItemRepository.deleteById(id);
     }
 
     @Override
     public List<Item> getAll() {
-        return null;
+        return iItemRepository.findAll();
     }
 
     @Override
