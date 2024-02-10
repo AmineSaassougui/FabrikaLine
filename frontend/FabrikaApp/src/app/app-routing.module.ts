@@ -21,6 +21,11 @@ const routes: Routes = [
     },
     children: [
       {
+        path: 'Adm',
+        loadChildren: () =>
+          import('./views/Adm/administration.module').then((m) => m.AdministrationModule)
+      },
+      {
         path: 'dashboard',
         loadChildren: () =>
           import('./views/dashboard/dashboard.module').then((m) => m.DashboardModule)

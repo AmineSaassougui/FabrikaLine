@@ -14,7 +14,7 @@ import { AppComponent } from './app.component';
 
 // Import containers
 import { DefaultFooterComponent, DefaultHeaderComponent, DefaultLayoutComponent } from './containers';
-
+import { AdministrationModule } from './views/Adm/administration.module';
 import {
   AvatarModule,
   BadgeModule,
@@ -72,7 +72,8 @@ const APP_CONTAINERS = [
     BadgeModule,
     ListGroupModule,
     CardModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    AdministrationModule
   ],
   providers: [
     {
