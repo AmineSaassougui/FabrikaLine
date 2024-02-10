@@ -1,0 +1,11 @@
+export * from './attachmentCategoryRestController.service';
+import { AttachmentCategoryRestControllerService } from './attachmentCategoryRestController.service';
+export * from './complaintCategoryRestController.service';
+import { ComplaintCategoryRestControllerService } from './complaintCategoryRestController.service';
+export * from './countryRestController.service';
+import { CountryRestControllerService } from './countryRestController.service';
+export * from './itemCategoryRestController.service';
+import { ItemCategoryRestControllerService } from './itemCategoryRestController.service';
+export * from './userGenderRestController.service';
+import { UserGenderRestControllerService } from './userGenderRestController.service';
+export const APIS = [AttachmentCategoryRestControllerService, ComplaintCategoryRestControllerService, CountryRestControllerService, ItemCategoryRestControllerService, UserGenderRestControllerService];
