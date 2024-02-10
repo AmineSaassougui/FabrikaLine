@@ -6,18 +6,20 @@ import { IconModule } from '@coreui/icons-angular';
 import { AdministrationComponent } from './administration.component';
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { UserListComponent } from './user-list/user-list.component';
+import { CountryListComponent } from './country-list/country-list.component';
 
 @NgModule({
   imports: [
-    CardModule,
+  CardModule,
     GridModule,
     IconModule,
     CommonModule,
     AdministrationRoutingModule
   ],
   declarations: [
-    AdministrationComponent, UserListComponent
-  ]
+    AdministrationComponent, UserListComponent, CountryListComponent
+  ],
+  exports: [UserListComponent, CountryListComponent]
 })
 export class AdministrationModule {
 }
