@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CountryRestControllerService } from './../../../../../libs/openapi/src/api/countryRestController.service';
+import { CountryRestControllerService } from './../../../../../libs/openapi/src';
 import { GridComponent } from '@syncfusion/ej2-angular-grids';
-
 @Component({
   selector: 'app-country-list',
   templateUrl: './country-list.component.html',
@@ -23,6 +22,3 @@ export class CountryListComponent implements OnInit {
   }
 
 }
-
-
-

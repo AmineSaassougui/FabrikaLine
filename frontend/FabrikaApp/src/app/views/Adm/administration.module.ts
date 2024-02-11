@@ -36,7 +36,7 @@ import {
   declarations: [
     AdministrationComponent, UserListComponent, CountryListComponent, UserGenderListComponent
   ],
-  exports: [UserListComponent, CountryListComponent, UserGenderListComponent]
+  exports: [UserListComponent, CountryListComponent, UserGenderListComponent ]
 })
 export class AdministrationModule {
 }

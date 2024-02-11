@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { UserGenderRestControllerService } from './../../../../../libs/openapi/src/api/userGenderRestController.service';
 import { GridComponent } from '@syncfusion/ej2-angular-grids';
+import { UserGenderRestControllerService } from 'libs/openapi/src';
 
 @Component({
   selector: 'app-user-gender-list',
@@ -8,7 +8,7 @@ import { GridComponent } from '@syncfusion/ej2-angular-grids';
 })
 export class UserGenderListComponent implements OnInit {
 
-  constructor(private _fabrikaService: UserGenderRestControllerService) { }
+  constructor(private _countryService: UserGenderRestControllerService) { }
 
   ngOnInit(): void {
     this.load();
@@ -17,10 +17,9 @@ export class UserGenderListComponent implements OnInit {
   @ViewChild('grid') public grid!: GridComponent;
 
   load() {
-    this._fabrikaService.getAll().subscribe((data: any[]) => {
+    this._countryService.getAll().subscribe((data: any[]) => {
       this.grid.dataSource = data;
     });
   }
-
 
 }
