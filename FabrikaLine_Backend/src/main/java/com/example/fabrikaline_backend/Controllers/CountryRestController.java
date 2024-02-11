@@ -14,6 +14,8 @@ import java.util.List;
 
 @RequestMapping("/Country")
 @RestController
+@CrossOrigin("*")
+
 
 
 public class CountryRestController implements IAbstractController<Country> {
@@ -50,7 +52,8 @@ public class CountryRestController implements IAbstractController<Country> {
     public ResponseEntity<List<Country>> saveAll(List<Country> entities) throws Exception {
         return null;
     }
-    @GetMapping("/GetAll")
+
+    @GetMapping(value = "/GetAll", produces = "application/json")
     @Override
     public ResponseEntity<List<Country>> getAll() throws Exception {
         List<Country> countries = countryService.getAll();
