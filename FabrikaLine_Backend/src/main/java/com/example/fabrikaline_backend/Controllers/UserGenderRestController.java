@@ -15,7 +15,7 @@ import java.util.List;
 
 @RequestMapping("/UserGender")
 @RestController
-
+@CrossOrigin("*")
 
 public class UserGenderRestController implements IAbstractController<UserGender> {
 
@@ -51,7 +51,7 @@ public class UserGenderRestController implements IAbstractController<UserGender>
     public ResponseEntity<List<UserGender>> saveAll(List<UserGender> entities) throws Exception {
         return null;
     }
-    @GetMapping("/GetAll")
+    @GetMapping(value = "/GetAll", produces = "application/json")
     @Override
     public ResponseEntity<List<UserGender>> getAll() throws Exception {
         List<UserGender> userGenders = userGenderService.getAll();

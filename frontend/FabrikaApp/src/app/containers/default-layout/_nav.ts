@@ -18,6 +18,9 @@ export const navItems: INavData[] = [
      {
         name: 'Pays',
         url: '/Adm/CountryList'
+      },{
+        name: 'Sexe',
+        url: '/Adm/UserGenderList'
       },
     ]
   },
