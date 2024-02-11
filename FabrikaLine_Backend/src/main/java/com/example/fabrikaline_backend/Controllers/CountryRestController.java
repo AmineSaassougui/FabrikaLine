@@ -14,7 +14,7 @@ import java.util.List;
 
 @RequestMapping("/Country")
 @RestController
-
+@CrossOrigin("*")
 
 public class CountryRestController implements IAbstractController<Country> {
 
