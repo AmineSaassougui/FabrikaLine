@@ -7,6 +7,22 @@ import { AdministrationComponent } from './administration.component';
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { UserListComponent } from './user-list/user-list.component';
 import { CountryListComponent } from './country-list/country-list.component';
+import { UserGenderListComponent } from './user-gender-list/user-gender-list.component';
+
+import {
+  ColumnChooserService,
+  EditService,
+  ExcelExportService,
+  FreezeService,
+  GridModule as syncGridModule,
+  PageService,
+  PagerModule,
+  PdfExportService,
+  ReorderService,
+  SortService,
+  ToolbarService,
+  ResizeService as GridResizeService,
+} from '@syncfusion/ej2-angular-grids';
 
 @NgModule({
   imports: [
@@ -14,12 +30,13 @@ import { CountryListComponent } from './country-list/country-list.component';
     GridModule,
     IconModule,
     CommonModule,
-    AdministrationRoutingModule
+    AdministrationRoutingModule,
+    syncGridModule
   ],
   declarations: [
-    AdministrationComponent, UserListComponent, CountryListComponent
+    AdministrationComponent, UserListComponent, CountryListComponent, UserGenderListComponent
   ],
-  exports: [UserListComponent, CountryListComponent]
+  exports: [UserListComponent, CountryListComponent, UserGenderListComponent]
 })
 export class AdministrationModule {
 }
