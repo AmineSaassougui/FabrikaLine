@@ -18,7 +18,7 @@ import java.util.List;
 @Service
 @Slf4j
 @AllArgsConstructor
-public class ComplaintCategoryServiceImpl implements IItemCategoryService, IAbstractService<ComplaintCategory> {
+public class ComplaintCategoryServiceImpl implements IComplaintCategoryService, IAbstractService<ComplaintCategory> {
     @Autowired
     IComplaintCategoryRepository iComplaintCategoryRepository;
 

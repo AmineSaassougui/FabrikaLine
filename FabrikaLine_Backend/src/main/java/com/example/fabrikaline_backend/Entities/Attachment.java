@@ -21,7 +21,7 @@ public class Attachment implements Serializable {
     private Long parentId ;
 
     @ManyToOne
-    @JoinColumn(name = "attachmentcategory_id",nullable = false)
+    @JoinColumn(name = "attachmentcategory_id")
     private AttachmentCategory attachmentCategory;
 
 

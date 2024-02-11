@@ -21,7 +21,7 @@ public class Item implements Serializable {
     private Long quantity ;
 
     @ManyToOne
-    @JoinColumn(name = "itemcategory_id",nullable = false)
+    @JoinColumn(name = "itemcategory_id")
     private ItemCategory itemCategory;
 
 
