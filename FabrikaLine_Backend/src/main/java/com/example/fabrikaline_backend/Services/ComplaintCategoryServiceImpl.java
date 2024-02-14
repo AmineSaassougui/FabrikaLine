@@ -57,7 +57,7 @@ public class ComplaintCategoryServiceImpl implements IComplaintCategoryService, 
     }
 
     @Override
-    public ComplaintCategory getById(int id) {
+    public ComplaintCategory getById(Long id) {
         return null;
     }
 }

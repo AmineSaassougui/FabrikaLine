@@ -70,7 +70,7 @@ public class ItemServiceImpl implements IItemService, IAbstractService<Item> {
     }
 
     @Override
-    public Item getById(int id) {
+    public Item getById(Long id) {
         return null;
     }
 }

@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
 import { CountryListComponent } from './country-list/country-list.component';
-import { UserGenderListComponent } from './user-gender-list/user-gender-list.component';
+import { UserGenderListComponent } from './user-gender/user-gender-list.component';
+import { UserGenderFormComponent } from './user-gender/user-gender-form.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,13 @@ const routes: Routes = [
    {
     path: 'UserGenderList',
     component: UserGenderListComponent,
+    data: {
+      title: 'Sexe'
+    }
+  },
+  {
+    path: 'UserGenderForm',
+    component: UserGenderFormComponent,
     data: {
       title: 'Sexe'
     }

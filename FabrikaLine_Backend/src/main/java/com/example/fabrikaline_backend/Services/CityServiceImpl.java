@@ -67,7 +67,7 @@ public class CityServiceImpl implements ICityService, IAbstractService<City> {
     }
 
     @Override
-    public City getById(int id) {
+    public City getById(Long id) {
         return null;
     }
 }

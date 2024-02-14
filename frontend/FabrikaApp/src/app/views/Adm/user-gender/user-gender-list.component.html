@@ -1,0 +1,45 @@
+
+
+
+  <c-card class="mb-4">
+    <c-card-body>
+      <c-row>
+        <c-col sm="5">
+          <h4 class="card-title mb-0" id="traffic"> Form </h4>
+        </c-col>
+      </c-row>
+    <br>
+      <div> 
+        <ng-content select="app-yes-parameters"></ng-content>
+      </div>
+      <div>
+        <!-- Action here like : add, delete,... -->
+        <button type="button" class="btn btn-success waves-effect" routerLink="/Adm/UserGenderForm">Ajouter</button> &nbsp;
+        <button cButton color="info" (click)="edit()">Modifier</button>  &nbsp;
+
+        <button cButton color="danger" (click)="delete()">Supprimer</button>  &nbsp;
+
+        <button cButton color="secondary" (click)="load()" >Refrech</button>  &nbsp;
+
+       <div align="Right"> <button type="button" class="btn btn-info waves-effect" (click)="load()" >More</button></div>
+      </div>
+        <div>
+        <br/>
+
+          <ejs-grid #grid >
+            <e-columns>
+                <e-column field='Code' headerText='Code pays' width=120></e-column>
+                <e-column field='Description' headerText='Nom' textAlign='Right' format='C2' width=90></e-column>
+            </e-columns>
+            </ejs-grid>`
+        </div>
+    </c-card-body>
+    <c-card-footer>
+      <c-row class="text-center" [md]="5" [xs]="1">
+        <c-col class="mb-sm-2 mb-0">
+        </c-col>
+        <c-col class="mb-sm-2 mb-0">
+        </c-col>
+      </c-row>
+    </c-card-footer>
+  </c-card>

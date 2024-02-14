@@ -55,7 +55,7 @@ public class UserGenderServiceImpl implements IUserGenderService, IAbstractServi
     }
 
     @Override
-    public UserGender getById(int id) {
-        return null;
+    public UserGender getById(Long id) {
+        return iUserGenderRepository.findById(id).get();
     }
 }

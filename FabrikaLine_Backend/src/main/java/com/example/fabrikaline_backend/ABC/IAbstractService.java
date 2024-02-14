@@ -17,5 +17,5 @@ public interface IAbstractService<T> {
 
     void validate(T entity) throws ValidationException;
 
-    T getById(int id);
+    T getById(Long id);
 }

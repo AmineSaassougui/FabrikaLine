@@ -56,7 +56,7 @@ public class AttachmentCategoryServiceImpl implements IAttachmentCategoryService
     }
 
     @Override
-    public AttachmentCategory getById(int id) {
+    public AttachmentCategory getById(Long id) {
         return null; //TODO
     }
 }
