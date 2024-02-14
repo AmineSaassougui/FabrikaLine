@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-import { CardModule, GridModule } from '@coreui/angular';
+import { CardModule, GridModule, ToastModule } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { AdministrationComponent } from './administration.component';
 import { AdministrationRoutingModule } from './administration-routing.module';
@@ -69,6 +69,7 @@ import {
         SidebarModule,
         TabsModule,
         UtilitiesModule,
+        ToastModule,
 
   ],
   declarations: [

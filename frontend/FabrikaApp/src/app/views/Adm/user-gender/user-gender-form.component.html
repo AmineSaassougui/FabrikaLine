@@ -1,5 +1,26 @@
+<!-- <c-toaster   [placement]="position" class="p-3" position="fixed">
+  <c-toast
+    (timer)="onTimerChange($event)"
+    (visibleChange)="onVisibleChange($event)"
+    [visible]="visible">
+    <c-toast-header>
+      Ajout
+    </c-toast-header>
+    <c-toast-body>
+      <p>Added with succes</p>
+      <c-progress thin>
+        <c-progress-bar [value]="percentage"></c-progress-bar>
+      </c-progress>
+    </c-toast-body>
+  </c-toast>
+</c-toaster>
+
+<button (click)="toggleToast()" cButton class="m-1">Send a toast</button> -->
+
 <c-card class="mb-4">
+
   <c-card-body>
+    
     <c-row>
       <c-col sm="5">
         <h4 class="card-title mb-0" id="traffic"> Form </h4>
@@ -21,6 +42,8 @@
       <div>
         <div>
           <!-- <label cLabel for="exampleFormControlInput1">Code</label> -->
+          <input cFormControl type="text" hidden="true" [(ngModel)]="object.id" name="id" placeholder="Id" />
+
           <input cFormControl type="text" [(ngModel)]="object.code" name="code" placeholder="Code" style="margin-bottom: 10px;" />
           <!-- <label cLabel for="exampleFormControlInput1">Description</label> -->
           <input cFormControl type="text" [(ngModel)]="object.description" name="description" placeholder="Description" />

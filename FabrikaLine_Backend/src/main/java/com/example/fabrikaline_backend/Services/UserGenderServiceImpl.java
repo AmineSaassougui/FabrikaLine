@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.ValidationException;
 import java.util.List;
 
@@ -56,6 +57,6 @@ public class UserGenderServiceImpl implements IUserGenderService, IAbstractServi
 
     @Override
     public UserGender getById(Long id) {
-        return iUserGenderRepository.findById(id).get();
+        return iUserGenderRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Item  not found  in our repsitory"));
     }
 }

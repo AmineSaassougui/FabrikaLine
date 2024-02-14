@@ -15,18 +15,24 @@
       <div>
         <!-- Action here like : add, delete,... -->
         <button type="button" class="btn btn-success waves-effect" routerLink="/Adm/UserGenderForm">Ajouter</button> &nbsp;
-        <button cButton color="info" (click)="edit()">Modifier</button>  &nbsp;
+        <button cButton color="info" (click)="modify()">Modifier</button>  &nbsp;
 
-        <button cButton color="danger" (click)="delete()">Supprimer</button>  &nbsp;
+        <button cButton color="info" (click)="delete()">Supprimer</button>  &nbsp;
 
-        <button cButton color="secondary" (click)="load()" >Refrech</button>  &nbsp;
+        <button cButton color="info" (click)="load()" >Refrech</button>  &nbsp;
 
        <div align="Right"> <button type="button" class="btn btn-info waves-effect" (click)="load()" >More</button></div>
       </div>
-        <div>
+        <div> 
         <br/>
 
-          <ejs-grid #grid >
+          <ejs-grid #grid (recordDoubleClick)="onDoubleClick($event)" 
+          
+          [allowPaging]="true" 
+          [allowSorting]='true' [allowMultiSorting]='true' printMode='CurrentPage' [allowGrouping]="false"
+         (recordDoubleClick)="onDoubleClick($event)"  (load)='load()'
+          [allowExcelExport]='true' [allowPdfExport]='true' [allowReordering]='true'
+          >
             <e-columns>
                 <e-column field='Code' headerText='Code pays' width=120></e-column>
                 <e-column field='Description' headerText='Nom' textAlign='Right' format='C2' width=90></e-column>

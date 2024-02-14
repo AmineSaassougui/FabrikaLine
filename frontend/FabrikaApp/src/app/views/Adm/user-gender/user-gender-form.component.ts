@@ -10,15 +10,20 @@ export class UserGenderFormComponent implements OnInit {
   object: any = {}; // Initialize object with empty object
 
   constructor(private route: Router, private _service: UserGenderRestControllerService) { }
+  id: any;
 
   ngOnInit() {
-    // You can initialize any other properties or perform other setup logic here if needed
+    this.id = history.state.id;
+    if (this.id != null) {
+      this.object.id = this.id;
+      this.load();
+    }
   }
 
   save(object: any) {
+    this.toggleToast();
     this._service.save2(object).subscribe((res: any) => {
       if (res != null) {
-        alert("Added with success")
         this.route.navigate(['/Adm/UserGenderList'])
       } else {
         alert("Something went wrong!")
@@ -26,7 +31,37 @@ export class UserGenderFormComponent implements OnInit {
     });
   }
 
+  load(){
+    this._service.load(this.id).subscribe((res: any) => {   
+      this.object = res;
+    });
+  }
+
   cancel() {
     this.route.navigate(['/Adm/UserGenderList'])
+  }
+
+
+
+
+
+
+
+
+  position = 'top-center';
+  visible = false;
+  percentage = 0;
+
+  toggleToast() {
+    this.visible = !this.visible;
+  }
+
+  onVisibleChange($event: boolean) {
+    this.visible = $event;
+    this.percentage = !this.visible ? 0 : this.percentage;
+  }
+
+  onTimerChange($event: number) {
+    this.percentage = $event * 50;
   }
 }
