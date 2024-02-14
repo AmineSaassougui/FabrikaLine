@@ -58,7 +58,7 @@ public class UserStatusServiceImpl implements IUserStatusService, IAbstractServi
     }
 
     @Override
-    public UserStatus getById(int id) {
+    public UserStatus getById(Long id) {
         return null; //TODO
     }
 }

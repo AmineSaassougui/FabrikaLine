@@ -27,10 +27,11 @@ public class UserGenderRestController implements IAbstractController<UserGender>
     //endregion
 
     //region Methods
-
+    @GetMapping(value = "/Load/{id}", produces = "application/json")
     @Override
-    public ResponseEntity<UserGender> load(Long id) {
-        return null;
+    public ResponseEntity<UserGender> load(@PathVariable Long id) {
+        UserGender userGender = userGenderService.getById(id);
+        return new ResponseEntity<UserGender>(userGender, HttpStatus.OK);
     }
 
     @Override

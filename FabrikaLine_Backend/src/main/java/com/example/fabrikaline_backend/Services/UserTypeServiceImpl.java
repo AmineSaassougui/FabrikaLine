@@ -57,7 +57,7 @@ public class UserTypeServiceImpl implements IUserTypeService, IAbstractService<U
     }
 
     @Override
-    public UserType getById(int id) {
+    public UserType getById(Long id) {
         return null;
     }
 }

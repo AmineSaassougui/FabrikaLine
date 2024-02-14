@@ -58,7 +58,7 @@ public class OrderStatusServiceImpl implements IOrderStatusService, IAbstractSer
     }
 
     @Override
-    public OrderStatus getById(int id) {
+    public OrderStatus getById(Long id) {
         return null; //TODO
     }
 }

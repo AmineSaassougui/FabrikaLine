@@ -56,7 +56,7 @@ public class CountryServiceImpl implements ICountryService, IAbstractService<Cou
     }
 
     @Override
-    public Country getById(int id) {
+    public Country getById(Long id) {
         return null; //TODO
     }
 }

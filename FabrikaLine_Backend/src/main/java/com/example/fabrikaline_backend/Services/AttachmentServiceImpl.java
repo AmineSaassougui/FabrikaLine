@@ -67,7 +67,7 @@ public class AttachmentServiceImpl implements IAttachmentService, IAbstractServi
     }
 
     @Override
-    public Attachment getById(int id) {
+    public Attachment getById(Long id) {
         return null;
     }
 }

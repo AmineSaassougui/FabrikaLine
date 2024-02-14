@@ -56,7 +56,7 @@ public class ItemCategoryServiceImpl implements IItemCategoryService, IAbstractS
     }
 
     @Override
-    public ItemCategory getById(int id) {
+    public ItemCategory getById(Long id) {
         return null;
     }
 }
