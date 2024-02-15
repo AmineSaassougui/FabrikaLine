@@ -9,6 +9,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.ValidationException;
 import java.util.List;
 
@@ -57,6 +58,6 @@ public class CountryServiceImpl implements ICountryService, IAbstractService<Cou
 
     @Override
     public Country getById(Long id) {
-        return null; //TODO
+        return countryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Item with id :" + id + " not found"));
     }
 }

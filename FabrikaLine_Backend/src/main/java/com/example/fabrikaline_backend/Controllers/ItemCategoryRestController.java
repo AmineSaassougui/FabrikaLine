@@ -25,8 +25,11 @@ public class ItemCategoryRestController implements IAbstractController<ItemCateg
 
 
     @Override
-    public ResponseEntity<ItemCategory> load(Long id) {
-        return null;
+    @GetMapping("/load/{id}")
+    public ResponseEntity<ItemCategory> load(@PathVariable Long id) {
+        ItemCategory category= itemCategoryService.getById(id);
+        return new ResponseEntity<>(category,HttpStatus.OK);
+
     }
 
     @Override
