@@ -26,9 +26,12 @@ public class AttachmentCategoryRestController implements IAbstractController<Att
 
 
     @Override
+    @GetMapping("/load/{id}")
     public ResponseEntity<AttachmentCategory> load(Long id) {
-        return null;
+        AttachmentCategory category = attachmentCategoryService.getById(id);
+        return new ResponseEntity<>(category,HttpStatus.OK);
     }
+
 
     @Override
     @DeleteMapping("/Delete/{id}")

@@ -26,8 +26,12 @@ public class ComplaintCategoryRestController implements IAbstractController<Comp
 
 
     @Override
-    public ResponseEntity<ComplaintCategory> load(Long id) {
-        return null;
+    @GetMapping("/load/{id}")
+
+    public ResponseEntity<ComplaintCategory> load(@PathVariable  Long id) {
+        ComplaintCategory category = complaintCategoryService.getById(id);
+        return new ResponseEntity<>(category,HttpStatus.OK);
+
     }
 
     @Override

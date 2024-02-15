@@ -25,8 +25,10 @@ public class UserTypeRestController implements IAbstractController<UserType> {
 
 
     @Override
-    public ResponseEntity<UserType> load(Long id) {
-        return null;
+    @GetMapping("/load/{id}")
+    public ResponseEntity<UserType> load(@PathVariable Long id) {
+        UserType type= userTypeService.getById(id);
+        return new ResponseEntity<>(type,HttpStatus.OK);
     }
 
     @Override

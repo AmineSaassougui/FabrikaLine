@@ -26,8 +26,11 @@ public class OrderStatusRestController implements IAbstractController<OrderStatu
 
 
     @Override
+    @GetMapping("/load/{id}")
     public ResponseEntity<OrderStatus> load(Long id) {
-        return null;
+        OrderStatus status= orderStatusService.getById(id);
+        return new ResponseEntity<>(status,HttpStatus.OK);
+
     }
 
     @Override
