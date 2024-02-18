@@ -33,8 +33,10 @@ public class CityRestController implements IAbstractController<City> {
 
 
     @Override
-    public ResponseEntity<City> load(Long id) {
-        return null;
+    @GetMapping("/load/{id}")
+    public ResponseEntity<City> load(@PathVariable Long id) {
+        City city = cityService.getById(id);
+        return new ResponseEntity<>(city,HttpStatus.OK);
     }
 
     @Override

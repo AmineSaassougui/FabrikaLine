@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import javax.validation.ValidationException;
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class AttachmentServiceImpl implements IAttachmentService, IAbstractServi
 
     @Override
     public List<Attachment> getAll() {
-        return null;
+        return iAttachmentRepository.findAll();
     }
 
     @Override
@@ -68,6 +69,8 @@ public class AttachmentServiceImpl implements IAttachmentService, IAbstractServi
 
     @Override
     public Attachment getById(Long id) {
-        return null;
+        return iAttachmentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Item with id :" + id + " not found"));
     }
+
+
 }

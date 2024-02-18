@@ -32,8 +32,11 @@ public class AttachmentRestController implements IAbstractController<Attachment>
 
 
     @Override
-    public ResponseEntity<Attachment> load(Long id) {
-        return null;
+    @GetMapping("/load/{id}")
+    public ResponseEntity<Attachment> load(@PathVariable Long id) {
+        Attachment attachment= attachmentService.getById(id);
+        return new ResponseEntity<>(attachment,HttpStatus.OK);
+
     }
 
     @Override
@@ -52,9 +55,12 @@ public class AttachmentRestController implements IAbstractController<Attachment>
     }
 
     @Override
+    @GetMapping("/GetAll")
     public ResponseEntity<List<Attachment>> getAll() throws Exception {
-        return null;
+        List<Attachment> attachments = attachmentService.getAll();
+        return new ResponseEntity<>(attachments,HttpStatus.OK);
     }
+
 
     @Override
     public ResponseEntity<List<Attachment>> search(SearchCriteria criteria) throws Exception {

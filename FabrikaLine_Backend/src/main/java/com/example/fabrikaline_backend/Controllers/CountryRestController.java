@@ -30,8 +30,11 @@ public class CountryRestController implements IAbstractController<Country> {
     //region Methods
 
     @Override
-    public ResponseEntity<Country> load(Long id) {
-        return null;
+    @GetMapping("/load/{id}")
+    public ResponseEntity<Country> load(@PathVariable Long id) {
+        Country country= countryService.getById(id);
+        return new ResponseEntity<>(country,HttpStatus.OK);
+
     }
 
     @Override

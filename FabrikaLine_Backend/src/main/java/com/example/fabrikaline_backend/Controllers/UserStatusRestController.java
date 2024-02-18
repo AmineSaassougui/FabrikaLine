@@ -26,8 +26,11 @@ public class UserStatusRestController implements IAbstractController<UserStatus>
 
 
     @Override
-    public ResponseEntity<UserStatus> load(Long id) {
-        return null;
+    @GetMapping("/load/{id}")
+
+    public ResponseEntity<UserStatus> load(@PathVariable Long id) {
+        UserStatus status= userStatusService.getById(id);
+        return new ResponseEntity<>(status,HttpStatus.OK);
     }
 
     @Override

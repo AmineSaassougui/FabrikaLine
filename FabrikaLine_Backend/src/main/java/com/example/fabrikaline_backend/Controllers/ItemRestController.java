@@ -33,9 +33,12 @@ public class ItemRestController implements IAbstractController<Item> {
 
 
         @Override
-    public ResponseEntity<Item> load(Long id) {
-        return null;
-    }
+        @GetMapping("/load/{id}")
+        public ResponseEntity<Item> load(@PathVariable Long id) {
+            Item item = itemService.getById(id);
+            return new ResponseEntity<>(item,HttpStatus.OK);
+
+        }
 
     @Override
     @DeleteMapping("/Delete/{id}")
