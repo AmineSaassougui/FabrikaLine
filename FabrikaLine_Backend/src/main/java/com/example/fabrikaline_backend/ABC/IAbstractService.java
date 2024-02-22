@@ -1,4 +1,5 @@
 package com.example.fabrikaline_backend.ABC;
+
 import com.example.fabrikaline_backend.Models.SearchCriteria;
 
 import javax.validation.ValidationException;
@@ -18,4 +19,7 @@ public interface IAbstractService<T> {
     void validate(T entity) throws ValidationException;
 
     T getById(Long id);
+
+
+
 }
