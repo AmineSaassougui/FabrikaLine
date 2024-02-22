@@ -1,10 +1,8 @@
 package com.example.fabrikaline_backend.Controllers;
 
 import com.example.fabrikaline_backend.ABC.IAbstractController;
-import com.example.fabrikaline_backend.Entities.AttachmentCategory;
 import com.example.fabrikaline_backend.Entities.OrderStatus;
 import com.example.fabrikaline_backend.Models.SearchCriteria;
-import com.example.fabrikaline_backend.Services.AttachmentCategoryServiceImpl;
 import com.example.fabrikaline_backend.Services.OrderStatusServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
