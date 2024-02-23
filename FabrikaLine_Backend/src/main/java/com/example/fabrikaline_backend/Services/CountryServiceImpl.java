@@ -63,34 +63,37 @@ public class CountryServiceImpl implements ICountryService, IAbstractService<Cou
     }
 
     @Override
-    public List<Country> advancedSearch(Long currentPos, Long step, SearchCriteria searchCriteria) throws Exception {
-        if (currentPos < 0 || step <= 0) {
-            throw new IllegalArgumentException("Invalid currentPos or step value");
+    public List<Country> advancedSearch(Long currentPos, Long step, String searchCriteria) throws Exception
+    {
+
+        List<Country> listCountry;
+
+        if (searchCriteria != null )
+        {
+            listCountry = countryRepository.findByDescriptionContaining(searchCriteria);
         }
+        else
+        {
+            if (currentPos < 0 || step <= 0) {
+                throw new IllegalArgumentException("Invalid currentPos or step value");
+            }
+            // Calculate the starting position based on the currentPos and step
+            long startingPos = currentPos * step;
 
-        // Calculate the starting position based on the currentPos and step
-        long startingPos = currentPos * step;
-
-        // Perform the search if searchCriteria is not null
-        List<Country> searchResults;
-        if (searchCriteria != null && searchCriteria.getDescription() != null) {
-            String description = searchCriteria.getDescription();
-            searchResults = countryRepository.findByDescriptionContaining(description);
-        } else {
             // If searchCriteria is null or description is null, get all countries
-            searchResults = countryRepository.findAll();
-        }
+            listCountry = countryRepository.findAll(); // ?????? TODO
 
-        // Apply pagination to the search results
-        int fromIndex = currentPos.intValue();
-        int toIndex = Math.min(fromIndex + step.intValue(), searchResults.size());
-        if (fromIndex < searchResults.size() && fromIndex < toIndex) {
-            return searchResults.subList(fromIndex, toIndex);
-        } else {
-            return Collections.emptyList();
+            // Apply pagination to the search results
+            int fromIndex = currentPos.intValue();
+            int toIndex = Math.min(fromIndex + step.intValue(), listCountry.size());
+            if (fromIndex < listCountry.size() && fromIndex < toIndex) {
+                return listCountry.subList(fromIndex, toIndex);
+            } else {
+                return Collections.emptyList();
+            }
         }
+    return listCountry;
     }
-
 
 
 

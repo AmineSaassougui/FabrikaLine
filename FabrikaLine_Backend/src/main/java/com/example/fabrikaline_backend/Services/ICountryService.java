@@ -6,5 +6,5 @@ import com.example.fabrikaline_backend.Models.SearchCriteria;
 import java.util.List;
 
 public interface ICountryService  {
-    List<Country> advancedSearch(Long currentPos, Long step, SearchCriteria searchCriteria) throws Exception;
+    List<Country> advancedSearch(Long currentPos, Long step, String searchCriteria) throws Exception;
 }
