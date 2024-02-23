@@ -37,9 +37,10 @@ public class CountryRestController implements IAbstractController<Country> {
     }
     @GetMapping("/advancedSearch")
     public ResponseEntity<List<Country>> advancedSearch(
-            @RequestParam("currentPos") Long currentPos,
-            @RequestParam("step") Long step,
-            @RequestBody(required = false) SearchCriteria searchCriteria
+            @RequestParam(value = "currentPos",required = false) Long currentPos,
+            @RequestParam(value = "step",required = false) Long step,
+            //@RequestBody(required = true) SearchCriteria searchCriteria
+            @RequestParam(value = "searchCriteria",required = false) String searchCriteria
     ) {
         try {
             List<Country> searchResults = countryService.advancedSearch(currentPos, step, searchCriteria);
