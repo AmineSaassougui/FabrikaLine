@@ -1,10 +1,8 @@
 package com.example.fabrikaline_backend.Controllers;
 
 import com.example.fabrikaline_backend.ABC.IAbstractController;
-import com.example.fabrikaline_backend.Entities.Country;
 import com.example.fabrikaline_backend.Entities.UserGender;
 import com.example.fabrikaline_backend.Models.SearchCriteria;
-import com.example.fabrikaline_backend.Services.CountryServiceImpl;
 import com.example.fabrikaline_backend.Services.UserGenderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

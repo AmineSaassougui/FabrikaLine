@@ -2,10 +2,8 @@ package com.example.fabrikaline_backend.Services;
 
 import com.example.fabrikaline_backend.ABC.IAbstractService;
 import com.example.fabrikaline_backend.Entities.ComplaintCategory;
-import com.example.fabrikaline_backend.Entities.ItemCategory;
 import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Repositories.IComplaintCategoryRepository;
-import com.example.fabrikaline_backend.Repositories.IItemCategoryRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

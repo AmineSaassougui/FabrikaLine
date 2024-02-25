@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.ValidationException;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -60,4 +61,40 @@ public class CountryServiceImpl implements ICountryService, IAbstractService<Cou
     public Country getById(Long id) {
         return countryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Item with id :" + id + " not found"));
     }
+
+    @Override
+    public List<Country> advancedSearch(Long currentPos, Long step, String searchCriteria) throws Exception
+    {
+
+        List<Country> listCountry;
+
+        if (searchCriteria != null )
+        {
+            listCountry = countryRepository.findByDescriptionContaining(searchCriteria);
+        }
+        else
+        {
+            if (currentPos < 0 || step <= 0) {
+                throw new IllegalArgumentException("Invalid currentPos or step value");
+            }
+            // Calculate the starting position based on the currentPos and step
+            long startingPos = currentPos * step;
+
+            // If searchCriteria is null or description is null, get all countries
+            listCountry = countryRepository.findAll(); // ?????? TODO
+
+            // Apply pagination to the search results
+            int fromIndex = currentPos.intValue();
+            int toIndex = Math.min(fromIndex + step.intValue(), listCountry.size());
+            if (fromIndex < listCountry.size() && fromIndex < toIndex) {
+                return listCountry.subList(fromIndex, toIndex);
+            } else {
+                return Collections.emptyList();
+            }
+        }
+    return listCountry;
+    }
+
+
+
 }

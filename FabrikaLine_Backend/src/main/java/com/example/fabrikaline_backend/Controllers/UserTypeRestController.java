@@ -1,10 +1,8 @@
 package com.example.fabrikaline_backend.Controllers;
 
 import com.example.fabrikaline_backend.ABC.IAbstractController;
-import com.example.fabrikaline_backend.Entities.ItemCategory;
 import com.example.fabrikaline_backend.Entities.UserType;
 import com.example.fabrikaline_backend.Models.SearchCriteria;
-import com.example.fabrikaline_backend.Services.ItemCategoryServiceImpl;
 import com.example.fabrikaline_backend.Services.UserTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -2,10 +2,9 @@ package com.example.fabrikaline_backend.Controllers;
 
 import com.example.fabrikaline_backend.ABC.IAbstractController;
 import com.example.fabrikaline_backend.Entities.City;
-import com.example.fabrikaline_backend.Entities.Item;
+import com.example.fabrikaline_backend.Entities.Country;
 import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Services.CityServiceImpl;
-import com.example.fabrikaline_backend.Services.ItemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +22,21 @@ public class CityRestController implements IAbstractController<City> {
 
     @Autowired
     CityServiceImpl cityService;
+
+    @GetMapping("/advancedSearch")
+    public ResponseEntity<List<City>> advancedSearch(
+            @RequestParam(value = "currentPos",required = false) Long currentPos,
+            @RequestParam(value = "step",required = false) Long step,
+            //@RequestBody(required = true) SearchCriteria searchCriteria
+            @RequestParam(value = "searchCriteria",required = false) String searchCriteria
+    ) {
+        try {
+            List<City> searchResults = cityService.advancedSearch(currentPos, step, searchCriteria);
+            return new ResponseEntity<>(searchResults, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @PostMapping("/add/{countryId}")
     public ResponseEntity<City> addAndAssignItemToCategory(@RequestBody City city, @PathVariable Long countryId) {
