@@ -37,6 +37,7 @@ public class UserGenderRestController implements IAbstractController<UserGender>
     public void delete(@PathVariable Long id) {
         userGenderService.delete(id);
     }
+
     @PostMapping("/Save")
     @ResponseBody
     @Override

@@ -41,13 +41,6 @@ export class UserGenderFormComponent implements OnInit {
     this.route.navigate(['/Adm/UserGenderList'])
   }
 
-
-
-
-
-
-
-
   position = 'top-center';
   visible = false;
   percentage = 0;
