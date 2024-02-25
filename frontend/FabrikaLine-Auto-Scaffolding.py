@@ -37,6 +37,6 @@ print('\n3) =====<<< Generate openApi please wait ... >>>=====')
 default_path = r'C:\_fabrikaline\frontend\FabrikaApp'
 command = r'npx @openapitools/openapi-generator-cli generate -g typescript-angular -i "C:\\_fabrikaline\\frontend\\FabrikaLine.json" -o "C:\\_fabrikaline\\frontend\\FabrikaApp\\libs\\openapi\\src"'
 process = subprocess.Popen(['powershell.exe', '-NoExit', f'cd "{default_path}"; {command}'])
-time.sleep(15)
+time.sleep(25)
 print('Done')
 print("\n \n ====<< ALL PROCESSES ARE WORKING SMOOTHLY! YOU CAN CONTINUE WITH YOUR WORK. GOOD LUCK! ^_^ , ©RAHMOUNI Seif >>====")
