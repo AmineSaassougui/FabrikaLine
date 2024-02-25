@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.ValidationException;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -58,5 +59,38 @@ public class ComplaintCategoryServiceImpl implements IComplaintCategoryService, 
     @Override
     public ComplaintCategory getById(Long id) {
         return iComplaintCategoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Item with id :" + id + " not found"));
+    }
+
+    @Override
+    public List<ComplaintCategory> advancedSearch(Long currentPos, Long step, String searchCriteria) throws Exception
+    {
+
+        List<ComplaintCategory> categoryList;
+
+        if (searchCriteria != null )
+        {
+            categoryList = iComplaintCategoryRepository.findByDescriptionContaining(searchCriteria) ;
+        }
+        else
+        {
+            if (currentPos < 0 || step <= 0) {
+                throw new IllegalArgumentException("Invalid currentPos or step value");
+            }
+            // Calculate the starting position based on the currentPos and step
+            long startingPos = currentPos * step;
+
+            // If searchCriteria is null or description is null, get all countries
+            categoryList = iComplaintCategoryRepository.findAll(); // ?????? TODO
+
+            // Apply pagination to the search results
+            int fromIndex = currentPos.intValue();
+            int toIndex = Math.min(fromIndex + step.intValue(), categoryList.size());
+            if (fromIndex < categoryList.size() && fromIndex < toIndex) {
+                return categoryList.subList(fromIndex, toIndex);
+            } else {
+                return Collections.emptyList();
+            }
+        }
+        return categoryList;
     }
 }

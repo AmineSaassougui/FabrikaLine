@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.ValidationException;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -58,5 +59,38 @@ public class ItemCategoryServiceImpl implements IItemCategoryService, IAbstractS
     @Override
     public ItemCategory getById(Long id) {
         return iItemCategoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Item with id :" + id + " not found"));
+    }
+
+    @Override
+    public List<ItemCategory> advancedSearch(Long currentPos, Long step, String searchCriteria) throws Exception
+    {
+
+        List<ItemCategory> itemCategoryList;
+
+        if (searchCriteria != null )
+        {
+            itemCategoryList = iItemCategoryRepository.findByDescriptionContaining(searchCriteria) ;
+        }
+        else
+        {
+            if (currentPos < 0 || step <= 0) {
+                throw new IllegalArgumentException("Invalid currentPos or step value");
+            }
+            // Calculate the starting position based on the currentPos and step
+            long startingPos = currentPos * step;
+
+            // If searchCriteria is null or description is null, get all countries
+            itemCategoryList = iItemCategoryRepository.findAll(); // ?????? TODO
+
+            // Apply pagination to the search results
+            int fromIndex = currentPos.intValue();
+            int toIndex = Math.min(fromIndex + step.intValue(), itemCategoryList.size());
+            if (fromIndex < itemCategoryList.size() && fromIndex < toIndex) {
+                return itemCategoryList.subList(fromIndex, toIndex);
+            } else {
+                return Collections.emptyList();
+            }
+        }
+        return itemCategoryList;
     }
 }

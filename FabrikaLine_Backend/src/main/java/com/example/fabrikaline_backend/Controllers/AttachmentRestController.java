@@ -36,7 +36,7 @@ public class AttachmentRestController implements IAbstractController<Attachment>
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping("/add/{attachmentCategoryId}")
+    @PostMapping("/save/{attachmentCategoryId}")
     public ResponseEntity<Attachment> addAndAssignItemToCategory(@RequestBody Attachment attachment, @PathVariable Long attachmentCategoryId) {
         Attachment newattachment = attachmentService.saveAndAssign(attachmentCategoryId, attachment) ;
         return new ResponseEntity<>(newattachment, HttpStatus.CREATED);
