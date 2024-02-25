@@ -14,6 +14,7 @@ import java.util.List;
 
 @RequestMapping("/AttachmentCategory")
 @RestController
+@CrossOrigin("*")
 
 
 public class AttachmentCategoryRestController implements IAbstractController<AttachmentCategory> {
@@ -40,7 +41,7 @@ public class AttachmentCategoryRestController implements IAbstractController<Att
 
 
     @Override
-    @GetMapping("/load/{id}")
+    @GetMapping(value = "/Load/{id}", produces = "application/json")
     public ResponseEntity<AttachmentCategory> load(@PathVariable Long id) {
         AttachmentCategory category = attachmentCategoryService.getById(id);
         return new ResponseEntity<>(category,HttpStatus.OK);

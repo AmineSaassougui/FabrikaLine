@@ -12,6 +12,7 @@ import java.util.List;
 
 @RequestMapping("/ItemCategory")
 @RestController
+@CrossOrigin("*")
 
 
 public class ItemCategoryRestController implements IAbstractController<ItemCategory> {

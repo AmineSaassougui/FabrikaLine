@@ -34,9 +34,9 @@ export class ItemCategoryFormComponent implements OnInit {
   }
 
   load(){
-    // this._service.(this.id).subscribe((res: any) => {   
-    //   this.object = res;
-    // });
+    this._service.load4(this.id).subscribe((res: any) => {   
+      this.object = res;
+    });
   }
 
   cancel() {
