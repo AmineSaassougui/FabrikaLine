@@ -5,7 +5,7 @@
     <c-card-body>
       <c-row>
         <c-col sm="5">
-          <h4 class="card-title mb-0" id="traffic"> Form </h4>
+          <h4 class="card-title mb-0" id="traffic"> Gender </h4>
         </c-col>
       </c-row>
     <br>
@@ -14,14 +14,14 @@
       </div>
       <div>
         <!-- Action here like : add, delete,... -->
-        <button type="button" class="btn btn-success waves-effect" routerLink="/Adm/UserGenderForm">Ajouter</button> &nbsp;
+        <button  cButton color="info" routerLink="/Adm/UserGenderForm">Ajouter</button> &nbsp;
         <button cButton color="info" (click)="modify()">Modifier</button>  &nbsp;
 
         <button cButton color="info" (click)="delete()">Supprimer</button>  &nbsp;
 
         <button cButton color="info" (click)="load()" >Refrech</button>  &nbsp;
 
-       <div align="Right"> <button type="button" class="btn btn-info waves-effect" (click)="load()" >More</button></div>
+       <button cButton color="light" align="Right" (click)="load()" >More</button>
       </div>
         <div> 
         <br/>
