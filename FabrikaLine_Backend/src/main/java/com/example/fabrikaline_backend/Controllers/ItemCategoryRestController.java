@@ -22,6 +22,22 @@ public class ItemCategoryRestController implements IAbstractController<ItemCateg
     ItemCategoryServiceImpl itemCategoryService;
 
 
+    @GetMapping("/advancedSearch")
+    public ResponseEntity<List<ItemCategory>> advancedSearch(
+            @RequestParam(value = "currentPos",required = false) Long currentPos,
+            @RequestParam(value = "step",required = false) Long step,
+            //@RequestBody(required = true) SearchCriteria searchCriteria
+            @RequestParam(value = "searchCriteria",required = false) String searchCriteria
+    ) {
+        try {
+            List<ItemCategory> searchResults = itemCategoryService.advancedSearch(currentPos, step, searchCriteria);
+            return new ResponseEntity<>(searchResults, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
     @Override
     @GetMapping("/load/{id}")
     public ResponseEntity<ItemCategory> load(@PathVariable Long id) {
