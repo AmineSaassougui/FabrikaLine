@@ -32,7 +32,7 @@ export class UserGenderFormComponent implements OnInit {
   }
 
   load(){
-    this._service.load(this.id).subscribe((res: any) => {   
+    this._service.load2(this.id).subscribe((res: any) => {   
       this.object = res;
     });
   }
