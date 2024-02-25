@@ -11,14 +11,11 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.ValidationException;
+import java.util.Collections;
 import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 @Slf4j
@@ -74,5 +71,38 @@ public class UserGenderServiceImpl implements IUserGenderService, IAbstractServi
     @Override
     public UserGender getById(Long id) {
         return iUserGenderRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Item  not found  in our repsitory"));
+    }
+
+    @Override
+    public List<UserGender> advancedSearch(Long currentPos, Long step, String searchCriteria) throws Exception
+    {
+
+        List<UserGender> userGenderList;
+
+        if (searchCriteria != null )
+        {
+            userGenderList = iUserGenderRepository.findByDescriptionContaining(searchCriteria);
+        }
+        else
+        {
+            if (currentPos < 0 || step <= 0) {
+                throw new IllegalArgumentException("Invalid currentPos or step value");
+            }
+            // Calculate the starting position based on the currentPos and step
+            long startingPos = currentPos * step;
+
+            // If searchCriteria is null or description is null, get all countries
+            userGenderList = iUserGenderRepository.findAll(); // ?????? TODO
+
+            // Apply pagination to the search results
+            int fromIndex = currentPos.intValue();
+            int toIndex = Math.min(fromIndex + step.intValue(), userGenderList.size());
+            if (fromIndex < userGenderList.size() && fromIndex < toIndex) {
+                return userGenderList.subList(fromIndex, toIndex);
+            } else {
+                return Collections.emptyList();
+            }
+        }
+        return userGenderList;
     }
 }
