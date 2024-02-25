@@ -42,6 +42,4 @@ export class ItemCategoryFormComponent implements OnInit {
   cancel() {
     this.route.navigate(['/Adm/ItemCategoryList'])
   }
-
-
 }

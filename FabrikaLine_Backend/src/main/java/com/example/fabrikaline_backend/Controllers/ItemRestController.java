@@ -13,6 +13,7 @@ import java.util.List;
 
 @RequestMapping("/Item")
 @RestController
+@CrossOrigin("*")
 
 
 public class ItemRestController implements IAbstractController<Item> {
@@ -21,6 +22,7 @@ public class ItemRestController implements IAbstractController<Item> {
 
     @Autowired
     ItemServiceImpl itemService;
+
 
     @GetMapping("/advancedSearch")
     public ResponseEntity<List<Item>> advancedSearch(
@@ -39,17 +41,14 @@ public class ItemRestController implements IAbstractController<Item> {
 
 
 
-    @PostMapping("/save/{categoryId}")
-    public ResponseEntity<Item> addAndAssignItemToCategory(@RequestBody Item item, @PathVariable Long categoryId) {
+
+    @PostMapping("/Save/{categoryId}")
+    public ResponseEntity<Item> Save(@RequestBody Item item, @PathVariable Long categoryId) {
         Item newItem = itemService.saveAndAssign(categoryId, item) ;
         return new ResponseEntity<>(newItem, HttpStatus.CREATED);
-
     }
-
-
-
         @Override
-        @GetMapping("/load/{id}")
+        @GetMapping(value = "/Load/{id}", produces = "application/json")
         public ResponseEntity<Item> load(@PathVariable Long id) {
             Item item = itemService.getById(id);
             return new ResponseEntity<>(item,HttpStatus.OK);
@@ -72,8 +71,7 @@ public class ItemRestController implements IAbstractController<Item> {
     }
 
     @Override
-    @GetMapping("/GetAll")
-
+    @GetMapping(value = "/GetAll", produces = "application/json")
     public ResponseEntity<List<Item>> getAll() throws Exception {
         List<Item> items = itemService.getAll();
         return new ResponseEntity<>(items,HttpStatus.OK);

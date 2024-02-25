@@ -97,15 +97,15 @@ export class CityRestControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addAndAssignItemToCategory1(countryId: number, city: City, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<City>;
-    public addAndAssignItemToCategory1(countryId: number, city: City, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<City>>;
-    public addAndAssignItemToCategory1(countryId: number, city: City, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<City>>;
-    public addAndAssignItemToCategory1(countryId: number, city: City, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public addAndAssignItemToCategory(countryId: number, city: City, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<City>;
+    public addAndAssignItemToCategory(countryId: number, city: City, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<City>>;
+    public addAndAssignItemToCategory(countryId: number, city: City, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<City>>;
+    public addAndAssignItemToCategory(countryId: number, city: City, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (countryId === null || countryId === undefined) {
-            throw new Error('Required parameter countryId was null or undefined when calling addAndAssignItemToCategory1.');
+            throw new Error('Required parameter countryId was null or undefined when calling addAndAssignItemToCategory.');
         }
         if (city === null || city === undefined) {
-            throw new Error('Required parameter city was null or undefined when calling addAndAssignItemToCategory1.');
+            throw new Error('Required parameter city was null or undefined when calling addAndAssignItemToCategory.');
         }
 
         let localVarHeaders = this.defaultHeaders;

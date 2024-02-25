@@ -97,15 +97,15 @@ export class AttachmentRestControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public addAndAssignItemToCategory2(attachmentCategoryId: number, attachment: Attachment, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<Attachment>;
-    public addAndAssignItemToCategory2(attachmentCategoryId: number, attachment: Attachment, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Attachment>>;
-    public addAndAssignItemToCategory2(attachmentCategoryId: number, attachment: Attachment, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Attachment>>;
-    public addAndAssignItemToCategory2(attachmentCategoryId: number, attachment: Attachment, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public addAndAssignItemToCategory1(attachmentCategoryId: number, attachment: Attachment, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<Attachment>;
+    public addAndAssignItemToCategory1(attachmentCategoryId: number, attachment: Attachment, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Attachment>>;
+    public addAndAssignItemToCategory1(attachmentCategoryId: number, attachment: Attachment, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Attachment>>;
+    public addAndAssignItemToCategory1(attachmentCategoryId: number, attachment: Attachment, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (attachmentCategoryId === null || attachmentCategoryId === undefined) {
-            throw new Error('Required parameter attachmentCategoryId was null or undefined when calling addAndAssignItemToCategory2.');
+            throw new Error('Required parameter attachmentCategoryId was null or undefined when calling addAndAssignItemToCategory1.');
         }
         if (attachment === null || attachment === undefined) {
-            throw new Error('Required parameter attachment was null or undefined when calling addAndAssignItemToCategory2.');
+            throw new Error('Required parameter attachment was null or undefined when calling addAndAssignItemToCategory1.');
         }
 
         let localVarHeaders = this.defaultHeaders;
