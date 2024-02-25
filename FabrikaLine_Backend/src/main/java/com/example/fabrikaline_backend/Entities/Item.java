@@ -17,7 +17,7 @@ public class Item implements Serializable {
     // we have to make a field name here beacuse its items
     private String description ;
     private double price ;
-    private boolean avaiblity ;
+    private boolean availability ;
     private Long quantity ;
 
     @ManyToOne
