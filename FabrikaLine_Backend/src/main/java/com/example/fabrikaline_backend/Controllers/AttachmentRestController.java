@@ -22,6 +22,20 @@ public class AttachmentRestController implements IAbstractController<Attachment>
     @Autowired
     AttachmentServiceImpl attachmentService;
 
+    @GetMapping("/advancedSearch")
+    public ResponseEntity<List<Attachment>> advancedSearch(
+            @RequestParam(value = "currentPos",required = false) Long currentPos,
+            @RequestParam(value = "step",required = false) Long step,
+            //@RequestBody(required = true) SearchCriteria searchCriteria
+            @RequestParam(value = "searchCriteria",required = false) String searchCriteria
+    ) {
+        try {
+            List<Attachment> searchResults = attachmentService.advancedSearch(currentPos, step, searchCriteria);
+            return new ResponseEntity<>(searchResults, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
     @PostMapping("/add/{attachmentCategoryId}")
     public ResponseEntity<Attachment> addAndAssignItemToCategory(@RequestBody Attachment attachment, @PathVariable Long attachmentCategoryId) {
         Attachment newattachment = attachmentService.saveAndAssign(attachmentCategoryId, attachment) ;

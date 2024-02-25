@@ -2,6 +2,7 @@ package com.example.fabrikaline_backend.Controllers;
 
 import com.example.fabrikaline_backend.ABC.IAbstractController;
 import com.example.fabrikaline_backend.Entities.AttachmentCategory;
+import com.example.fabrikaline_backend.Entities.City;
 import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Services.AttachmentCategoryServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,25 @@ public class AttachmentCategoryRestController implements IAbstractController<Att
     @Autowired
     AttachmentCategoryServiceImpl attachmentCategoryService;
 
+    @GetMapping("/advancedSearch")
+    public ResponseEntity<List<AttachmentCategory>> advancedSearch(
+            @RequestParam(value = "currentPos",required = false) Long currentPos,
+            @RequestParam(value = "step",required = false) Long step,
+            //@RequestBody(required = true) SearchCriteria searchCriteria
+            @RequestParam(value = "searchCriteria",required = false) String searchCriteria
+    ) {
+        try {
+            List<AttachmentCategory> searchResults = attachmentCategoryService.advancedSearch(currentPos, step, searchCriteria);
+            return new ResponseEntity<>(searchResults, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     @Override
     @GetMapping("/load/{id}")
-    public ResponseEntity<AttachmentCategory> load(Long id) {
+    public ResponseEntity<AttachmentCategory> load(@PathVariable Long id) {
         AttachmentCategory category = attachmentCategoryService.getById(id);
         return new ResponseEntity<>(category,HttpStatus.OK);
     }
