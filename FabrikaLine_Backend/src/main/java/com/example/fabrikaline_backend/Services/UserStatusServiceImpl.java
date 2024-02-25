@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.ValidationException;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -59,5 +60,38 @@ public class UserStatusServiceImpl implements IUserStatusService, IAbstractServi
     @Override
     public UserStatus getById(Long id) {
         return userStatusRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Item with id :" + id + " not found"));
+    }
+
+    @Override
+    public List<UserStatus> advancedSearch(Long currentPos, Long step, String searchCriteria) throws Exception
+    {
+
+        List<UserStatus> statusList;
+
+        if (searchCriteria != null )
+        {
+            statusList = userStatusRepository.findByDescriptionContaining(searchCriteria);
+        }
+        else
+        {
+            if (currentPos < 0 || step <= 0) {
+                throw new IllegalArgumentException("Invalid currentPos or step value");
+            }
+            // Calculate the starting position based on the currentPos and step
+            long startingPos = currentPos * step;
+
+            // If searchCriteria is null or description is null, get all countries
+            statusList = userStatusRepository.findAll(); // ?????? TODO
+
+            // Apply pagination to the search results
+            int fromIndex = currentPos.intValue();
+            int toIndex = Math.min(fromIndex + step.intValue(), statusList.size());
+            if (fromIndex < statusList.size() && fromIndex < toIndex) {
+                return statusList.subList(fromIndex, toIndex);
+            } else {
+                return Collections.emptyList();
+            }
+        }
+        return statusList;
     }
 }

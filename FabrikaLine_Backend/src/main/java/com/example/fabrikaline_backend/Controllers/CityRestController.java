@@ -38,7 +38,7 @@ public class CityRestController implements IAbstractController<City> {
         }
     }
 
-    @PostMapping("/add/{countryId}")
+    @PostMapping("/save/{countryId}")
     public ResponseEntity<City> addAndAssignItemToCategory(@RequestBody City city, @PathVariable Long countryId) {
         City newcity = cityService.saveAndAssign(countryId, city) ;
         return new ResponseEntity<>(newcity, HttpStatus.CREATED);

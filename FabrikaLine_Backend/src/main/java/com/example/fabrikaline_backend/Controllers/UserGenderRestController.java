@@ -1,6 +1,7 @@
 package com.example.fabrikaline_backend.Controllers;
 
 import com.example.fabrikaline_backend.ABC.IAbstractController;
+import com.example.fabrikaline_backend.Entities.OrderStatus;
 import com.example.fabrikaline_backend.Entities.UserGender;
 import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Services.UserGenderServiceImpl;
@@ -30,6 +31,21 @@ public class UserGenderRestController implements IAbstractController<UserGender>
     public ResponseEntity<UserGender> load(@PathVariable Long id) {
         UserGender userGender = userGenderService.getById(id);
         return new ResponseEntity<UserGender>(userGender, HttpStatus.OK);
+    }
+
+    @GetMapping("/advancedSearch")
+    public ResponseEntity<List<UserGender>> advancedSearch(
+            @RequestParam(value = "currentPos",required = false) Long currentPos,
+            @RequestParam(value = "step",required = false) Long step,
+            //@RequestBody(required = true) SearchCriteria searchCriteria
+            @RequestParam(value = "searchCriteria",required = false) String searchCriteria
+    ) {
+        try {
+            List<UserGender> searchResults = userGenderService.advancedSearch(currentPos, step, searchCriteria);
+            return new ResponseEntity<>(searchResults, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @Override

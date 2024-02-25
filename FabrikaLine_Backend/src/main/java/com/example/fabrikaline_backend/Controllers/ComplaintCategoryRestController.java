@@ -1,6 +1,7 @@
 package com.example.fabrikaline_backend.Controllers;
 
 import com.example.fabrikaline_backend.ABC.IAbstractController;
+import com.example.fabrikaline_backend.Entities.City;
 import com.example.fabrikaline_backend.Entities.ComplaintCategory;
 import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Services.ComplaintCategoryServiceImpl;
@@ -21,6 +22,22 @@ public class ComplaintCategoryRestController implements IAbstractController<Comp
 
     @Autowired
     ComplaintCategoryServiceImpl complaintCategoryService;
+
+
+    @GetMapping("/advancedSearch")
+    public ResponseEntity<List<ComplaintCategory>> advancedSearch(
+            @RequestParam(value = "currentPos",required = false) Long currentPos,
+            @RequestParam(value = "step",required = false) Long step,
+            //@RequestBody(required = true) SearchCriteria searchCriteria
+            @RequestParam(value = "searchCriteria",required = false) String searchCriteria
+    ) {
+        try {
+            List<ComplaintCategory> searchResults = complaintCategoryService.advancedSearch(currentPos, step, searchCriteria);
+            return new ResponseEntity<>(searchResults, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
 
     @Override
