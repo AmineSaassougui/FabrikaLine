@@ -39,7 +39,7 @@ public class ItemRestController implements IAbstractController<Item> {
 
 
 
-    @PostMapping("/add/{categoryId}")
+    @PostMapping("/save/{categoryId}")
     public ResponseEntity<Item> addAndAssignItemToCategory(@RequestBody Item item, @PathVariable Long categoryId) {
         Item newItem = itemService.saveAndAssign(categoryId, item) ;
         return new ResponseEntity<>(newItem, HttpStatus.CREATED);
