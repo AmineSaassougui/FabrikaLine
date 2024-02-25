@@ -1,3 +1,70 @@
-<p>
-  item-form works!
-</p>
+<!-- <c-toaster   [placement]="position" class="p-3" position="fixed">
+  <c-toast
+    (timer)="onTimerChange($event)"
+    (visibleChange)="onVisibleChange($event)"
+    [visible]="visible">
+    <c-toast-header>
+      Ajout
+    </c-toast-header>
+    <c-toast-body>
+      <p>Added with succes</p>
+      <c-progress thin>
+        <c-progress-bar [value]="percentage"></c-progress-bar>
+      </c-progress>
+    </c-toast-body>
+  </c-toast>
+</c-toaster>
+
+<button (click)="toggleToast()" cButton class="m-1">Send a toast</button> -->
+
+<c-card class="mb-4">
+
+  <c-card-body>
+    
+    <c-row>
+      <c-col sm="5">
+        <h4 class="card-title mb-0" id="traffic"> Form </h4>
+      </c-col>
+    </c-row>
+    <br>
+    <div>
+      <ng-content select="app-yes-parameters"></ng-content>
+    </div>
+    <form #f="ngForm">
+
+      <div>
+        <!-- Action here like : add, delete,... -->
+        <button type="button" class="btn btn-success waves-effect"
+          [disabled]=' object.description=="" || object.description== null' (click)="save(f.value)">Save</button> &nbsp;
+        <button type="button" class="btn btn-info waves-effect" (click)="cancel()">Annuler</button>
+      </div>
+      <br/>
+      <div>
+        <div>
+          <input cFormControl type="text" hidden="true" [(ngModel)]="object.id" name="id" placeholder="Id" />
+          <input cFormControl type="text" [(ngModel)]="object.name" name="name" placeholder="Nom" style="margin-bottom: 10px;" />
+          <input cFormControl type="text" [(ngModel)]="object.description" name="description" placeholder="Description" style="margin-bottom: 10px;" />
+          <input cFormControl type="number" [(ngModel)]="object.price" name="price" placeholder="Prix"  style="margin-bottom: 10px;"/>
+          <input cFormControl type="number" [(ngModel)]="object.quantity" name="quantity" placeholder="Quantité" style="margin-bottom: 10px;"/>
+          <label cFormCheckLabel for="checkThree">Enter the id of the category  article until we add "Dropdown List PS: Make sur that the id exist in the DB"</label>
+          <input cFormControl type="number" [(ngModel)]="categoryId" name="price" placeholder="catégorie article"  style="margin-bottom: 10px;"/>
+          <c-form-check >
+            <input cFormCheckInput id="checkThree" [(ngModel)]="ok" type="checkbox"  >
+            <label cFormCheckLabel for="checkThree" >Disponibilité</label>
+          </c-form-check>
+
+        </div>
+
+        <br>
+      </div>
+    </form>
+  </c-card-body>
+  <c-card-footer>
+    <c-row class="text-center" [md]="5" [xs]="1">
+      <c-col class="mb-sm-2 mb-0">
+      </c-col>
+      <c-col class="mb-sm-2 mb-0">
+      </c-col>
+    </c-row>
+  </c-card-footer>
+</c-card>

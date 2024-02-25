@@ -53,8 +53,6 @@ export class ItemCategoryListComponent implements OnInit {
     }
   }
 
-
-
   public edit(selectedrecord: any) {
 
     const navigationExtras: NavigationExtras = {
