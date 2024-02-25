@@ -22,6 +22,8 @@ public class ItemRestController implements IAbstractController<Item> {
 
     @Autowired
     ItemServiceImpl itemService;
+
+
     @GetMapping("/advancedSearch")
     public ResponseEntity<List<Item>> advancedSearch(
             @RequestParam(value = "currentPos",required = false) Long currentPos,
