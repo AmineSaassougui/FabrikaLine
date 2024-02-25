@@ -23,7 +23,7 @@ public class ItemCategoryRestController implements IAbstractController<ItemCateg
 
 
     @Override
-    @GetMapping("/load/{id}")
+    @GetMapping(value = "/Load/{id}", produces = "application/json")
     public ResponseEntity<ItemCategory> load(@PathVariable Long id) {
         ItemCategory category= itemCategoryService.getById(id);
         return new ResponseEntity<>(category,HttpStatus.OK);
@@ -49,8 +49,7 @@ public class ItemCategoryRestController implements IAbstractController<ItemCateg
     }
 
     @Override
-    @GetMapping("/GetAll")
-
+    @GetMapping(value = "/GetAll", produces = "application/json")
     public ResponseEntity<List<ItemCategory>> getAll() throws Exception {
         List<ItemCategory> itemCategories = itemCategoryService.getAll();
         return new ResponseEntity<>(itemCategories,HttpStatus.OK);

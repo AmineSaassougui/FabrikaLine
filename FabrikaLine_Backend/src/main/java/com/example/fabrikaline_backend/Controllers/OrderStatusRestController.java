@@ -24,8 +24,8 @@ public class OrderStatusRestController implements IAbstractController<OrderStatu
 
 
     @Override
-    @GetMapping("/load/{id}")
-    public ResponseEntity<OrderStatus> load(Long id) {
+    @GetMapping(value = "/Load/{id}", produces = "application/json")
+    public ResponseEntity<OrderStatus> load(@PathVariable Long id) {
         OrderStatus status= orderStatusService.getById(id);
         return new ResponseEntity<>(status,HttpStatus.OK);
 

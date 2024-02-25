@@ -1,3 +1,8 @@
+import { ItemFormComponent } from './item/item-form.component';
+import { ItemListComponent } from './item/item-list.component';
+import { ItemCategoryFormComponent } from './item-category/item-category-form.component';
+import { ItemCategoryListComponent } from './item-category/item-category-list.component';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserListComponent } from './user-list/user-list.component';
@@ -6,6 +11,34 @@ import { UserGenderListComponent } from './user-gender/user-gender-list.componen
 import { UserGenderFormComponent } from './user-gender/user-gender-form.component';
 
 const routes: Routes = [
+  {
+    path: 'ItemList',
+    component: ItemListComponent,
+    data: {
+      title: 'Article'
+    }
+  },
+  {
+    path: 'ItemForm',
+    component: ItemFormComponent,
+    data: {
+      title: 'Article'
+    }
+  },
+  {
+    path: 'ItemCategoryForm',
+    component: ItemCategoryFormComponent,
+    data: {
+      title: 'Catégory acticle'
+    }
+  },
+  {
+    path: 'ItemCategoryList',
+    component: ItemCategoryListComponent,
+    data: {
+      title: 'Catégory acticle'
+    }
+  },
   {
     path: 'UserList',
     component: UserListComponent,

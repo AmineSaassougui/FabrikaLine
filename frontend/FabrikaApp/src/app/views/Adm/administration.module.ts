@@ -1,8 +1,12 @@
+import { ItemFormComponent } from './item/item-form.component';
+import { ItemListComponent } from './item/item-list.component';
+import { ItemCategoryFormComponent } from './item-category/item-category-form.component';
+import { ItemCategoryListComponent } from './item-category/item-category-list.component';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-import { CardModule, GridModule } from '@coreui/angular';
+import { CardModule, GridModule, ToastModule } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { AdministrationComponent } from './administration.component';
 import { AdministrationRoutingModule } from './administration-routing.module';
@@ -69,12 +73,13 @@ import {
         SidebarModule,
         TabsModule,
         UtilitiesModule,
+        ToastModule,
 
   ],
   declarations: [
-    AdministrationComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent
+    AdministrationComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent,  ItemCategoryListComponent, ItemCategoryFormComponent
   ],
-  exports: [UserListComponent, CountryListComponent, UserGenderListComponent,UserGenderFormComponent ]
+  exports: [UserListComponent, CountryListComponent, UserGenderListComponent,UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent]
 })
 export class AdministrationModule {
 }

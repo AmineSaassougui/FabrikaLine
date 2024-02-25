@@ -1,15 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ItemCategoryRestControllerService } from './../../../../../libs/openapi/src/api/itemCategoryRestController.service';
+import { Router, NavigationExtras } from '@angular/router';
 import { GridComponent } from '@syncfusion/ej2-angular-grids';
-import { UserGenderRestControllerService } from './../../../../../libs/openapi/src/api/userGenderRestController.service';
-import { NavigationExtras, Router } from '@angular/router';
+
 @Component({
-  selector: 'app-user-gender-list',
-  templateUrl: './user-gender-list.component.html',
+  selector: 'app-item-category-list',
+  templateUrl: './item-category-list.component.html',
+  styleUrls: ['./item-category-list.component.css']
 })
-export class UserGenderListComponent implements OnInit {
+export class ItemCategoryListComponent implements OnInit {
 
 
-  constructor(private route: Router, private _countryService: UserGenderRestControllerService) { }
+
+  constructor(private route: Router, private _countryService: ItemCategoryRestControllerService) { }
   ngOnInit(): void {
     this.load();
   }
@@ -17,7 +20,7 @@ export class UserGenderListComponent implements OnInit {
   @ViewChild('grid') public grid!: GridComponent;
 
   load() {
-    this._countryService.getAll2().subscribe((data: any[]) => {
+    this._countryService.getAll4().subscribe((data: any[]) => {
       this.grid.dataSource = data;
     });
   }
@@ -29,7 +32,7 @@ export class UserGenderListComponent implements OnInit {
     }
     else {
       let selectedrecord: any = this.grid.getSelectedRecords()[0]; // get the selected records.
-      this._countryService.delete2(selectedrecord['id']).subscribe((data: any) => {
+      this._countryService.delete4(selectedrecord['id']).subscribe((data: any) => {
         this.load()
       });
     }
@@ -59,10 +62,7 @@ export class UserGenderListComponent implements OnInit {
         id: selectedrecord.id,
       }
     };
-    var routerPath = `/Adm/UserGenderForm`;
+    var routerPath = `/Adm/ItemCategoryForm`;
     this.route.navigateByUrl(routerPath, navigationExtras);
   }
 }
-
-
-
