@@ -11,6 +11,10 @@ export const navItems: INavData[] = [
         url: '/Adm/ItemCategoryList'
       },
       {
+        name: 'Attachement',
+        url: '/Adm/AttachementList'
+      },
+      {
         name: 'Article',
         url: '/Adm/ItemList'
       },

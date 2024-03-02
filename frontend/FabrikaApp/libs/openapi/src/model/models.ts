@@ -6,6 +6,7 @@ export * from './country';
 export * from './item';
 export * from './itemCategory';
 export * from './orderStatus';
+export * from './user';
 export * from './userGender';
 export * from './userStatus';
 export * from './userType';

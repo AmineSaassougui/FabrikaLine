@@ -10,7 +10,23 @@ import { CountryListComponent } from './country-list/country-list.component';
 import { UserGenderListComponent } from './user-gender/user-gender-list.component';
 import { UserGenderFormComponent } from './user-gender/user-gender-form.component';
 
+import { AttachementListComponent } from './attachement/attachement-list.component';
+import { AttachementFormComponent } from './attachement/attachement-form.component';
 const routes: Routes = [
+  {
+    path: 'AttachementList',
+    component: AttachementListComponent,
+    data: {
+      title: 'Attachement'
+    }
+  },
+  {
+    path: 'AttachementForm',
+    component: AttachementFormComponent,
+    data: {
+      title: 'Attachement'
+    }
+  },
   {
     path: 'ItemList',
     component: ItemListComponent,
