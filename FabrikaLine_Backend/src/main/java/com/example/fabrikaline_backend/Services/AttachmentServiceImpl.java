@@ -31,6 +31,7 @@ public class AttachmentServiceImpl implements IAttachmentService, IAbstractServi
     public Attachment saveAndAssign(Long attachmentCategoryId, Attachment attachment){
         AttachmentCategory attachmentCategory = attachmentCategoryRepository.findById(attachmentCategoryId) .orElseThrow(() -> new IllegalArgumentException("Invalid attachmentCategory Id"));
         attachment.setAttachmentCategory(attachmentCategory);
+        var attachedFile = attachment.getAttachedFile();
         return iAttachmentRepository.save(attachment);
     }
 
@@ -107,5 +108,15 @@ public class AttachmentServiceImpl implements IAttachmentService, IAbstractServi
         return attachments;
     }
 
+    public List<Attachment> getAttachmenstByParentId(Long parentId) throws Exception
+    {
+        List<Attachment> attachments = null;
+
+        if (parentId != null )
+        {
+            attachments = iAttachmentRepository.findAttachmentsByParentId(parentId) ;
+        }
+        return attachments;
+    }
 
 }

@@ -36,6 +36,19 @@ public class AttachmentRestController implements IAbstractController<Attachment>
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    @GetMapping(value = "/getAttachmentByParentId",  produces = "application/json")
+    public ResponseEntity<List<Attachment>> getAttachmentByParentId( @RequestParam(value = "parentId",required = false) Long parentId)
+  {
+        try {
+            List<Attachment> res = attachmentService.getAttachmenstByParentId(parentId);
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/Save/{attachmentCategoryId}")
     public ResponseEntity<Attachment> Save(@RequestBody Attachment attachment, @PathVariable Long attachmentCategoryId) {
         Attachment newattachment = attachmentService.saveAndAssign(attachmentCategoryId, attachment) ;

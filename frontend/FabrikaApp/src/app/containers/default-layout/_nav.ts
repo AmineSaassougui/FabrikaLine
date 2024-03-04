@@ -7,13 +7,14 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-cursor' },
     children: [
       {
-        name: 'Catégory article',
-        url: '/Adm/ItemCategoryList'
-      },
-      {
         name: 'Attachement',
         url: '/Adm/AttachementList'
       },
+      {
+        name: 'Catégory article',
+        url: '/Adm/ItemCategoryList'
+      },
+
       {
         name: 'Article',
         url: '/Adm/ItemList'

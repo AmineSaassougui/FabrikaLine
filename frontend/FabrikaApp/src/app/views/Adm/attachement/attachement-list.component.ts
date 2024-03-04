@@ -7,10 +7,11 @@ import { AttachmentRestControllerService } from '../../../../../libs/openapi/src
   templateUrl: './attachement-list.component.html',
 })
 export class AttachementListComponent implements OnInit {
-
+   public parentId : any ;
 
   constructor(private route: Router, private fabrikaService: AttachmentRestControllerService) { }
   ngOnInit(): void {
+    this.parentId = history.state.parentId;
     this.load();
   }
 
@@ -48,6 +49,16 @@ export class AttachementListComponent implements OnInit {
       let selectedrecord: any = this.grid.getSelectedRecords()[0]; 
       this.edit(selectedrecord);
     }
+  }
+
+  add(){
+    const navigationExtras: NavigationExtras = {
+      state: {
+        parentId: this.parentId      
+      }
+    };
+    var routerPath = `/Adm/AttachementForm`;
+    this.route.navigateByUrl(routerPath, navigationExtras);
   }
 
 

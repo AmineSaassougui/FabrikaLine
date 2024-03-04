@@ -22,14 +22,18 @@
       <br/>
       <div>
         <div>
-          <!-- <label cLabel for="exampleFormControlInput1">Code</label> -->
           <input cFormControl type="text" hidden="true" [(ngModel)]="object.id" name="id" placeholder="Id" />
-
           <input cFormControl type="text" [(ngModel)]="object.code" name="code" placeholder="Code" style="margin-bottom: 10px;" />
-          <!-- <label cLabel for="exampleFormControlInput1">Description</label> -->
-          <input cFormControl type="text" [(ngModel)]="object.description" name="description" placeholder="Description" />
+          <input cFormControl type="text" [(ngModel)]="object.description" name="description" placeholder="Description"  style="margin-bottom: 10px;" />
+          <input cFormControl type="number" [readOnly]="true" [(ngModel)]="categoryId" name="attachmentCategoryId" placeholder="catégorie attachement"  style="margin-bottom: 10px;"/>
+          <input cFormControl type="text" [readOnly]="true" [(ngModel)]="object.extension" name="extension" placeholder="Extension"  style="margin-bottom: 10px;" />
+          <input [hidden]="true" cFormControl type="text" [(ngModel)]="object.attachedFile" name="attachedFile" placeholder="Fichier Attaché"  style="margin-bottom: 10px;" />
+          <input type="file" (change)="onFileSelected($event)" />
         </div>
-
+        <div *ngIf="this.object.attachedFile">
+          <img [src]="this.object.attachedFile" alt="Uploaded Image" />
+        </div>
+        
         <br>
       </div>
     </form>

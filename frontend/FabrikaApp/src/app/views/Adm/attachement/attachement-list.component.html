@@ -14,7 +14,7 @@
       </div>
       <div>
         <!-- Action here like : add, delete,... -->
-        <button  cButton color="info" routerLink="/Adm/AttachementForm">Ajouter</button> &nbsp;
+        <button  cButton color="info" (click)="add()">Ajouter</button> &nbsp;
         <button cButton color="info" (click)="modify()">Modifier</button>  &nbsp;
 
         <button cButton color="info" (click)="delete()">Supprimer</button>  &nbsp;
@@ -38,6 +38,7 @@
                 <e-column field='Description' headerText='Nom' textAlign='Right' format='C2' width=90></e-column>
                 <e-column field='Extension' headerText='Extension' textAlign='Right' format='C2' width=90></e-column>
                 <e-column field='AttachedFile' headerText='Attached_file' textAlign='Right' format='C2' width=90></e-column>
+                
 
             </e-columns>
             </ejs-grid>`
