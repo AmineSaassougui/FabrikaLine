@@ -2,6 +2,8 @@ import { ItemFormComponent } from './item/item-form.component';
 import { ItemListComponent } from './item/item-list.component';
 import { ItemCategoryFormComponent } from './item-category/item-category-form.component';
 import { ItemCategoryListComponent } from './item-category/item-category-list.component';
+import { AttachementListComponent } from './attachement/attachement-list.component';
+import { AttachementFormComponent } from './attachement/attachement-form.component';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -76,7 +78,7 @@ import {
         ToastModule,
 
   ],
-  declarations: [
+  declarations: [AttachementListComponent, AttachementFormComponent, 
     AdministrationComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent,  ItemCategoryListComponent, ItemCategoryFormComponent
   ],
   exports: [UserListComponent, CountryListComponent, UserGenderListComponent,UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent]

@@ -17,7 +17,7 @@ export interface Item {
     name?: string;
     description?: string;
     price?: number;
-    avaiblity?: boolean;
+    availability?: boolean;
     quantity?: number;
     itemCategory?: ItemCategory;
 }

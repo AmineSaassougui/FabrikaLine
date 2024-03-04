@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface IAttachmentRepository extends JpaRepository<Attachment,Long> {
     List<Attachment> findByDescriptionContaining(String searchCriteria);
+    List<Attachment> findAttachmentsByParentId(long parentId);
 }

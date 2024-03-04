@@ -36,7 +36,9 @@
         <!-- Action here like : add, delete,... -->
         <button type="button" class="btn btn-success waves-effect"
           [disabled]=' object.description=="" || object.description== null' (click)="save(f.value)">Save</button> &nbsp;
-        <button type="button" class="btn btn-info waves-effect" (click)="cancel()">Annuler</button>
+        <button type="button" class="btn btn-info waves-effect" (click)="cancel()">Annuler</button> &nbsp;
+        <button type="button" class="btn btn-info waves-effect" (click)="Attacher()" >Attacher</button>
+
       </div>
       <br/>
       <div>
@@ -54,10 +56,16 @@
           </c-form-check>
 
         </div>
-
+        <div *ngFor="let item of imagesFile">
+        <div *ngIf="item.attachedFile">
+          <img [src]="item.attachedFile" alt="Uploaded Image" />
+        </div>
+      </div>
         <br>
       </div>
     </form>
+
+
   </c-card-body>
   <c-card-footer>
     <c-row class="text-center" [md]="5" [xs]="1">

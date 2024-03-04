@@ -11,6 +11,7 @@ api/itemCategoryRestController.service.ts
 api/itemRestController.service.ts
 api/orderStatusRestController.service.ts
 api/userGenderRestController.service.ts
+api/userRestController.service.ts
 api/userStatusRestController.service.ts
 api/userTypeRestController.service.ts
 configuration.ts
@@ -26,6 +27,7 @@ model/item.ts
 model/itemCategory.ts
 model/models.ts
 model/orderStatus.ts
+model/user.ts
 model/userGender.ts
 model/userStatus.ts
 model/userType.ts
