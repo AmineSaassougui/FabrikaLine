@@ -20,7 +20,7 @@
 <c-card class="mb-4">
 
   <c-card-body>
-    
+
     <c-row>
       <c-col sm="5">
         <h4 class="card-title mb-0" id="traffic"> Form </h4>
@@ -35,35 +35,61 @@
       <div>
         <!-- Action here like : add, delete,... -->
         <button type="button" class="btn btn-success waves-effect"
-          [disabled]=' object.description=="" || object.description== null' (click)="save(f.value)">Save</button> &nbsp;
+          [disabled]=' object.description=="" || object.description== null  || object.itemCategory.description ==null || this.object.itemCategory.description == undefined' (click)="save(f.value)">Save</button> &nbsp;
         <button type="button" class="btn btn-info waves-effect" (click)="cancel()">Annuler</button> &nbsp;
-        <button type="button" class="btn btn-info waves-effect" (click)="Attacher()" >Attacher</button>
+        <button type="button" class="btn btn-info waves-effect" (click)="Attacher()">Attacher</button>
 
       </div>
-      <br/>
+      <br />
       <div>
         <div>
           <input cFormControl type="text" hidden="true" [(ngModel)]="object.id" name="id" placeholder="Id" />
+          <label cLabel for="exampleFormControlInput1">Nom</label>
           <input cFormControl type="text" [(ngModel)]="object.name" name="name" placeholder="Nom" style="margin-bottom: 10px;" />
+          <label cLabel for="exampleFormControlInput1">Description</label>
           <input cFormControl type="text" [(ngModel)]="object.description" name="description" placeholder="Description" style="margin-bottom: 10px;" />
+          <label cLabel for="exampleFormControlInput1">Prix</label>
           <input cFormControl type="number" [(ngModel)]="object.price" name="price" placeholder="Prix"  style="margin-bottom: 10px;"/>
+          <label cLabel for="exampleFormControlInput1">Quantité</label>
           <input cFormControl type="number" [(ngModel)]="object.quantity" name="quantity" placeholder="Quantité" style="margin-bottom: 10px;"/>
-          <label cFormCheckLabel for="checkThree">Enter the id of the category  article until we add "Dropdown List PS: Make sur that the id exist in the DB"</label>
-          <input cFormControl type="number" [(ngModel)]="categoryId" name="price" placeholder="catégorie article"  style="margin-bottom: 10px;"/>
+          <label cLabel for="exampleFormControlInput1">Catégorie article</label>
+          <c-dropdown cFormControl  style="width: 100%;" style="margin-bottom: 10px;">
+            <a cButton cDropdownToggle color="secondary" size="sm" >
+              {{ this.object == null ? "": this.object!.itemCategory!.description}}
+            </a>
+            <ul cDropdownMenu style="width: 100%;">
+              <li *ngFor="let menuItem of itemCategoryList">
+                <a (click)="selectCategory(menuItem)" cDropdownItem>{{menuItem.description}}</a>
+              </li>
+            </ul>
+          </c-dropdown>
+          <!-- check  : {{this.object.availability}}
           <c-form-check >
-            <input cFormCheckInput id="checkThree" [(ngModel)]="ok" type="checkbox"  >
-            <label cFormCheckLabel for="checkThree" >Disponibilité</label>
-          </c-form-check>
-
+            <input cFormCheckInput  [checked]="this.object.availability" (click)="checkAvailability()" [(ngModel)]="this.object.availability" type="checkbox"  >
+            <label cFormCheckLabel  >Disponibilité</label>
+          </c-form-check> -->
         </div>
-        <div *ngFor="let item of imagesFile">
-        <div *ngIf="item.attachedFile">
-          <img [src]="item.attachedFile" alt="Uploaded Image" />
-        </div>
-      </div>
+          <!-- Fetch attached files -->
+          <!-- <div *ngFor="let item of imagesFile">
+            <div *ngIf="item.attachedFile">
+              <h5 cCardTitle>Images attaché</h5>
+              <c-card class="w-50 ">
+                <img cCardImg="top" src="{{item.attachedFile}}" alt="Uploaded Image">
+                <c-card-body>
+                  <p cCardText>
+                    {{item.description}} </p>
+                  <button cButton color="light">Go somewhere</button>
+                </c-card-body>
+              </c-card>
+            </div>
+        </div> -->
+        <!-- End Fetch attached files -->
+   
+      
         <br>
       </div>
     </form>
+
 
 
   </c-card-body>

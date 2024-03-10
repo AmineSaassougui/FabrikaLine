@@ -24,11 +24,13 @@
         (recordDoubleClick)="onDoubleClick($event)" (load)='load()' [allowExcelExport]='true' [allowPdfExport]='true'
         [allowReordering]='true'>
         <e-columns>
-          <e-column field='Name' headerText='Nom' textAlign='Right' format='C2' width=90></e-column>
-          <e-column field='Description' headerText='Description' textAlign='Right' format='C2' width=90></e-column>
-          <e-column field='Price' headerText='Prix' width=120></e-column>
-          <e-column field='Availabilty' headerText='Disponibilité' width=120></e-column>
-          <e-column field='Quantity' headerText='Quantité' width=120></e-column>
+          <e-column field='Name' headerText='Nom' textAlign='Right' width=150></e-column>
+          <e-column field='Description' headerText='Description' textAlign='Right' width=150></e-column>
+          <e-column field='Price' headerText='Prix' textAlign='Right'  width=90></e-column>
+          <e-column field='Availability' headerText='Disponibilité' textAlign='Right'  width=90></e-column>
+          <e-column field='Quantity' headerText='Quantité' textAlign='Right'  width=90></e-column>
+          <e-column field='itemCategory.Description' headerText='Catégory article' textAlign='Right' width=90></e-column>
+
         </e-columns>
       </ejs-grid>`
     </div>

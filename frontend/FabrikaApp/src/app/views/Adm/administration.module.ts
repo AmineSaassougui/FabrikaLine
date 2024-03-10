@@ -8,7 +8,7 @@ import { AttachementFormComponent } from './attachement/attachement-form.compone
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CardModule, GridModule, ToastModule } from '@coreui/angular';
+import { CardModule, CarouselModule, GridModule, ToastModule } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
 import { AdministrationComponent } from './administration.component';
 import { AdministrationRoutingModule } from './administration-routing.module';
@@ -49,39 +49,39 @@ import {
   SidebarModule,
   TabsModule,
   UtilitiesModule,
-  
+
 } from '@coreui/angular';
 @NgModule({
   imports: [
-  CardModule,
+    CardModule,
     GridModule,
     IconModule,
     CommonModule,
     AdministrationRoutingModule,
     syncGridModule,
-        FormsModule,  AvatarModule,
-        BadgeModule,
-        BreadcrumbModule,
-        ButtonGroupModule,
-        ButtonModule,
-        DropdownModule,
-        FooterModule,
-        FormModule,
-        HeaderModule,
-        ListGroupModule,
-        NavModule,
-        ProgressModule,
-        SharedModule,
-        SidebarModule,
-        TabsModule,
-        UtilitiesModule,
-        ToastModule,
-
+    FormsModule, AvatarModule,
+    BadgeModule,
+    BreadcrumbModule,
+    ButtonGroupModule,
+    ButtonModule,
+    DropdownModule,
+    FooterModule,
+    FormModule,
+    HeaderModule,
+    ListGroupModule,
+    NavModule,
+    ProgressModule,
+    SharedModule,
+    SidebarModule,
+    TabsModule,
+    UtilitiesModule,
+    ToastModule,
+    CarouselModule
   ],
-  declarations: [AttachementListComponent, AttachementFormComponent, 
-    AdministrationComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent,  ItemCategoryListComponent, ItemCategoryFormComponent
+  declarations: [AttachementListComponent, AttachementFormComponent,
+    AdministrationComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent
   ],
-  exports: [UserListComponent, CountryListComponent, UserGenderListComponent,UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent]
+  exports: [UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent]
 })
 export class AdministrationModule {
 }

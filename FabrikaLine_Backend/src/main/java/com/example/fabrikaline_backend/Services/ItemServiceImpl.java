@@ -47,7 +47,11 @@ public class ItemServiceImpl implements IItemService, IAbstractService<Item> {
 
     @Override
     public List<Item> getAll() {
-        return iItemRepository.findAll();
+        List<Item> itemList = iItemRepository.findAll();
+        for (Item item : itemList) {
+            item.setAvailability(item.getQuantity() != 0);
+        }
+       return   itemList;
     }
 
     @Override

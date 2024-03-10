@@ -71,6 +71,7 @@ public class ItemRestController implements IAbstractController<Item> {
     @GetMapping(value = "/GetAll", produces = "application/json")
     public ResponseEntity<List<Item>> getAll() throws Exception {
         List<Item> items = itemService.getAll();
+
         return new ResponseEntity<>(items,HttpStatus.OK);
     }
 
