@@ -1,3 +1,8 @@
-.custom-dropdown {
-    width: 400px; /* Set the desired width */
-  }
+.carousel-sample {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 40%;
+  margin: 0 auto; /* This centers the container horizontally */
+}

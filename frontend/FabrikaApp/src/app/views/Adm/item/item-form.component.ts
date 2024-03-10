@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { AttachmentCategoryRestControllerService, AttachmentRestControllerService, ItemRestControllerService, ItemCategoryRestControllerService } from 'libs/openapi/src';
+import { AttachmentRestControllerService, ItemRestControllerService, ItemCategoryRestControllerService } from 'libs/openapi/src';
 import { Item } from './../../../../../libs/openapi/src/model/item';
+import { CarouselAnimationEffect } from '@syncfusion/ej2-angular-navigations';
 
 @Component({
   selector: 'app-item-form',
   templateUrl: './item-form.component.html',
-  styleUrls: ['./item-form.component.css']
+  styleUrls: ['./item-form.component.css'],
+  encapsulation: ViewEncapsulation.None
+
 })
 export class ItemFormComponent implements OnInit {
   object: any = {}; // Initialize object with empty object
@@ -17,6 +20,8 @@ export class ItemFormComponent implements OnInit {
   id: any;
   imagesFile: any[] = [];
   itemCategoryList: any[] = [];
+  public carouselAnimation: CarouselAnimationEffect = 'Fade';
+
   // Creating a new instance of Item
   newItem: Item = {
     name: undefined,
@@ -30,7 +35,11 @@ export class ItemFormComponent implements OnInit {
       description: undefined
     }
   };
-
+  
+  public getThumpImage(index: number): string {
+    const images = ['cardinal', 'hunei', 'costa-rica', 'kaohsiung', 'bee-eater'];
+    return `./assets/carousel/images/${images[index]}.png`;
+  }
   constructor(private route: Router, private _service: ItemRestControllerService, private attachementService: AttachmentRestControllerService, private itemCategoryRestControllerService: ItemCategoryRestControllerService) { }
 
   ngOnInit() {
@@ -38,8 +47,8 @@ export class ItemFormComponent implements OnInit {
     this.getCategoryList();
     if (this.id != null) {
       this.object.id = this.id;
+      this.getAttachedList(); 
       this.load();
-      this.loadAttachedList();
     } else {
       this.object = this.newItem;
     }
@@ -61,10 +70,7 @@ export class ItemFormComponent implements OnInit {
   }
 
 
-  async loadAttachedList() { // Define the method as asynchronous
-    await this.getAttachedList(); // Await the completion of getAttachedList()
-    // Code here will run after getAttachedList() completes
-  }
+
 
 
   save(object: any) {
@@ -101,20 +107,7 @@ export class ItemFormComponent implements OnInit {
   getAttachedList() {
     this.attachementService.getAttachmentByParentId(this.object.id).subscribe((res: any) => {
       if (res != null) {
-        this.imagesFile = res;
-        this.slides.push({
-          src: './../../../../assets/images/angular.jpg',
-          title: 'First slide',
-          subtitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
-        }, {
-          src: './../../../../assets/images/angular.jpg',
-          title: 'Second slide',
-          subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-        }, {
-          src: './../../../../assets/images/angular.jpg',
-          title: 'Third slide',
-          subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
-        });
+        this.imagesFile = res;  
       } else {
         alert("Something went wrong!")
       }
