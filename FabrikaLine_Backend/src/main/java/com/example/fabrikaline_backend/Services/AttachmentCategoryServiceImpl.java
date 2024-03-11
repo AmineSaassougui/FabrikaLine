@@ -59,7 +59,7 @@ public class AttachmentCategoryServiceImpl implements IAttachmentCategoryService
 
     @Override
     public AttachmentCategory getById(Long id) {
-        return attachmentCategoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Item with id :" + id + " not found"));
+        return attachmentCategoryRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("AttachmentCategory with id :" + id + " not found"));
     }
 
     @Override

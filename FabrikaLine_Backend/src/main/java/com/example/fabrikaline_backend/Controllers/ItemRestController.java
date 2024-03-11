@@ -1,6 +1,7 @@
 package com.example.fabrikaline_backend.Controllers;
 
 import com.example.fabrikaline_backend.ABC.IAbstractController;
+import com.example.fabrikaline_backend.DTO.ItemWithAttachmentsDTO;
 import com.example.fabrikaline_backend.Entities.Item;
 import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Services.ItemServiceImpl;
@@ -93,4 +94,12 @@ public class ItemRestController implements IAbstractController<Item> {
     public ResponseEntity<Void> deleteAll(List<Integer> ids) throws Exception {
         return null;
     }
+
+
+    @GetMapping("/withAttachments")
+    public ResponseEntity<List<ItemWithAttachmentsDTO>> getAllItemsWithAttachments() throws Exception {
+        List<ItemWithAttachmentsDTO> itemsWithAttachments = itemService.getAllItemsWithAttachments();
+        return new ResponseEntity<>(itemsWithAttachments, HttpStatus.OK);
+    }
+
 }
