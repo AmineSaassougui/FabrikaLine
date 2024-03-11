@@ -1,6 +1,8 @@
 package com.example.fabrikaline_backend.Services;
 
 import com.example.fabrikaline_backend.ABC.IAbstractService;
+import com.example.fabrikaline_backend.DTO.ItemWithAttachmentsDTO;
+import com.example.fabrikaline_backend.Entities.Attachment;
 import com.example.fabrikaline_backend.Entities.Item;
 import com.example.fabrikaline_backend.Entities.ItemCategory;
 import com.example.fabrikaline_backend.Models.SearchCriteria;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.ValidationException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,6 +28,8 @@ public class ItemServiceImpl implements IItemService, IAbstractService<Item> {
     IItemCategoryRepository iItemCategoryRepository;
     @Autowired
     IItemRepository iItemRepository;
+    @Autowired
+    AttachmentServiceImpl attachmentService;
 
 
     @Override
@@ -107,4 +112,29 @@ public class ItemServiceImpl implements IItemService, IAbstractService<Item> {
         }
         return itemList;
     }
+
+
+
+    @Override
+    public List<ItemWithAttachmentsDTO> getAllItemsWithAttachments() throws Exception {
+        List<Item> items = iItemRepository.findAll();
+        List<ItemWithAttachmentsDTO> itemDTOs = new ArrayList<>();
+        for (Item item : items) {
+            Long itemId = item.getId();
+            List<Attachment> attachments = attachmentService.getAttachmenstByParentId(itemId);
+            ItemWithAttachmentsDTO itemDTO = new ItemWithAttachmentsDTO();
+            itemDTO.setId(item.getId());
+            itemDTO.setName(item.getName());
+            itemDTO.setDescription(item.getDescription());
+            itemDTO.setPrice(item.getPrice());
+            itemDTO.setAvailability(item.isAvailability());
+            itemDTO.setQuantity(item.getQuantity());
+            itemDTO.setAttachments(attachments);
+            itemDTOs.add(itemDTO);
+        }
+        return itemDTOs;
+    }
+
+
+
 }

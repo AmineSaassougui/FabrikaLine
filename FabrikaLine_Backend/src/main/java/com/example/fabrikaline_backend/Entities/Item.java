@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @Entity
@@ -19,7 +21,6 @@ public class Item implements Serializable {
     private double price ;
     private boolean availability ;
     private Long quantity ;
-
     @ManyToOne
     @JoinColumn(name = "itemcategory_id")
     private ItemCategory itemCategory;
