@@ -105,6 +105,18 @@ public class AttachmentServiceImpl implements IAttachmentService, IAbstractServi
         }
         return attachments;
     }
+    public List<Attachment> getAttachmenstByParentId(Long parentId) throws Exception
+    {
+        List<Attachment> attachments = null;
 
+        if (parentId != null )
+        {
+            attachments = iAttachmentRepository.findAttachmentsByParentId(parentId) ;
+        }
+        return attachments;
+    }
 
 }
+
+
+
