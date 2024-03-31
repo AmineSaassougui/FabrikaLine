@@ -33,12 +33,13 @@ import {
   SidebarModule,
   TabsModule,
   UtilitiesModule,
-  
+
 } from '@coreui/angular';
 
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { AdministrationModule } from './views/Adm/administration.module';
 import { HttpClientModule } from '@angular/common/http';
+import {HomeModule} from "./views/home/home.module";
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -76,6 +77,7 @@ const APP_CONTAINERS = [
     CardModule,
     NgScrollbarModule,
     AdministrationModule,
+    HomeModule,
     HttpClientModule
   ],
   providers: [
