@@ -44,6 +44,7 @@ const routes: Routes = [
         path: 'base',
         loadChildren: () =>
           import('./views/base/base.module').then((m) => m.BaseModule)
+
       },
       {
         path: 'buttons',
