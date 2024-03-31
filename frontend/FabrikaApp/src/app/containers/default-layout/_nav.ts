@@ -29,6 +29,12 @@ export const navItems: INavData[] = [
     ]
   },
   {
+    name: 'home',
+    url: '/home',
+    iconComponent: { name: 'cil-cursor' },
+    children: []
+  },
+  {
     title: true,
     name: 'TEMPLATE COMPONENTS'
   },
