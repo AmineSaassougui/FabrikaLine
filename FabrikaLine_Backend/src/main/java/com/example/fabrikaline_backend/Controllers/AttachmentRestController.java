@@ -13,7 +13,7 @@ import java.util.List;
 
 @RequestMapping("/Attachment")
 @RestController
-
+@CrossOrigin("*")
 
 public class AttachmentRestController implements IAbstractController<Attachment> {
 
@@ -36,15 +36,28 @@ public class AttachmentRestController implements IAbstractController<Attachment>
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping("/save/{attachmentCategoryId}")
-    public ResponseEntity<Attachment> addAndAssignItemToCategory(@RequestBody Attachment attachment, @PathVariable Long attachmentCategoryId) {
+
+
+    @GetMapping(value = "/getAttachmentByParentId",  produces = "application/json")
+    public ResponseEntity<List<Attachment>> getAttachmentByParentId( @RequestParam(value = "parentId",required = false) Long parentId)
+  {
+        try {
+            List<Attachment> res = attachmentService.getAttachmenstByParentId(parentId);
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PostMapping("/Save/{attachmentCategoryId}")
+    public ResponseEntity<Attachment> Save(@RequestBody Attachment attachment, @PathVariable Long attachmentCategoryId) {
         Attachment newattachment = attachmentService.saveAndAssign(attachmentCategoryId, attachment) ;
         return new ResponseEntity<>(newattachment, HttpStatus.CREATED);
     }
 
 
     @Override
-    @GetMapping("/load/{id}")
+    @GetMapping(value = "/Load/{id}", produces = "application/json")
     public ResponseEntity<Attachment> load(@PathVariable Long id) {
         Attachment attachment= attachmentService.getById(id);
         return new ResponseEntity<>(attachment,HttpStatus.OK);
@@ -67,7 +80,7 @@ public class AttachmentRestController implements IAbstractController<Attachment>
     }
 
     @Override
-    @GetMapping("/GetAll")
+    @GetMapping(value = "/GetAll", produces = "application/json")
     public ResponseEntity<List<Attachment>> getAll() throws Exception {
         List<Attachment> attachments = attachmentService.getAll();
         return new ResponseEntity<>(attachments,HttpStatus.OK);

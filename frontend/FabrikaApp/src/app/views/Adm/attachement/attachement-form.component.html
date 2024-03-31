@@ -1,0 +1,49 @@
+<c-card class="mb-4">
+
+  <c-card-body>
+    
+    <c-row>
+      <c-col sm="5">
+        <h4 class="card-title mb-0" id="traffic"> Form </h4>
+      </c-col>
+    </c-row>
+    <br>
+    <div>
+      <ng-content select="app-yes-parameters"></ng-content>
+    </div>
+    <form #f="ngForm">
+
+      <div>
+        <!-- Action here like : add, delete,... -->
+        <button type="button" class="btn btn-success waves-effect"
+          [disabled]=' object.description=="" || object.description== null || object.code=="" || object.code== null' (click)="save(f.value)">Save</button> &nbsp;
+        <button type="button" class="btn btn-info waves-effect" (click)="cancel()">Annuler</button>
+      </div>
+      <br/>
+      <div>
+        <div>
+          <input cFormControl type="text" hidden="true" [(ngModel)]="object.id" name="id" placeholder="Id" />
+          <input cFormControl type="text" [(ngModel)]="object.code" name="code" placeholder="Code" style="margin-bottom: 10px;" />
+          <input cFormControl type="text" [(ngModel)]="object.description" name="description" placeholder="Description"  style="margin-bottom: 10px;" />
+          <input cFormControl type="number" [readOnly]="true" [(ngModel)]="categoryId" name="attachmentCategoryId" placeholder="catégorie attachement"  style="margin-bottom: 10px;"/>
+          <input cFormControl type="text" [readOnly]="true" [(ngModel)]="object.extension" name="extension" placeholder="Extension"  style="margin-bottom: 10px;" />
+          <input [hidden]="true" cFormControl type="text" [(ngModel)]="object.attachedFile" name="attachedFile" placeholder="Fichier Attaché"  style="margin-bottom: 10px;" />
+          <input type="file" (change)="onFileSelected($event)" />
+        </div>
+        <div *ngIf="this.object.attachedFile">
+          <img [src]="this.object.attachedFile" alt="Uploaded Image" />
+        </div>
+        
+        <br>
+      </div>
+    </form>
+  </c-card-body>
+  <c-card-footer>
+    <c-row class="text-center" [md]="5" [xs]="1">
+      <c-col class="mb-sm-2 mb-0">
+      </c-col>
+      <c-col class="mb-sm-2 mb-0">
+      </c-col>
+    </c-row>
+  </c-card-footer>
+</c-card>

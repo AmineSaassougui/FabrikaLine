@@ -7,9 +7,14 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cil-cursor' },
     children: [
       {
+        name: 'Attachement',
+        url: '/Adm/AttachementList'
+      },
+      {
         name: 'Catégory article',
         url: '/Adm/ItemCategoryList'
       },
+
       {
         name: 'Article',
         url: '/Adm/ItemList'
@@ -25,6 +30,10 @@ export const navItems: INavData[] = [
       {
         name: 'Utilisateurs',
         url: '/Adm/UserList'
+      },
+      {
+        name: 'Claim',
+        url: '/Adm/ComplaintTypeList'
       }
     ]
   },

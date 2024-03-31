@@ -17,6 +17,7 @@ public class Attachment implements Serializable {
     private String code ;
     private String description ;
     private String extension  ;
+    @Column(columnDefinition = "LONGTEXT")
     private String attachedFile ;
     private Long parentId ;
 

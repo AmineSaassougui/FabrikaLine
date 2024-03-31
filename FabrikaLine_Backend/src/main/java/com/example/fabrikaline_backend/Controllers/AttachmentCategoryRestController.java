@@ -67,8 +67,7 @@ public class AttachmentCategoryRestController implements IAbstractController<Att
     }
 
     @Override
-    @GetMapping("/GetAll")
-
+    @GetMapping(value = "/GetAll", produces = "application/json")
     public ResponseEntity<List<AttachmentCategory>> getAll() throws Exception {
         List<AttachmentCategory> attachmentCategories = attachmentCategoryService.getAll();
         return new ResponseEntity<>(attachmentCategories,HttpStatus.OK);

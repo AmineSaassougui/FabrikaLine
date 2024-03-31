@@ -10,7 +10,25 @@ import { CountryListComponent } from './country-list/country-list.component';
 import { UserGenderListComponent } from './user-gender/user-gender-list.component';
 import { UserGenderFormComponent } from './user-gender/user-gender-form.component';
 
+import { AttachementListComponent } from './attachement/attachement-list.component';
+import { AttachementFormComponent } from './attachement/attachement-form.component';
+import { ComplaintTypeListComponent } from './complaint-type-list/complaint-type-list.component';
+
 const routes: Routes = [
+  {
+    path: 'AttachementList',
+    component: AttachementListComponent,
+    data: {
+      title: 'Attachement'
+    }
+  },
+  {
+    path: 'AttachementForm',
+    component: AttachementFormComponent,
+    data: {
+      title: 'Attachement'
+    }
+  },
   {
     path: 'ItemList',
     component: ItemListComponent,
@@ -66,7 +84,13 @@ const routes: Routes = [
     data: {
       title: 'Sexe'
     }
-  },
+  },{
+    path: 'ComplaintTypeList',
+    component: ComplaintTypeListComponent,
+    data: {
+      title: 'Claim'
+    }
+  }
 ];
 
 @NgModule({
