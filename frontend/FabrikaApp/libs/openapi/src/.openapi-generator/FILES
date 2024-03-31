@@ -25,6 +25,7 @@ model/complaintCategory.ts
 model/country.ts
 model/item.ts
 model/itemCategory.ts
+model/itemWithAttachmentsDTO.ts
 model/models.ts
 model/orderStatus.ts
 model/user.ts

@@ -12,6 +12,8 @@ import { UserGenderFormComponent } from './user-gender/user-gender-form.componen
 
 import { AttachementListComponent } from './attachement/attachement-list.component';
 import { AttachementFormComponent } from './attachement/attachement-form.component';
+import { ComplaintTypeListComponent } from './complaint-type-list/complaint-type-list.component';
+
 const routes: Routes = [
   {
     path: 'AttachementList',
@@ -82,7 +84,13 @@ const routes: Routes = [
     data: {
       title: 'Sexe'
     }
-  },
+  },{
+    path: 'ComplaintTypeList',
+    component: ComplaintTypeListComponent,
+    data: {
+      title: 'Claim'
+    }
+  }
 ];
 
 @NgModule({

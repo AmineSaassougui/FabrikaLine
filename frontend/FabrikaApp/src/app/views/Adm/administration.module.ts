@@ -18,6 +18,7 @@ import { UserGenderFormComponent } from './user-gender/user-gender-form.componen
 import { CarouselAllModule, CarouselAnimationEffect, CarouselComponent,  CarouselModule as CarouselModuleSync } from '@syncfusion/ej2-angular-navigations';
 import { DropDownListAllModule } from '@syncfusion/ej2-angular-dropdowns';
 import { ButtonAllModule, SwitchAllModule } from '@syncfusion/ej2-angular-buttons';
+import { ComplaintTypeListComponent } from './complaint-type-list/complaint-type-list.component';
 
 import {
   ColumnChooserService,
@@ -85,9 +86,9 @@ import {
     DropDownListAllModule,
     ButtonAllModule, SwitchAllModule
   ],
-  declarations: [AttachementListComponent, AttachementFormComponent, AdministrationComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent
+  declarations: [ComplaintTypeListComponent, AttachementListComponent, AttachementFormComponent, AdministrationComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent
   ],
-  exports: [UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent]
+  exports: [ComplaintTypeListComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent]
 })
 export class AdministrationModule {
 }
