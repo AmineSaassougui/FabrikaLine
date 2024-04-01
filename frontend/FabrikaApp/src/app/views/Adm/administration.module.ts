@@ -34,8 +34,6 @@ import {
   ToolbarService,
   ResizeService as GridResizeService,
 } from '@syncfusion/ej2-angular-grids';
-
-
 import {
   AvatarModule,
   BadgeModule,
@@ -82,7 +80,7 @@ import {
     ToastModule,
     CarouselModule,
     CarouselModuleSync,
-    CarouselAllModule, 
+    CarouselAllModule,
     DropDownListAllModule,
     ButtonAllModule, SwitchAllModule
   ],

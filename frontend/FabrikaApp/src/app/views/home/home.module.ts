@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardModule, GridModule, ToastModule } from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
+import {ItemViewComponent} from "./item-view/item-view.component";
+import {HomeComponent} from "./home.component";
+
 import {
   ColumnChooserService,
   EditService,
@@ -34,18 +37,18 @@ import {
   SidebarModule,
   TabsModule,
   UtilitiesModule,
-  
+
 } from '@coreui/angular';
+import {HomeRoutingModule} from "./home-routing.module";
+
 @NgModule({
-  declarations: [],
   imports: [
-    CardModule,
+    CardModule,HomeRoutingModule,
     GridModule,
     IconModule,
     CommonModule,
-    syncGridModule,
-        FormsModule,  AvatarModule,
-        BadgeModule,
+    syncGridModule,FormsModule,AvatarModule,
+      BadgeModule,
         BreadcrumbModule,
         ButtonGroupModule,
         ButtonModule,
@@ -61,6 +64,9 @@ import {
         TabsModule,
         UtilitiesModule,
         ToastModule,
-  ]
+  ],
+    declarations: [HomeComponent,ItemViewComponent],
+    exports:[ItemViewComponent],
+
 })
 export class HomeModule { }
