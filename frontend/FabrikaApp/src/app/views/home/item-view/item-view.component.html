@@ -1,1 +1,33 @@
 <p>item-view works!</p>
+
+<c-carousel>
+  <c-carousel-indicators></c-carousel-indicators>
+  <c-carousel-inner>
+    <c-carousel-item *ngFor="let slide of slides">
+      <img
+        alt="{{slide.title}}"
+        class="d-block w-100"
+        loading="lazy"
+        src="{{slide.src}}"
+      />
+      <c-carousel-caption class="d-none d-md-block">
+        <h3>{{slide.title}}</h3>
+        <p>{{slide.subtitle}}</p>
+      </c-carousel-caption>
+    </c-carousel-item>
+  </c-carousel-inner>
+  <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+  <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+</c-carousel>
+
+<div class="row">
+  <div class="col-sm-6" *ngFor="let article of articles">
+    <c-card class="mb-4">
+      <c-card-body>
+        <h5 cCardTitle>{{ article.name }}</h5>
+        <p>{{ article.description }}</p>
+        <!-- Add more properties as needed -->
+      </c-card-body>
+    </c-card>
+  </div>
+</div>
