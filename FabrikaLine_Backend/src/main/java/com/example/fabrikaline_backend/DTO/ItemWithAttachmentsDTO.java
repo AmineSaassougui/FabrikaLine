@@ -2,6 +2,7 @@ package com.example.fabrikaline_backend.DTO;
 
 import com.example.fabrikaline_backend.Entities.Attachment;
 
+import javax.persistence.Column;
 import java.util.List;
 
 public class ItemWithAttachmentsDTO {
@@ -11,7 +12,18 @@ public class ItemWithAttachmentsDTO {
     private double price;
     private boolean availability;
     private Long quantity;
+    @Column(columnDefinition = "LONGTEXT")
+    private String coverPic ;
     private List<Attachment> attachments;
+
+
+    public String getCoverPic() {
+        return coverPic;
+    }
+
+    public void setCoverPic(String coverPic) {
+        this.coverPic = coverPic;
+    }
 
     public Long getId() {
         return id;

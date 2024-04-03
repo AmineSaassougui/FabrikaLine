@@ -129,6 +129,10 @@ public class ItemServiceImpl implements IItemService, IAbstractService<Item> {
             ItemWithAttachmentsDTO itemDTO = new ItemWithAttachmentsDTO();
             itemDTO.setId(item.getId());
             itemDTO.setName(item.getName());
+            if (attachments.size()!=0){
+                itemDTO.setCoverPic(attachments.get(0).getAttachedFile());
+
+            }
             itemDTO.setDescription(item.getDescription());
             itemDTO.setPrice(item.getPrice());
             itemDTO.setAvailability(item.isAvailability());

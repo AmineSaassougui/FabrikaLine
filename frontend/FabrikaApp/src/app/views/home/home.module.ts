@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -47,6 +47,7 @@ import {
 
 } from '@coreui/angular';
 import {HomeRoutingModule} from "./home-routing.module";
+import { NgParticlesModule } from 'ng-particles';
 
 @NgModule({
     imports: [
@@ -70,9 +71,11 @@ import {HomeRoutingModule} from "./home-routing.module";
         SidebarModule,
         TabsModule,
         UtilitiesModule,
+        NgParticlesModule,
         ToastModule, CarouselComponent, CarouselIndicatorsComponent, CarouselInnerComponent, CarouselItemComponent, CarouselCaptionComponent, CarouselControlComponent,
     ],
     declarations: [HomeComponent,ItemViewComponent],
+    schemas:[CUSTOM_ELEMENTS_SCHEMA],
     exports:[ItemViewComponent],
 
 })

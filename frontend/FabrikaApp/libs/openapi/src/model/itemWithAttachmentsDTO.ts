@@ -19,6 +19,7 @@ export interface ItemWithAttachmentsDTO {
     price?: number;
     availability?: boolean;
     quantity?: number;
+    coverPic?: string;
     attachments?: Array<Attachment>;
 }
 

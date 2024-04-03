@@ -4,7 +4,7 @@ import { ItemCategoryFormComponent } from './item-category/item-category-form.co
 import { ItemCategoryListComponent } from './item-category/item-category-list.component';
 import { AttachementListComponent } from './attachement/attachement-list.component';
 import { AttachementFormComponent } from './attachement/attachement-form.component';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CardModule, CarouselModule, GridModule, ToastModule } from '@coreui/angular';
@@ -86,6 +86,8 @@ import {
   ],
   declarations: [ComplaintTypeListComponent, AttachementListComponent, AttachementFormComponent, AdministrationComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent
   ],
+  schemas:[CUSTOM_ELEMENTS_SCHEMA],
+
   exports: [ComplaintTypeListComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent]
 })
 export class AdministrationModule {

@@ -34,22 +34,29 @@ export class ItemViewComponent implements OnInit {
   ngOnInit(): void {
     this.slides[0] = {
       id: 0,
-      src: 'assets/images/angular.jpg',
+      src: 'assets/images/picad1.jpg',
       title: 'First slide',
       subtitle: 'Nulla vitae elit libero, a pharetra augue mollis interdum.'
     };
     this.slides[1] = {
       id: 1,
-      src: 'assets/images/angular.jpg',
+      src: 'assets/images/picad2.jpg',
       title: 'Second slide',
       subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     };
     this.slides[2] = {
       id: 2,
-      src: 'assets/images/angular.jpg',
+      src: 'assets/images/picad3.jpg',
       title: 'Third slide',
       subtitle: 'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
     };
+    this.slides[1] = {
+      id: 1,
+      src: 'assets/images/picad4.jpg',
+      title: 'Second slide',
+      subtitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    };
+
     this.loadArticles();
   }
 
