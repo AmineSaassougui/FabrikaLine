@@ -48,35 +48,37 @@ import {
 } from '@coreui/angular';
 import {HomeRoutingModule} from "./home-routing.module";
 import { NgParticlesModule } from 'ng-particles';
+import {ItemDetailsComponent} from "./item-details/item-details.component";
+import {CarouselModule} from "@syncfusion/ej2-angular-navigations";
 
 @NgModule({
-    imports: [
-        CardModule, HomeRoutingModule,
-        GridModule,
-        IconModule,
-        CommonModule,
-        syncGridModule, FormsModule, AvatarModule,
-        BadgeModule,
-        BreadcrumbModule,
-        ButtonGroupModule,
-        ButtonModule,
-        DropdownModule,
-        FooterModule,
-        FormModule,
-        HeaderModule,
-        ListGroupModule,
-        NavModule,
-        ProgressModule,
-        SharedModule,
-        SidebarModule,
-        TabsModule,
-        UtilitiesModule,
-        NgParticlesModule,
-        ToastModule, CarouselComponent, CarouselIndicatorsComponent, CarouselInnerComponent, CarouselItemComponent, CarouselCaptionComponent, CarouselControlComponent,
-    ],
-    declarations: [HomeComponent,ItemViewComponent],
+  imports: [
+    CardModule, HomeRoutingModule,
+    GridModule,
+    IconModule,
+    CommonModule,
+    syncGridModule, FormsModule, AvatarModule,
+    BadgeModule,
+    BreadcrumbModule,
+    ButtonGroupModule,
+    ButtonModule,
+    DropdownModule,
+    FooterModule,
+    FormModule,
+    HeaderModule,
+    ListGroupModule,
+    NavModule,
+    ProgressModule,
+    SharedModule,
+    SidebarModule,
+    TabsModule,
+    UtilitiesModule,
+    NgParticlesModule,
+    ToastModule, CarouselComponent, CarouselIndicatorsComponent, CarouselInnerComponent, CarouselItemComponent, CarouselCaptionComponent, CarouselControlComponent, CarouselModule,
+  ],
+    declarations: [HomeComponent,ItemViewComponent,ItemDetailsComponent],
     schemas:[CUSTOM_ELEMENTS_SCHEMA],
-    exports:[ItemViewComponent],
+    exports:[ItemViewComponent,ItemDetailsComponent],
 
 })
 export class HomeModule { }

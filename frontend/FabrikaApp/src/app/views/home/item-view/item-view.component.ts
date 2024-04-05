@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemRestControllerService } from "../../../../../libs/openapi/src";
+import {NavigationExtras, Router} from '@angular/router';
 
 @Component({
   selector: 'app-item-view',
@@ -29,7 +30,7 @@ export class ItemViewComponent implements OnInit {
 
   slides: any[] = new Array(3).fill({ id: -1, src: '', title: '', subtitle: '' });
 
-  constructor(private fabrikaService: ItemRestControllerService) { }
+  constructor(private fabrikaService: ItemRestControllerService, private router: Router) { }
 
   ngOnInit(): void {
     this.slides[0] = {
@@ -70,5 +71,16 @@ export class ItemViewComponent implements OnInit {
         console.error('Error fetching items with attachments:', error);
       }
     );
+  }
+
+  viewItemDetails(itemId: string) {
+
+    const navigationExtras: NavigationExtras = {
+      state: {
+        id: itemId,
+      }
+    };
+    var routerPath = `/home/ItemDetails`;
+    this.router.navigateByUrl(routerPath, navigationExtras);
   }
 }

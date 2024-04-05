@@ -1,0 +1,74 @@
+<!--<div class="container">-->
+<!--  <h1>Item Details</h1>-->
+<!--  <div *ngIf="object">-->
+<!--    <h2>{{ object.name }}</h2>-->
+<!--    <p>Description: {{ object.description }}</p>-->
+<!--    <p>Price: {{ object.price }}</p>-->
+<!--    <p>Availability: {{ object.availability }}</p>-->
+<!--    <p>Quantity: {{ object.quantity }}</p>-->
+<!--    <h3>Category: {{ object.itemCategory.description }}</h3>-->
+<!--  </div>-->
+<!--</div>-->
+<c-card class="mb-4">
+  <c-card-body>
+    <c-row>
+      <c-col sm="5">
+        <h4 class="card-title mb-0" id="traffic"> {{object.name}}</h4>
+      </c-col>
+    </c-row>
+    <br>
+    <div>
+      <ng-content select="app-yes-parameters"></ng-content>
+    </div>
+    <form #f="ngForm">
+      <div class="control-section template-carousel-section" >
+        <div class="col-lg-12 content-wrapper" >
+          <div class="carousel-sample center" >
+            <ejs-carousel #carousel cssClass="templateCarousel" [animationEffect]="carouselAnimation" >
+              <e-carousel-items>
+                <e-carousel-item *ngFor="let item of imagesFile">
+                  <ng-template #template >
+                    <figure class="img-container">
+                      <img src="{{item.attachedFile}}" alt="cardinal" style="height: 400px; width: 100%; border-radius:5%; " />
+                    </figure>
+                  </ng-template>
+                </e-carousel-item>
+              </e-carousel-items>
+            </ejs-carousel>
+          </div>
+        </div>
+      </div>
+      <div>
+      </div>
+      <br />
+      <input cFormControl type="text" hidden="true" [(ngModel)]="object.id" name="id" placeholder="Id" />
+      <label cLabel for="exampleFormControlInput1">Nom</label>
+      <input cFormControl type="text" [(ngModel)]="object.name" readonly="true"  name="name" placeholder="Nom" style="margin-bottom: 10px;" />
+      <label cLabel for="exampleFormControlInput1">Description</label>
+      <input cFormControl type="text" [(ngModel)]="object.description" name="description" placeholder="Description" style="margin-bottom: 10px;" />
+      <label cLabel for="exampleFormControlInput1">Prix</label>
+      <input cFormControl type="number" [(ngModel)]="object.price" name="price" placeholder="Prix"  style="margin-bottom: 10px;"/>
+      <label cLabel for="exampleFormControlInput1">Quantité</label>
+      <input cFormControl type="number" [(ngModel)]="object.quantity" name="quantity" placeholder="Quantité" style="margin-bottom: 10px;"/>
+      <label cLabel for="exampleFormControlInput1">Catégorie article</label>
+      <c-dropdown cFormControl  style="width: 100%;" style="margin-bottom: 10px;">
+        <a cButton cDropdownToggle color="secondary" size="sm" >
+          {{ this.object == null ? "": this.object!.itemCategory!.description}}
+        </a>
+<!--        <ul cDropdownMenu style="width: 100%;">-->
+<!--          <li *ngFor="let menuItem of itemCategoryList">-->
+<!--            <a (click)="selectCategory(menuItem)" cDropdownItem>{{menuItem.description}}</a>-->
+<!--          </li>-->
+<!--        </ul>-->
+      </c-dropdown>
+    </form>
+  </c-card-body>
+  <c-card-footer>
+    <c-row class="text-center" [md]="5" [xs]="1">
+      <c-col class="mb-sm-2 mb-0">
+      </c-col>
+      <c-col class="mb-sm-2 mb-0">
+      </c-col>
+    </c-row>
+  </c-card-footer>
+</c-card>
