@@ -21,6 +21,11 @@ const routes: Routes = [
     },
     children: [
       {
+        path: 'home',
+        loadChildren: () =>
+          import('./views/home/home.module').then((m) => m.HomeModule)
+      },
+      {
         path: 'Adm',
         loadChildren: () =>
           import('./views/Adm/administration.module').then((m) => m.AdministrationModule)
@@ -39,6 +44,7 @@ const routes: Routes = [
         path: 'base',
         loadChildren: () =>
           import('./views/base/base.module').then((m) => m.BaseModule)
+
       },
       {
         path: 'buttons',

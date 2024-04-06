@@ -38,6 +38,21 @@ export const navItems: INavData[] = [
     ]
   },
   {
+    name: 'Home',
+    url: '/home',
+    iconComponent: { name: 'cilApplicationsSettings' },
+    children: [
+      {
+        name: 'Article',
+        url: '/home/ItemView'
+      },
+      {
+        name: 'saif',
+        url: '/home/ItemView'
+      },
+    ]
+  },
+  {
     title: true,
     name: 'TEMPLATE COMPONENTS'
   },
