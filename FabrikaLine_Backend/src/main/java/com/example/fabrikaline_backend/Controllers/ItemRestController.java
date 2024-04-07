@@ -98,8 +98,9 @@ public class ItemRestController implements IAbstractController<Item> {
 
 
     @GetMapping(value = "/withAttachments", produces = "application/json")
-    public ResponseEntity<List<ItemWithAttachmentsDTO>> getAllItemsWithAttachments() throws Exception {
-        List<ItemWithAttachmentsDTO> itemsWithAttachments = itemService.getAllItemsWithAttachments();
+    public ResponseEntity<List<ItemWithAttachmentsDTO>> getAllItemsWithAttachments(@RequestParam(value = "searchCriteria",required = false) String searchCriteria
+    ) throws Exception {
+        List<ItemWithAttachmentsDTO> itemsWithAttachments = itemService.getAllItemsWithAttachments(searchCriteria);
         return new ResponseEntity<>(itemsWithAttachments, HttpStatus.OK);
     }
 

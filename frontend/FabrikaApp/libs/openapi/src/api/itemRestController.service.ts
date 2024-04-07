@@ -292,13 +292,20 @@ export class ItemRestControllerService {
     }
 
     /**
+     * @param searchCriteria 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAllItemsWithAttachments(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<ItemWithAttachmentsDTO>>;
-    public getAllItemsWithAttachments(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<ItemWithAttachmentsDTO>>>;
-    public getAllItemsWithAttachments(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<ItemWithAttachmentsDTO>>>;
-    public getAllItemsWithAttachments(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public getAllItemsWithAttachments(searchCriteria?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<ItemWithAttachmentsDTO>>;
+    public getAllItemsWithAttachments(searchCriteria?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<ItemWithAttachmentsDTO>>>;
+    public getAllItemsWithAttachments(searchCriteria?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<ItemWithAttachmentsDTO>>>;
+    public getAllItemsWithAttachments(searchCriteria?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+
+        let localVarQueryParameters = new HttpParams({encoder: this.encoder});
+        if (searchCriteria !== undefined && searchCriteria !== null) {
+          localVarQueryParameters = this.addToHttpParams(localVarQueryParameters,
+            <any>searchCriteria, 'searchCriteria');
+        }
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -340,6 +347,7 @@ export class ItemRestControllerService {
         return this.httpClient.request<Array<ItemWithAttachmentsDTO>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
+                params: localVarQueryParameters,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ItemRestControllerService } from "../../../../../libs/openapi/src";
 import {NavigationExtras, Router} from '@angular/router';
+import { cilList, cilShieldAlt, cilCheckCircle, cilSearch } from '@coreui/icons';
 
 @Component({
   selector: 'app-item-view',
@@ -8,6 +9,10 @@ import {NavigationExtras, Router} from '@angular/router';
   styleUrls: ['./item-view.component.scss']
 })
 export class ItemViewComponent implements OnInit {
+
+  icons = { cilList, cilShieldAlt, cilCheckCircle, cilSearch};
+
+  
   particlesOptions = {
     particles: {
       color: {
@@ -29,6 +34,8 @@ export class ItemViewComponent implements OnInit {
   articles: any[] = [];
 
   slides: any[] = new Array(3).fill({ id: -1, src: '', title: '', subtitle: '' });
+
+  public searchCriteria: any;
 
   constructor(private fabrikaService: ItemRestControllerService, private router: Router) { }
 
@@ -61,11 +68,13 @@ export class ItemViewComponent implements OnInit {
     this.loadArticles();
   }
 
+
+
+
   loadArticles() {
-    this.fabrikaService.getAllItemsWithAttachments().subscribe(
+    this.fabrikaService.getAllItemsWithAttachments(this.searchCriteria).subscribe(
       (data: any[]) => {
         this.articles = data;
-        console.log('Fetched items with attachments:', data);
       },
       (error) => {
         console.error('Error fetching items with attachments:', error);

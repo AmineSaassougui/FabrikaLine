@@ -43,11 +43,7 @@ export const navItems: INavData[] = [
     iconComponent: { name: 'cilApplicationsSettings' },
     children: [
       {
-        name: 'Article',
-        url: '/home/ItemView'
-      },
-      {
-        name: 'saif',
+        name: 'Nos produits',
         url: '/home/ItemView'
       },
     ]
