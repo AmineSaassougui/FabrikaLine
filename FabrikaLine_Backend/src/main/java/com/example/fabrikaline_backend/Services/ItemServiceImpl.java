@@ -92,7 +92,7 @@ public class ItemServiceImpl implements IItemService, IAbstractService<Item> {
 
         if (searchCriteria != null )
         {
-            itemList = iItemRepository.findByDescriptionContaining(searchCriteria) ;
+            itemList = iItemRepository.findByNameContainingOrDescriptionContaining(searchCriteria, searchCriteria) ;
         }
         else
         {
@@ -120,29 +120,41 @@ public class ItemServiceImpl implements IItemService, IAbstractService<Item> {
 
 
     @Override
-    public List<ItemWithAttachmentsDTO> getAllItemsWithAttachments() throws Exception {
-        List<Item> items = iItemRepository.findAll();
+    public List<ItemWithAttachmentsDTO> getAllItemsWithAttachments(String searchCriteria) throws Exception {
+
+        List<Item> items = new ArrayList<>();
+        if (searchCriteria != null )
+        {
+            items = iItemRepository.findByNameContainingOrDescriptionContaining(searchCriteria, searchCriteria) ;
+        }
+        else {
+            items = iItemRepository.findAll();
+        }
+       
+        
         List<ItemWithAttachmentsDTO> itemDTOs = new ArrayList<>();
         for (Item item : items) {
             Long itemId = item.getId();
             List<Attachment> attachments = attachmentService.getAttachmenstByParentId(itemId);
-            ItemWithAttachmentsDTO itemDTO = new ItemWithAttachmentsDTO();
-            itemDTO.setId(item.getId());
-            itemDTO.setName(item.getName());
-            if (attachments.size()!=0){
-                itemDTO.setCoverPic(attachments.get(0).getAttachedFile());
-
-            }
-            itemDTO.setDescription(item.getDescription());
-            itemDTO.setPrice(item.getPrice());
-            itemDTO.setAvailability(item.isAvailability());
-            itemDTO.setQuantity(item.getQuantity());
-            itemDTO.setAttachments(attachments);
+            ItemWithAttachmentsDTO itemDTO = getItemWithAttachmentsDTO(item, attachments);
             itemDTOs.add(itemDTO);
         }
         return itemDTOs;
     }
 
+    private static ItemWithAttachmentsDTO getItemWithAttachmentsDTO(Item item, List<Attachment> attachments) {
+        ItemWithAttachmentsDTO itemDTO = new ItemWithAttachmentsDTO();
+        itemDTO.setId(item.getId());
+        itemDTO.setName(item.getName());
+        if (attachments.size()!=0){
+            itemDTO.setCoverPic(attachments.get(0).getAttachedFile());
 
-
+        }
+        itemDTO.setDescription(item.getDescription());
+        itemDTO.setPrice(item.getPrice());
+        itemDTO.setAvailability(item.isAvailability());
+        itemDTO.setQuantity(item.getQuantity());
+        itemDTO.setAttachments(attachments);
+        return itemDTO;
+    }
 }

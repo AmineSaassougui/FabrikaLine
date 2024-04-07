@@ -10,9 +10,9 @@
                   <e-carousel-item *ngFor="let item of imagesFile">
                     <ng-template #template>
                       <figure class="img-container">
-                        <img src="{{item.attachedFile}}" alt="cardinal"
-                          style="height: 400px; width: 100%; border-radius:5%; " />
-                      </figure>
+                          <img src="{{item.attachedFile || 'https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg' }}" alt="cardinal" class="img-fluid rounded" style="border-radius: 5%;" />
+
+                        </figure>
                     </ng-template>
                   </e-carousel-item>
                 </e-carousel-items>

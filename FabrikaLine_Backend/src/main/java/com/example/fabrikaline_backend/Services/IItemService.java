@@ -10,5 +10,7 @@ public interface IItemService {
 
     List<Item> advancedSearch(Long currentPos, Long step, String searchCriteria) throws Exception;
 
-    List<ItemWithAttachmentsDTO> getAllItemsWithAttachments() throws Exception;
+    List<ItemWithAttachmentsDTO> getAllItemsWithAttachments(String searchCriteria) throws Exception;
+
+
 }
