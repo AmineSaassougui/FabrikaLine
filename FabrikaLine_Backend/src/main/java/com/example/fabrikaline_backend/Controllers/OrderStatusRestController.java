@@ -14,6 +14,8 @@ import java.util.List;
 
 @RequestMapping("/OrderStatus")
 @RestController
+@CrossOrigin("*")
+
 
 
 public class OrderStatusRestController implements IAbstractController<OrderStatus> {
@@ -51,7 +53,6 @@ public class OrderStatusRestController implements IAbstractController<OrderStatu
 
     @Override
     @DeleteMapping("/Delete/{id}")
-
     public void delete(@PathVariable Long id) { orderStatusService.delete(id);}
 
     @PostMapping("/Save")
@@ -68,8 +69,7 @@ public class OrderStatusRestController implements IAbstractController<OrderStatu
     }
 
     @Override
-    @GetMapping("/GetAll")
-
+    @GetMapping(value = "/GetAll", produces = "application/json")
     public ResponseEntity<List<OrderStatus>> getAll() throws Exception {
         List<OrderStatus> orderStatusList = orderStatusService.getAll();
         return new ResponseEntity<>(orderStatusList,HttpStatus.OK);

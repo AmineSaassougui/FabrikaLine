@@ -19,6 +19,8 @@ import { CarouselAllModule, CarouselAnimationEffect, CarouselComponent,  Carouse
 import { DropDownListAllModule } from '@syncfusion/ej2-angular-dropdowns';
 import { ButtonAllModule, SwitchAllModule } from '@syncfusion/ej2-angular-buttons';
 import { ComplaintTypeListComponent } from './complaint-type-list/complaint-type-list.component';
+import {OrderStatusListComponent} from "./order-status/order-status-list.component";
+import {OrderStatusFormComponent} from "./order-status/order-status-form.component";
 
 import {
   ColumnChooserService,
@@ -84,11 +86,11 @@ import {
     DropDownListAllModule,
     ButtonAllModule, SwitchAllModule
   ],
-  declarations: [ComplaintTypeListComponent, AttachementListComponent, AttachementFormComponent, AdministrationComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent
+  declarations: [ComplaintTypeListComponent,OrderStatusListComponent,OrderStatusFormComponent, AttachementListComponent, AttachementFormComponent, AdministrationComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
 
-  exports: [ComplaintTypeListComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent]
+  exports: [ComplaintTypeListComponent,OrderStatusListComponent,OrderStatusFormComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent]
 })
 export class AdministrationModule {
 }

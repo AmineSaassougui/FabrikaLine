@@ -32,9 +32,14 @@ export const navItems: INavData[] = [
         url: '/Adm/UserList'
       },
       {
+        name: 'Status',
+        url: '/Adm/OrderList'
+      },
+      {
         name: 'Claim',
         url: '/Adm/ComplaintTypeList'
-      }
+      },
+
     ]
   },
   {
