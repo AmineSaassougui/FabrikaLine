@@ -10,20 +10,24 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @Entity
+@Table(name = "orders") // Changed table name to avoid reserved keyword conflict
 public class Order implements Serializable {
-    private  static  final long serialVersionUID = 1L ;
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id ;
-    private String description ;
-    private Date orderdate ;
+    private Long id;
+
+    private String description;
+
+    @Temporal(TemporalType.TIMESTAMP) // Added temporal annotation for proper date handling
+    private Date orderDate;
 
     @ManyToOne
-    @JoinColumn(name = "user_id",nullable = false)
+    @JoinColumn(name = "user_id")
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "orderstatus_id",nullable = false)
+    @JoinColumn(name = "orderstatus_id")
     private OrderStatus orderStatus;
-
 }
