@@ -144,39 +144,49 @@
 <!--    </div>-->
 <!--  </div>-->
 <!--</div>-->
-
-<c-carousel>
-  <c-carousel-indicators></c-carousel-indicators>
-  <c-carousel-inner>
-    <c-carousel-item *ngFor="let slide of slides">
-      <img
-        alt="{{slide.title}}"
-        class="d-block w-100"
-        loading="lazy"
-        src="{{slide.src}}"
-      />
-      <c-carousel-caption class="d-none d-md-block">
-        <h3>{{slide.title}}</h3>
-        <p>{{slide.subtitle}}</p>
-      </c-carousel-caption>
-    </c-carousel-item>
-  </c-carousel-inner>
-  <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
-  <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
-</c-carousel>
+<div style="padding-bottom: 20px;">
+  <c-carousel>
+    <c-carousel-indicators></c-carousel-indicators>
+    <c-carousel-inner>
+      <c-carousel-item *ngFor="let slide of slides">
+        <img
+          alt="{{slide.title}}"
+          class="d-block w-100"
+          loading="lazy"
+          src="{{slide.src}}"
+          height="550px"
+        />
+        <c-carousel-caption class="d-none d-md-block">
+          <h3>{{slide.title}}</h3>
+          <p>{{slide.subtitle}}</p>
+        </c-carousel-caption>
+      </c-carousel-item>
+    </c-carousel-inner>
+    <c-carousel-control [routerLink] caption="Previous" direction="prev"></c-carousel-control>
+    <c-carousel-control [routerLink] caption="Next" direction="next"></c-carousel-control>
+  </c-carousel>
+</div>
 
 
 
 <div class="row">
   <div class="col-sm-3" *ngFor="let article of articles" (click)="viewItemDetails(article.id)">
-    <c-card class="mb-4">
-      <c-card-body>
-        <h5 cCardTitle>{{ article.name }}</h5>
-        <p>{{ article.description }}</p>
-        <p>{{ article.name }}</p>
-        <p>{{ article.quantity }}</p>
-        <img src="{{article.coverPic}}" alt="cardinal" style="height: 250px; width: 250px; border-radius:5%; " />
+    <c-card class="mb-4" style="align-items: center;">
+      <c-card-body style="align-items: center;">
+        <img src="{{article.coverPic}}" alt="cardinal" style="height: 250px; width: 250px; border-radius:5%;" />
+        <div style="padding-bottom: 20px;"></div>
+        <b><h5 class="text-center" style="text-transform: uppercase; font-size: 1rem;">{{ article.name }}</h5></b>
+        <div style="padding-bottom: 20px;"></div>
+        <c-row>
+          <c-col>
+            <p style="color: red; font-weight: bold;" class="text-left">{{ article.price }} TND</p>
+          </c-col>
+          <c-col class="d-flex justify-content-end">
+            <button cButton color="success">ACHETER</button>
+          </c-col>
+        </c-row>
       </c-card-body>
     </c-card>
   </div>
 </div>
+  

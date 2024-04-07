@@ -6,6 +6,7 @@ import {
   ItemRestControllerService
 } from "../../../../../libs/openapi/src";
 import { CarouselAnimationEffect } from "@syncfusion/ej2-angular-navigations";
+import { cilList, cilShieldAlt, cilCheckCircle } from '@coreui/icons';
 
 @Component({
   selector: 'app-item-details',
@@ -13,6 +14,7 @@ import { CarouselAnimationEffect } from "@syncfusion/ej2-angular-navigations";
   styleUrls: ['./item-details.component.scss']
 })
 export class ItemDetailsComponent {
+  icons = { cilList, cilShieldAlt, cilCheckCircle };
   private id: any;
   public carouselAnimation: CarouselAnimationEffect = 'Fade';
 
