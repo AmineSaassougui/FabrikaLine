@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.validation.ValidationException;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -24,6 +25,40 @@ public class UserServiceImpl implements IUserService, IAbstractService<User> {
     ICityRepository iCityRepository;
     ICountryRepository iCountryRepository;
 
+
+    public List<User> advancedSearch(Long currentPos, Long step, String searchCriteria) throws Exception
+    {
+
+        List<User> resList;
+
+        if (searchCriteria != null )
+        {
+            resList = iUserRepository.findByDescriptionContaining(searchCriteria) ;
+        }
+        else
+        {
+            if (currentPos < 0 || step <= 0) {
+                throw new IllegalArgumentException("Invalid currentPos or step value");
+            }
+            // Calculate the starting position based on the currentPos and step
+            long startingPos = currentPos * step;
+
+            // If searchCriteria is null or description is null, get all countries
+            resList = iUserRepository.findAll(); // ?????? TODO
+
+            // Apply pagination to the search results
+            int fromIndex = currentPos.intValue();
+            int toIndex = Math.min(fromIndex + step.intValue(), resList.size());
+            if (fromIndex < resList.size() && fromIndex < toIndex) {
+                return resList.subList(fromIndex, toIndex);
+            } else {
+                return Collections.emptyList();
+            }
+        }
+        return resList;
+    }
+
+    
     @Override
    // just for tests perposes nothing else
     public User saveAndAssign(Long usertype_id, Long usergender_id, Long userstatus_id, Long city_id, Long country_id, User user) {
