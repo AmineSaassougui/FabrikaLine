@@ -76,32 +76,4 @@ public class ItemRestController implements IAbstractController<Item> {
         return new ResponseEntity<>(items,HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<List<Item>> search(SearchCriteria criteria) throws Exception {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<List<Item>> getAll(Long page, Long size) throws Exception {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Long> count() throws Exception {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Void> deleteAll(List<Integer> ids) throws Exception {
-        return null;
-    }
-
-
-    @GetMapping(value = "/withAttachments", produces = "application/json")
-    public ResponseEntity<List<ItemWithAttachmentsDTO>> getAllItemsWithAttachments(@RequestParam(value = "searchCriteria",required = false) String searchCriteria
-    ) throws Exception {
-        List<ItemWithAttachmentsDTO> itemsWithAttachments = itemService.getAllItemsWithAttachments(searchCriteria);
-        return new ResponseEntity<>(itemsWithAttachments, HttpStatus.OK);
-    }
-
 }

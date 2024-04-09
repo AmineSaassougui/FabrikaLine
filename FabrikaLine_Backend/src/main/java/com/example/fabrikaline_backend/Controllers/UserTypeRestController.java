@@ -70,23 +70,4 @@ public class UserTypeRestController implements IAbstractController<UserType> {
         return new ResponseEntity<>(userTypes,HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<List<UserType>> search(SearchCriteria criteria) throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<List<UserType>> getAll(Long page, Long size) throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<Long> count() throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<Void> deleteAll(List<Integer> ids) throws Exception {
-        return null;//TODO
-    }
 }

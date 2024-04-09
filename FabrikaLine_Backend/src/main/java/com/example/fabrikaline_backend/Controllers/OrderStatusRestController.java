@@ -75,23 +75,4 @@ public class OrderStatusRestController implements IAbstractController<OrderStatu
         return new ResponseEntity<>(orderStatusList,HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<List<OrderStatus>> search(SearchCriteria criteria) throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<List<OrderStatus>> getAll(Long page, Long size) throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<Long> count() throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<Void> deleteAll(List<Integer> ids) throws Exception {
-        return null;//TODO
-    }
 }

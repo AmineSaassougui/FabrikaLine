@@ -72,23 +72,4 @@ public class UserStatusRestController implements IAbstractController<UserStatus>
         return new ResponseEntity<>(userStatusList,HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<List<UserStatus>> search(SearchCriteria criteria) throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<List<UserStatus>> getAll(Long page, Long size) throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<Long> count() throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<Void> deleteAll(List<Integer> ids) throws Exception {
-        return null;//TODO
-    }
 }
