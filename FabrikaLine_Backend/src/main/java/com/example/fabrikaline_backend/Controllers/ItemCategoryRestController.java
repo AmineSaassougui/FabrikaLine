@@ -1,13 +1,13 @@
 package com.example.fabrikaline_backend.Controllers;
-
 import com.example.fabrikaline_backend.ABC.IAbstractController;
 import com.example.fabrikaline_backend.Entities.ItemCategory;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Services.ItemCategoryServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RequestMapping("/ItemCategory")
@@ -17,59 +17,62 @@ import java.util.List;
 
 public class ItemCategoryRestController implements IAbstractController<ItemCategory> {
 
-    //region Construct
-
     @Autowired
     ItemCategoryServiceImpl itemCategoryService;
 
-
+    @Operation(operationId = "AdvancedSearchItemCategory")
     @GetMapping("/advancedSearch")
-    public ResponseEntity<List<ItemCategory>> advancedSearch(
-            @RequestParam(value = "currentPos",required = false) Long currentPos,
-            @RequestParam(value = "step",required = false) Long step,
-            //@RequestBody(required = true) SearchCriteria searchCriteria
-            @RequestParam(value = "searchCriteria",required = false) String searchCriteria
-    ) {
+    public ResponseEntity<List<ItemCategory>> advancedSearch(@RequestParam(value = "currentPos",required = false) Long currentPos, @RequestParam(value = "step",required = false) Long step, @RequestParam(value = "searchCriteria",required = false) String searchCriteria)
+    {
         try {
-            List<ItemCategory> searchResults = itemCategoryService.advancedSearch(currentPos, step, searchCriteria);
-            return new ResponseEntity<>(searchResults, HttpStatus.OK);
+            List<ItemCategory> result = itemCategoryService.advancedSearch(currentPos, step, searchCriteria);
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-
     @Override
+    @Operation(operationId = "LoadItemCategory")
     @GetMapping(value = "/Load/{id}", produces = "application/json")
-    public ResponseEntity<ItemCategory> load(@PathVariable Long id) {
-        ItemCategory category= itemCategoryService.getById(id);
-        return new ResponseEntity<>(category,HttpStatus.OK);
-
+    public ResponseEntity<ItemCategory> load(@PathVariable Long id)
+    {
+        ItemCategory result = itemCategoryService.getById(id);
+        return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
     @Override
+    @Operation(operationId = "DeleteItemCategory")
     @DeleteMapping("/Delete/{id}")
-
-    public void delete(@PathVariable Long id) { itemCategoryService.delete(id);}
-
-    @PostMapping("/Save")
-    @ResponseBody
-    @Override
-    public ResponseEntity<ItemCategory> save(@RequestBody ItemCategory entity) throws Exception {
-        ItemCategory itemCategory = itemCategoryService.save(entity);
-        return new ResponseEntity<>(itemCategory, HttpStatus.OK);
+    public void delete(@PathVariable Long id)
+    {
+        itemCategoryService.delete(id);
     }
 
+    @Operation(operationId = "SaveItemCategory")
+    @PostMapping("/Save")
     @Override
-    public ResponseEntity<List<ItemCategory>> saveAll(List<ItemCategory> entities) throws Exception {
+    public ResponseEntity<ItemCategory> save(@RequestBody ItemCategory entity) throws Exception
+    {
+        ItemCategory result = itemCategoryService.save(entity);
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+    @Operation(operationId = "SaveAllItemCategory")
+    @PostMapping("/SaveAll")
+    @Override
+    public ResponseEntity<List<ItemCategory>> saveAll(List<ItemCategory> entities) throws Exception
+    {
         return null;
     }
 
     @Override
+    @Operation(operationId = "GetAllItemCategory")
     @GetMapping(value = "/GetAll", produces = "application/json")
-    public ResponseEntity<List<ItemCategory>> getAll() throws Exception {
-        List<ItemCategory> itemCategories = itemCategoryService.getAll();
-        return new ResponseEntity<>(itemCategories,HttpStatus.OK);
+    public ResponseEntity<List<ItemCategory>> getAll() throws Exception
+    {
+        List<ItemCategory> result = itemCategoryService.getAll();
+        return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
 }

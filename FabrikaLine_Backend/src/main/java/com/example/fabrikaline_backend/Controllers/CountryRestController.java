@@ -1,9 +1,8 @@
 package com.example.fabrikaline_backend.Controllers;
-
 import com.example.fabrikaline_backend.ABC.IAbstractController;
 import com.example.fabrikaline_backend.Entities.Country;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Services.CountryServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,65 +13,65 @@ import java.util.List;
 @RequestMapping("/Country")
 @RestController
 @CrossOrigin("*")
-
-
-
 public class CountryRestController implements IAbstractController<Country> {
 
-    //region Construct
 
     @Autowired
     CountryServiceImpl countryService;
 
-    //endregion
-
-    //region Methods
-
-    @Override
-    @GetMapping("/load/{id}")
-    public ResponseEntity<Country> load(@PathVariable Long id) {
-        Country country= countryService.getById(id);
-        return new ResponseEntity<>(country,HttpStatus.OK);
-
-    }
+    @Operation(operationId = "AdvancedSearchCountry")
     @GetMapping("/advancedSearch")
-    public ResponseEntity<List<Country>> advancedSearch(
-            @RequestParam(value = "currentPos",required = false) Long currentPos,
-            @RequestParam(value = "step",required = false) Long step,
-            //@RequestBody(required = true) SearchCriteria searchCriteria
-            @RequestParam(value = "searchCriteria",required = false) String searchCriteria
-    ) {
+    public ResponseEntity<List<Country>> advancedSearch(@RequestParam(value = "currentPos",required = false) Long currentPos, @RequestParam(value = "step",required = false) Long step, @RequestParam(value = "searchCriteria",required = false) String searchCriteria)
+    {
         try {
-            List<Country> searchResults = countryService.advancedSearch(currentPos, step, searchCriteria);
-            return new ResponseEntity<>(searchResults, HttpStatus.OK);
+            List<Country> result = countryService.advancedSearch(currentPos, step, searchCriteria);
+            return new ResponseEntity<>(result, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @Override
+    @Operation(operationId = "LoadCountry")
+    @GetMapping(value = "/Load/{id}", produces = "application/json")
+    public ResponseEntity<Country> load(@PathVariable Long id)
+    {
+        Country result = countryService.getById(id);
+        return new ResponseEntity<>(result,HttpStatus.OK);
+    }
+
+    @Override
+    @Operation(operationId = "DeleteCountry")
     @DeleteMapping("/Delete/{id}")
-    public void delete(@PathVariable Long id) {
-        countryService.delete(id);    
+    public void delete(@PathVariable Long id)
+    {
+        countryService.delete(id);
     }
+
+    @Operation(operationId = "SaveCountry")
     @PostMapping("/Save")
-    @ResponseBody
     @Override
-    public ResponseEntity<Country> save(@RequestBody Country entity) throws Exception {
-        Country res = countryService.save(entity);
-        return new ResponseEntity<Country>(res, HttpStatus.OK);
+    public ResponseEntity<Country> save(@RequestBody Country entity) throws Exception
+    {
+        Country result = countryService.save(entity);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-
+    @Operation(operationId = "SaveAllCountry")
+    @PostMapping("/SaveAll")
     @Override
-    public ResponseEntity<List<Country>> saveAll(List<Country> entities) throws Exception {
+    public ResponseEntity<List<Country>> saveAll(List<Country> entities) throws Exception
+    {
         return null;
     }
 
-    @GetMapping(value = "/GetAll", produces = "application/json")
     @Override
-    public ResponseEntity<List<Country>> getAll() throws Exception {
-        List<Country> countries = countryService.getAll();
-        return new ResponseEntity<>(countries, HttpStatus.OK);    }
+    @Operation(operationId = "GetAllCountry")
+    @GetMapping(value = "/GetAll", produces = "application/json")
+    public ResponseEntity<List<Country>> getAll() throws Exception
+    {
+        List<Country> result = countryService.getAll();
+        return new ResponseEntity<>(result,HttpStatus.OK);
+    }
 
 }
