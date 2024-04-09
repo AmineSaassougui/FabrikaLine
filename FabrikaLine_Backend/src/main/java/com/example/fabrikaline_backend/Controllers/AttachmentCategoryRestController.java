@@ -74,5 +74,4 @@ public class AttachmentCategoryRestController implements IAbstractController<Att
         List<AttachmentCategory> result = attachmentCategoryService.getAll();
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
-
 }

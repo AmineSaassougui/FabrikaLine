@@ -24,7 +24,37 @@ public class OrderLineServiceImpl implements IOrderLineService, IAbstractService
     @Autowired
     IOrderLineRepository iOrderLineRepository;
 
+    public List<OrderLine> advancedSearch(Long currentPos, Long step, String searchCriteria) throws Exception
+    {
 
+        List<OrderLine> resList;
+
+        if (searchCriteria != null )
+        {
+            resList = iOrderLineRepository.findByQuantityContaining(searchCriteria) ;
+        }
+        else
+        {
+            if (currentPos < 0 || step <= 0) {
+                throw new IllegalArgumentException("Invalid currentPos or step value");
+            }
+            // Calculate the starting position based on the currentPos and step
+            long startingPos = currentPos * step;
+
+            // If searchCriteria is null or description is null, get all countries
+            resList = iOrderLineRepository.findAll(); // ?????? TODO
+
+            // Apply pagination to the search results
+            int fromIndex = currentPos.intValue();
+            int toIndex = Math.min(fromIndex + step.intValue(), resList.size());
+            if (fromIndex < resList.size() && fromIndex < toIndex) {
+                return resList.subList(fromIndex, toIndex);
+            } else {
+                return Collections.emptyList();
+            }
+        }
+        return resList;
+    }
     @Override
     public OrderLine save(OrderLine entity) throws Exception {
         return null;
