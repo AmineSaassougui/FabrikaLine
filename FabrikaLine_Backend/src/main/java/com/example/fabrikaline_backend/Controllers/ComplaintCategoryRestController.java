@@ -75,23 +75,4 @@ public class ComplaintCategoryRestController implements IAbstractController<Comp
         return new ResponseEntity<>(complaintCategories,HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<List<ComplaintCategory>> search(SearchCriteria criteria) throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<List<ComplaintCategory>> getAll(Long page, Long size) throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<Long> count() throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<Void> deleteAll(List<Integer> ids) throws Exception {
-        return null;//TODO
-    }
 }

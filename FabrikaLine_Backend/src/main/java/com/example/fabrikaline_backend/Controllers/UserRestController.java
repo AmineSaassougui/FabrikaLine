@@ -58,23 +58,5 @@ public class UserRestController implements IAbstractController<User> {
         return null;
     }
 
-    @Override
-    public ResponseEntity<List<User>> search(SearchCriteria criteria) throws Exception {
-        return null;
-    }
 
-    @Override
-    public ResponseEntity<List<User>> getAll(Long page, Long size) throws Exception {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Long> count() throws Exception {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Void> deleteAll(List<Integer> ids) throws Exception {
-        return null;
-    }
 }

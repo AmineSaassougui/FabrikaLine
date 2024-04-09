@@ -72,23 +72,4 @@ public class ItemCategoryRestController implements IAbstractController<ItemCateg
         return new ResponseEntity<>(itemCategories,HttpStatus.OK);
     }
 
-    @Override
-    public ResponseEntity<List<ItemCategory>> search(SearchCriteria criteria) throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<List<ItemCategory>> getAll(Long page, Long size) throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<Long> count() throws Exception {
-        return null;//TODO
-    }
-
-    @Override
-    public ResponseEntity<Void> deleteAll(List<Integer> ids) throws Exception {
-        return null;//TODO
-    }
 }

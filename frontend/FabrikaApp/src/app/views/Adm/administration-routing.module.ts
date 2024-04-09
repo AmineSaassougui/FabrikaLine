@@ -13,6 +13,8 @@ import { UserGenderFormComponent } from './user-gender/user-gender-form.componen
 import { AttachementListComponent } from './attachement/attachement-list.component';
 import { AttachementFormComponent } from './attachement/attachement-form.component';
 import { ComplaintTypeListComponent } from './complaint-type-list/complaint-type-list.component';
+import {OrderStatusListComponent} from "./order-status/order-status-list.component";
+import {OrderStatusFormComponent} from "./order-status/order-status-form.component";
 
 const routes: Routes = [
   {
@@ -84,7 +86,22 @@ const routes: Routes = [
     data: {
       title: 'Sexe'
     }
-  },{
+  },
+  {
+    path: 'OrderStatusList',
+    component: OrderStatusListComponent,
+    data: {
+      title: 'Status'
+    }
+  },
+  {
+    path: 'OrderStatusForm',
+    component: OrderStatusFormComponent,
+    data: {
+      title: 'Status'
+    }
+  },
+  {
     path: 'ComplaintTypeList',
     component: ComplaintTypeListComponent,
     data: {

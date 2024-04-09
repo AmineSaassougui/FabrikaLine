@@ -86,24 +86,4 @@ public class AttachmentRestController implements IAbstractController<Attachment>
         return new ResponseEntity<>(attachments,HttpStatus.OK);
     }
 
-
-    @Override
-    public ResponseEntity<List<Attachment>> search(SearchCriteria criteria) throws Exception {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<List<Attachment>> getAll(Long page, Long size) throws Exception {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Long> count() throws Exception {
-        return null;
-    }
-
-    @Override
-    public ResponseEntity<Void> deleteAll(List<Integer> ids) throws Exception {
-        return null;
-    }
 }

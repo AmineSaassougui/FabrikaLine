@@ -73,15 +73,7 @@ public class UserGenderRestController implements IAbstractController<UserGender>
         List<UserGender> userGenders = userGenderService.getAll();
         return new ResponseEntity<>(userGenders, HttpStatus.OK);    }
 
-    @Override
-    public ResponseEntity<List<UserGender>> search(SearchCriteria criteria) throws Exception {
-        return null; //TODO
-    }
 
-    @Override
-    public ResponseEntity<List<UserGender>> getAll(Long page, Long size) throws Exception {
-        return null;
-    }
     @GetMapping(value = "/AdvancedSearch/{currentPosition}/{step}", produces = "application/json")
     public ResponseEntity<List<UserGender>> advancedSearch(@PathVariable Long currentPosition, @PathVariable Long step) throws Exception {
 //        // Check if currentPosition is provided
@@ -103,16 +95,4 @@ public class UserGenderRestController implements IAbstractController<UserGender>
         // Return paginated items in ResponseEntity
         return ResponseEntity.ok().body(items);
     }
-
-
-    @Override
-    public ResponseEntity<Long> count() throws Exception {
-        return null; //TODO
-    }
-
-    @Override
-    public ResponseEntity<Void> deleteAll(List<Integer> ids) throws Exception {
-        return null; //TODO
-    }
-    //endregion
 }
