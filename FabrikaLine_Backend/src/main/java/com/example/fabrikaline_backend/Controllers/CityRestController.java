@@ -2,9 +2,8 @@ package com.example.fabrikaline_backend.Controllers;
 
 import com.example.fabrikaline_backend.ABC.IAbstractController;
 import com.example.fabrikaline_backend.Entities.City;
-import com.example.fabrikaline_backend.Entities.Country;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Services.CityServiceImpl;
+import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,16 +17,14 @@ import java.util.List;
 
 public class CityRestController implements IAbstractController<City> {
 
-    //region Construct
-
     @Autowired
     CityServiceImpl cityService;
 
+    @Operation(operationId = "AdvancedSearchCity")
     @GetMapping("/advancedSearch")
     public ResponseEntity<List<City>> advancedSearch(
             @RequestParam(value = "currentPos",required = false) Long currentPos,
             @RequestParam(value = "step",required = false) Long step,
-            //@RequestBody(required = true) SearchCriteria searchCriteria
             @RequestParam(value = "searchCriteria",required = false) String searchCriteria
     ) {
         try {
@@ -38,25 +35,30 @@ public class CityRestController implements IAbstractController<City> {
         }
     }
 
+    @Operation(operationId = "AddAndAssignItemToCategoryCity")
     @PostMapping("/save/{countryId}")
-    public ResponseEntity<City> addAndAssignItemToCategory(@RequestBody City city, @PathVariable Long countryId) {
-        City newcity = cityService.saveAndAssign(countryId, city) ;
-        return new ResponseEntity<>(newcity, HttpStatus.CREATED);
+    public ResponseEntity<City> addAndAssignItemToCategory(@RequestBody City city, @PathVariable Long countryId)
+    {
+        City result = cityService.saveAndAssign(countryId, city) ;
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
-
-
     @Override
+    @Operation(operationId = "LoadCity")
     @GetMapping("/load/{id}")
-    public ResponseEntity<City> load(@PathVariable Long id) {
-        City city = cityService.getById(id);
-        return new ResponseEntity<>(city,HttpStatus.OK);
+    public ResponseEntity<City> load(@PathVariable Long id)
+    {
+        City result = cityService.getById(id);
+        return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
     @Override
+    @Operation(operationId = "DeleteCity")
     @DeleteMapping("/Delete/{id}")
-    public void delete(@PathVariable Long id) { cityService.delete(id);}
-
+    public void delete(@PathVariable Long id)
+    {
+        cityService.delete(id);
+    }
 
     @Override
     public ResponseEntity<City> save(City entity) throws Exception {
@@ -69,11 +71,11 @@ public class CityRestController implements IAbstractController<City> {
     }
 
     @Override
+    @Operation(operationId = "GetAllCity")
     @GetMapping("/GetAll")
-
-    public ResponseEntity<List<City>> getAll() throws Exception {
+    public ResponseEntity<List<City>> getAll() throws Exception
+    {
         List<City> cities = cityService.getAll();
         return new ResponseEntity<>(cities,HttpStatus.OK);
     }
-
 }
