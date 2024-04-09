@@ -1,0 +1,51 @@
+
+
+
+<c-card class="mb-4">
+  <c-card-body>
+    <c-row>
+      <c-col sm="5">
+        <h4 class="card-title mb-0" id="traffic"> Catégory article </h4>
+      </c-col>
+    </c-row>
+  <br>
+    <div> 
+      <ng-content select="app-yes-parameters"></ng-content>
+    </div>
+    <div>
+      <!-- Action here like : add, delete,... -->
+      <button  cButton color="info" routerLink="/Adm/ItemCategoryForm">Ajouter</button> &nbsp;
+      <button cButton color="info" (click)="modify()">Modifier</button>  &nbsp;
+
+      <button cButton color="info" (click)="delete()">Supprimer</button>  &nbsp;
+
+      <button cButton color="info" (click)="load()" >Refrech</button>  &nbsp;
+
+     <button cButton color="light" align="Right" (click)="load()" >More</button>
+    </div>
+      <div> 
+      <br/>
+
+        <ejs-grid #grid (recordDoubleClick)="onDoubleClick($event)" 
+        
+        [allowPaging]="true" 
+        [allowSorting]='true' [allowMultiSorting]='true' printMode='CurrentPage' [allowGrouping]="false"
+       (recordDoubleClick)="onDoubleClick($event)"  (load)='load()'
+        [allowExcelExport]='true' [allowPdfExport]='true' [allowReordering]='true'
+        >
+          <e-columns>
+              <e-column field='Code' headerText='Code pays' width=120></e-column>
+              <e-column field='Description' headerText='Nom' textAlign='Right' format='C2' width=90></e-column>
+          </e-columns>
+          </ejs-grid>`
+      </div>
+  </c-card-body>
+  <c-card-footer>
+    <c-row class="text-center" [md]="5" [xs]="1">
+      <c-col class="mb-sm-2 mb-0">
+      </c-col>
+      <c-col class="mb-sm-2 mb-0">
+      </c-col>
+    </c-row>
+  </c-card-footer>
+</c-card>
