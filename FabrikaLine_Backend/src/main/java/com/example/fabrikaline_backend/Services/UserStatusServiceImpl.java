@@ -1,16 +1,12 @@
 package com.example.fabrikaline_backend.Services;
-
 import com.example.fabrikaline_backend.ABC.IAbstractService;
 import com.example.fabrikaline_backend.Entities.UserStatus;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Repositories.IUserStatusRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
-import javax.validation.ValidationException;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,20 +38,6 @@ public class UserStatusServiceImpl implements IUserStatusService, IAbstractServi
         return null; //TODO
     }
 
-    @Override
-    public List<UserStatus> search(SearchCriteria criteria) {
-        return null; //TODO
-    }
-
-    @Override
-    public long count() {
-        return 0;  //TODO
-    }
-
-    @Override
-    public void validate(UserStatus entity) throws ValidationException {
-        //TODO
-    }
 
     @Override
     public UserStatus getById(Long id) {

@@ -1,16 +1,12 @@
 package com.example.fabrikaline_backend.Services;
-
 import com.example.fabrikaline_backend.ABC.IAbstractService;
 import com.example.fabrikaline_backend.Entities.UserType;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Repositories.IUserTypeRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
-import javax.validation.ValidationException;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,21 +35,6 @@ public class UserTypeServiceImpl implements IUserTypeService, IAbstractService<U
     @Override
     public List<UserType> saveAll(List<UserType> entities) throws Exception {
         return null;
-    }
-
-    @Override
-    public List<UserType> search(SearchCriteria criteria) {
-        return null;
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public void validate(UserType entity) throws ValidationException {
-
     }
 
     @Override

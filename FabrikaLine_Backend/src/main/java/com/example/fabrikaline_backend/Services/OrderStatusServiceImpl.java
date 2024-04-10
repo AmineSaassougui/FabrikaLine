@@ -1,16 +1,12 @@
 package com.example.fabrikaline_backend.Services;
-
 import com.example.fabrikaline_backend.ABC.IAbstractService;
 import com.example.fabrikaline_backend.Entities.OrderStatus;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Repositories.IOrderStatusRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
-import javax.validation.ValidationException;
 import java.util.Collections;
 import java.util.List;
 
@@ -40,21 +36,6 @@ public class OrderStatusServiceImpl implements IOrderStatusService, IAbstractSer
     @Override
     public List<OrderStatus> saveAll(List<OrderStatus> entities) throws Exception {
         return null; //TODO
-    }
-
-    @Override
-    public List<OrderStatus> search(SearchCriteria criteria) {
-        return null; //TODO
-    }
-
-    @Override
-    public long count() {
-        return 0;  //TODO
-    }
-
-    @Override
-    public void validate(OrderStatus entity) throws ValidationException {
-        //TODO
     }
 
     @Override

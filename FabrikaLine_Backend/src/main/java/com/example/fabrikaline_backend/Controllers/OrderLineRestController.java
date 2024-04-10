@@ -1,6 +1,7 @@
 package com.example.fabrikaline_backend.Controllers;
 
 import com.example.fabrikaline_backend.ABC.IAbstractController;
+import com.example.fabrikaline_backend.Entities.Order;
 import com.example.fabrikaline_backend.Entities.OrderLine;
 import com.example.fabrikaline_backend.Entities.OrderLine;
 import com.example.fabrikaline_backend.Models.SearchCriteria;
@@ -53,14 +54,21 @@ public class OrderLineRestController implements IAbstractController<OrderLine> {
         orderLineService.delete(id);
     }
 
-    @Operation(operationId = "SaveOrderLine")
-    @PostMapping("/Save")
     @Override
     public ResponseEntity<OrderLine> save(@RequestBody OrderLine entity) throws Exception
     {
         OrderLine result = orderLineService.save(entity);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
+
+    @Operation(operationId = "SaveOrderLine")
+    @PostMapping("/save/{order_id}/{item_id}")
+    public ResponseEntity<OrderLine> addAndAssignUser(@RequestBody OrderLine orderLine, @PathVariable Long item_id, @PathVariable Long order_id) {
+        OrderLine result = orderLineService.saveAndAssign(order_id,item_id,orderLine) ;
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
+    }
+
+
 
     @Operation(operationId = "SaveAllOrderLine")
     @PostMapping("/SaveAll")

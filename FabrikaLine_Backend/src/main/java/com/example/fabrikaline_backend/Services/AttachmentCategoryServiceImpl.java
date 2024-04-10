@@ -1,16 +1,12 @@
 package com.example.fabrikaline_backend.Services;
-
 import com.example.fabrikaline_backend.ABC.IAbstractService;
 import com.example.fabrikaline_backend.Entities.AttachmentCategory;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Repositories.IAttachmentCategoryRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
-import javax.validation.ValidationException;
 import java.util.Collections;
 import java.util.List;
 
@@ -42,20 +38,7 @@ public class AttachmentCategoryServiceImpl implements IAttachmentCategoryService
         return null; //TODO
     }
 
-    @Override
-    public List<AttachmentCategory> search(SearchCriteria criteria) {
-        return null; //TODO
-    }
 
-    @Override
-    public long count() {
-        return 0;  //TODO
-    }
-
-    @Override
-    public void validate(AttachmentCategory entity) throws ValidationException {
-        //TODO
-    }
 
     @Override
     public AttachmentCategory getById(Long id) {

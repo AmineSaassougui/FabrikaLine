@@ -1,20 +1,16 @@
 package com.example.fabrikaline_backend.Services;
-
 import com.example.fabrikaline_backend.ABC.IAbstractService;
 import com.example.fabrikaline_backend.DTO.ItemWithAttachmentsDTO;
 import com.example.fabrikaline_backend.Entities.Attachment;
 import com.example.fabrikaline_backend.Entities.Item;
 import com.example.fabrikaline_backend.Entities.ItemCategory;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Repositories.IItemCategoryRepository;
 import com.example.fabrikaline_backend.Repositories.IItemRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
-import javax.validation.ValidationException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -65,21 +61,6 @@ public class ItemServiceImpl implements IItemService, IAbstractService<Item> {
     }
 
     @Override
-    public List<Item> search(SearchCriteria criteria) {
-        return null;
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public void validate(Item entity) throws ValidationException {
-
-    }
-
-    @Override
     public Item getById(Long id) {
         return iItemRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Item with id :" + id + " not found"));
     }
@@ -116,8 +97,6 @@ public class ItemServiceImpl implements IItemService, IAbstractService<Item> {
         }
         return itemList;
     }
-
-
 
     @Override
     public List<ItemWithAttachmentsDTO> getAllItemsWithAttachments(String searchCriteria) throws Exception {
