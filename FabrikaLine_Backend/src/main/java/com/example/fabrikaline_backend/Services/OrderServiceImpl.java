@@ -98,9 +98,6 @@ public class OrderServiceImpl implements IOrderService, IAbstractService<Order> 
     }
 
 
-    @Override
-    public Order getById(Long id) {
-        return iOrderRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order with id :" + id + " not found"));
-    }
+
 
 }
