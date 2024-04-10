@@ -20,7 +20,7 @@ export class ItemCategoryListComponent implements OnInit {
   @ViewChild('grid') public grid!: GridComponent;
 
   load() {
-    this._service.getAll4().subscribe((data: any[]) => {
+    this._service.getAllOrderLine().subscribe((data: any[]) => {
       this.grid.dataSource = data;
     });
   }

@@ -17,7 +17,7 @@ export class ItemListComponent implements OnInit {
   @ViewChild('grid') public grid!: GridComponent;
 
   load() {
-    this._countryService.getAll5().subscribe((data: any[]) => {
+    this._countryService.getAllItem().subscribe((data: any[]) => {
       this.grid.dataSource = data;
     });
   }
@@ -29,7 +29,7 @@ export class ItemListComponent implements OnInit {
     }
     else {
       let selectedrecord: any = this.grid.getSelectedRecords()[0]; // get the selected records.
-      this._countryService.delete5(selectedrecord['id']).subscribe((data: any) => {
+      this._countryService.deleteItem(selectedrecord['id']).subscribe((data: any) => {
         this.load()
       });
     }

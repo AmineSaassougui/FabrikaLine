@@ -22,7 +22,7 @@ export class UserGenderFormComponent implements OnInit {
 
   save(object: any) {
     this.toggleToast();
-    this._service.save2(object).subscribe((res: any) => {
+    this._service.saveUserGender(object).subscribe((res: any) => {
       if (res != null) {
         this.route.navigate(['/Adm/UserGenderList'])
       } else {
@@ -32,7 +32,7 @@ export class UserGenderFormComponent implements OnInit {
   }
 
   load(){
-    this._service.load2(this.id).subscribe((res: any) => {   
+    this._service.loadUserGender(this.id).subscribe((res: any) => {   
       this.object = res;
     });
   }

@@ -46,12 +46,12 @@ export class ItemDetailsComponent {
     }
   }
   load() {
-    this._service.load5(this.id).subscribe((res: any) => {
+    this._service.loadItem(this.id).subscribe((res: any) => {
       this.object = res;
     });
   }
   getAttachedList() {
-    this.attachementService.getAttachmentByParentId(this.object.id).subscribe((res: any) => {
+    this.attachementService.getAttachmentByParentIdAttachment(this.object.id).subscribe((res: any) => {
       if (res != null) {
         this.imagesFile = res;
       } else {

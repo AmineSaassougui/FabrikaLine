@@ -17,7 +17,7 @@ export class UserGenderListComponent implements OnInit {
   @ViewChild('grid') public grid!: GridComponent;
 
   load() {
-    this._countryService.getAll2().subscribe((data: any[]) => {
+    this._countryService.getAllUserGender().subscribe((data: any[]) => {
       this.grid.dataSource = data;
     });
   }
@@ -29,7 +29,7 @@ export class UserGenderListComponent implements OnInit {
     }
     else {
       let selectedrecord: any = this.grid.getSelectedRecords()[0]; // get the selected records.
-      this._countryService.delete2(selectedrecord['id']).subscribe((data: any) => {
+      this._countryService.deleteUserGender(selectedrecord['id']).subscribe((data: any) => {
         this.load()
       });
     }

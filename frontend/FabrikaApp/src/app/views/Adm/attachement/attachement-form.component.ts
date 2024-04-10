@@ -26,7 +26,7 @@ export class AttachementFormComponent implements OnInit {
   save(object: any) {
     object.parentId = this.parentId;
     this.toggleToast();
-    this._service.save1(this.categoryId, object).subscribe((res: any) => {
+    this._service.saveAttachment(this.categoryId, object).subscribe((res: any) => {
       if (res != null) {
         this.route.navigate(['/Adm/AttachementList'])
       } else {
@@ -36,7 +36,7 @@ export class AttachementFormComponent implements OnInit {
   }
 
   load() {
-    this._service.load10(this.id).subscribe((res: any) => {
+    this._service.loadAttachment(this.id).subscribe((res: any) => {
       this.object = res;
     });
   }

@@ -9,6 +9,8 @@ api/complaintCategoryRestController.service.ts
 api/countryRestController.service.ts
 api/itemCategoryRestController.service.ts
 api/itemRestController.service.ts
+api/orderController.service.ts
+api/orderLineRestController.service.ts
 api/orderStatusRestController.service.ts
 api/userGenderRestController.service.ts
 api/userRestController.service.ts
@@ -27,6 +29,8 @@ model/item.ts
 model/itemCategory.ts
 model/itemWithAttachmentsDTO.ts
 model/models.ts
+model/order.ts
+model/orderLine.ts
 model/orderStatus.ts
 model/user.ts
 model/userGender.ts

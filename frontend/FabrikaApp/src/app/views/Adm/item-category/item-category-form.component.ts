@@ -24,7 +24,7 @@ export class ItemCategoryFormComponent implements OnInit {
 
   save(object: any) {
   
-    this._service.save4(object).subscribe((res: any) => {
+    this._service.saveItemCategory(object).subscribe((res: any) => {
       if (res != null) {
         this.route.navigate(['/Adm/ItemCategoryList'])
       } else {
@@ -34,7 +34,7 @@ export class ItemCategoryFormComponent implements OnInit {
   }
 
   load(){
-    this._service.load4(this.id).subscribe((res: any) => {   
+    this._service.loadItemCategory(this.id).subscribe((res: any) => {   
       this.object = res;
     });
   }

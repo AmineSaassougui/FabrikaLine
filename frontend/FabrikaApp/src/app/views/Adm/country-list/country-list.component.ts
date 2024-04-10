@@ -16,7 +16,7 @@ export class CountryListComponent implements OnInit {
   @ViewChild('grid') public grid!: GridComponent;
 
   load() {
-    this._countryService.getAll6().subscribe((data: any[]) => {
+    this._countryService.getAllCountry().subscribe((data: any[]) => {
       this.grid.dataSource = data;
     });
   }
