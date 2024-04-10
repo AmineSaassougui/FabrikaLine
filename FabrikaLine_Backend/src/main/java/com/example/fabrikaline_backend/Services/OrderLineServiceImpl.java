@@ -89,6 +89,7 @@ public class OrderLineServiceImpl implements IOrderLineService, IAbstractService
         Item item = iItemRepository.findById(item_id).orElseThrow(() -> new IllegalArgumentException("Invalid Item Id"));
         orderLine.setOrder(order);
         orderLine.setItem(item);
+        orderLine.setTotalPrice(orderLine.getQuantity()*item.getPrice());
         return iOrderLineRepository.save(orderLine);
     }
 }
