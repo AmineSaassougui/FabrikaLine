@@ -1,5 +1,6 @@
 package com.example.fabrikaline_backend.Controllers;
 import com.example.fabrikaline_backend.ABC.IAbstractController;
+import com.example.fabrikaline_backend.DTO.ItemWithAttachmentsDTO;
 import com.example.fabrikaline_backend.Entities.Item;
 import com.example.fabrikaline_backend.Services.ItemServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
@@ -74,6 +75,14 @@ public class ItemRestController implements IAbstractController<Item> {
     {
         List<Item> result = itemService.getAll();
         return new ResponseEntity<>(result,HttpStatus.OK);
+    }
+
+    @Operation(operationId = "GetAllItemsWithAttachmentsItem")
+    @GetMapping(value = "/withAttachments", produces = "application/json")
+    public ResponseEntity<List<ItemWithAttachmentsDTO>> getAllItemsWithAttachments(@RequestParam(value = "searchCriteria",required = false) String searchCriteria
+    ) throws Exception {
+        List<ItemWithAttachmentsDTO> itemsWithAttachments = itemService.getAllItemsWithAttachments(searchCriteria);
+        return new ResponseEntity<>(itemsWithAttachments, HttpStatus.OK);
     }
 
     @Override

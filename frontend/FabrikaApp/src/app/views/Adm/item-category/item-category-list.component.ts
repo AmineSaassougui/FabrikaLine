@@ -20,7 +20,7 @@ export class ItemCategoryListComponent implements OnInit {
   @ViewChild('grid') public grid!: GridComponent;
 
   load() {
-    this._countryService.getAll4().subscribe((data: any[]) => {
+    this._countryService.getAllItemCategory().subscribe((data: any[]) => {
       this.grid.dataSource = data;
     });
   }
@@ -32,7 +32,7 @@ export class ItemCategoryListComponent implements OnInit {
     }
     else {
       let selectedrecord: any = this.grid.getSelectedRecords()[0]; // get the selected records.
-      this._countryService.delete4(selectedrecord['id']).subscribe((data: any) => {
+      this._countryService.deleteItemCategory(selectedrecord['id']).subscribe((data: any) => {
         this.load()
       });
     }

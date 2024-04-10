@@ -55,7 +55,7 @@ export class ItemFormComponent implements OnInit {
   }
 
   getCategoryList() {
-    this.itemCategoryRestControllerService.getAll4().subscribe((res: any) => {
+    this.itemCategoryRestControllerService.getAllItemCategory().subscribe((res: any) => {
       if (res != null) {
         this.itemCategoryList = res;
       } else {
@@ -74,7 +74,7 @@ export class ItemFormComponent implements OnInit {
 
 
   save(object: any) {
-    this._service.save(this.object.itemCategory.id, object).subscribe((res: any) => {
+    this._service.saveItem(this.object.itemCategory.id, object).subscribe((res: any) => {
       if (res != null) {
         this.route.navigate(['/Adm/ItemList'])
       } else {
@@ -84,7 +84,7 @@ export class ItemFormComponent implements OnInit {
   }
 
   load() {
-    this._service.load5(this.id).subscribe((res: any) => {
+    this._service.loadItem(this.id).subscribe((res: any) => {
       this.object = res;
     });
   }
@@ -105,7 +105,7 @@ export class ItemFormComponent implements OnInit {
   }
 
   getAttachedList() {
-    this.attachementService.getAttachmentByParentId(this.object.id).subscribe((res: any) => {
+    this.attachementService.getAttachmentByParentIdAttachment(this.object.id).subscribe((res: any) => {
       if (res != null) {
         this.imagesFile = res;  
       } else {

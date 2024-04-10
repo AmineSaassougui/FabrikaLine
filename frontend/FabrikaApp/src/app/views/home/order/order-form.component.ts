@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { OrderControllerService } from 'libs/openapi/src';
+import { OrderControllerService } from './../../../../../libs/openapi/src/api/orderController.service';
 
 @Component({
   selector: 'app-order-form',
@@ -24,7 +24,7 @@ export class OrderFormComponent implements OnInit {
 
   save(object: any) {
   
-    this._service.save5(object).subscribe((res: any) => {
+    this._service.saveOrder(object).subscribe((res: any) => {
       if (res != null) {
         this.route.navigate(['/Adm/OrderList'])
       } else {
@@ -34,7 +34,7 @@ export class OrderFormComponent implements OnInit {
   }
 
   load(){
-    this._service.load6(this.id).subscribe((res: any) => {   
+    this._service.loadOrder(this.id).subscribe((res: any) => {   
       this.object = res;
     });
   }

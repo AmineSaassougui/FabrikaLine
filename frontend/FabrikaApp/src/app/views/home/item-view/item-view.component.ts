@@ -72,7 +72,7 @@ export class ItemViewComponent implements OnInit {
 
 
   loadArticles() {
-    this.fabrikaService.getAllItemsWithAttachments(this.searchCriteria).subscribe(
+    this.fabrikaService.getAllItemsWithAttachmentsItem(this.searchCriteria).subscribe(
       (data: any[]) => {
         this.articles = data;
       },

@@ -20,7 +20,7 @@ export class OrderStatusListComponent implements OnInit {
   @ViewChild('grid') public grid!: GridComponent;
 
   load() {
-    this.statusservice.getAll3().subscribe((data: any[]) => {
+    this.statusservice.getAllOrderStatus().subscribe((data: any[]) => {
       this.grid.dataSource = data;
     });
   }
@@ -32,7 +32,7 @@ export class OrderStatusListComponent implements OnInit {
     }
     else {
       let selectedrecord: any = this.grid.getSelectedRecords()[0]; // get the selected records.
-      this.statusservice.delete3(selectedrecord['id']).subscribe((data: any) => {
+      this.statusservice.deleteOrderStatus(selectedrecord['id']).subscribe((data: any) => {
         this.load()
       });
     }

@@ -15,7 +15,6 @@ import java.util.List;
 @CrossOrigin("*")
 public class CountryRestController implements IAbstractController<Country> {
 
-
     @Autowired
     CountryServiceImpl countryService;
 

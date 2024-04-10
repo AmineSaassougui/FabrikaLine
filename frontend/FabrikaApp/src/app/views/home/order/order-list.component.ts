@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationExtras } from '@angular/router';
 import { GridComponent } from '@syncfusion/ej2-angular-grids';
-import { OrderControllerService } from 'libs/openapi/src';
+import { OrderControllerService } from './../../../../../libs/openapi/src/api/orderController.service';
 
 @Component({
   selector: 'app-order-list',
@@ -18,7 +18,7 @@ export class OrderListComponent implements OnInit {
   @ViewChild('grid') public grid!: GridComponent;
 
   load() {
-    this._countryService.getAll5().subscribe((data: any[]) => {
+    this._countryService.getAllOrder().subscribe((data: any[]) => {
       this.grid.dataSource = data;
     });
   }
@@ -30,7 +30,7 @@ export class OrderListComponent implements OnInit {
     }
     else {
       let selectedrecord: any = this.grid.getSelectedRecords()[0]; // get the selected records.
-      this._countryService.delete4(selectedrecord['id']).subscribe((data: any) => {
+      this._countryService.deleteOrder(selectedrecord['id']).subscribe((data: any) => {
         this.load()
       });
     }

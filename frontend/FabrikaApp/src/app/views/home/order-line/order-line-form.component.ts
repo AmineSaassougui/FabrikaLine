@@ -23,7 +23,7 @@ export class OrderLineFormComponent implements OnInit {
   }
   save(object: any) {
   
-    this._service.save4(object).subscribe((res: any) => {
+    this._service.saveOrderLine(object).subscribe((res: any) => {
       if (res != null) {
         this.route.navigate(['/Adm/OrderLineList'])
       } else {
@@ -33,7 +33,7 @@ export class OrderLineFormComponent implements OnInit {
   }
 
   load(){
-    this._service.load5(this.id).subscribe((res: any) => {   
+    this._service.loadOrderLine(this.id).subscribe((res: any) => {   
       this.object = res;
     });
   }

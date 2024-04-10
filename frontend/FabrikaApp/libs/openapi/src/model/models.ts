@@ -6,6 +6,8 @@ export * from './country';
 export * from './item';
 export * from './itemCategory';
 export * from './itemWithAttachmentsDTO';
+export * from './order';
+export * from './orderLine';
 export * from './orderStatus';
 export * from './user';
 export * from './userGender';

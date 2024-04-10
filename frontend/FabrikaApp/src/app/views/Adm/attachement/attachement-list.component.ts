@@ -18,7 +18,7 @@ export class AttachementListComponent implements OnInit {
   @ViewChild('grid') public grid!: GridComponent;
 
   load() {
-    this.fabrikaService.getAll10().subscribe((data: any[]) => {
+    this.fabrikaService.getAllAttachment().subscribe((data: any[]) => {
       this.grid.dataSource = data;
     });
   }
@@ -30,7 +30,7 @@ export class AttachementListComponent implements OnInit {
     }
     else {
       let selectedrecord: any = this.grid.getSelectedRecords()[0]; // get the selected records.
-      this.fabrikaService.delete10(selectedrecord['id']).subscribe((data: any) => {
+      this.fabrikaService.deleteAttachment(selectedrecord['id']).subscribe((data: any) => {
         this.load()
       });
     }

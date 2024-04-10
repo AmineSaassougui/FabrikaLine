@@ -23,7 +23,7 @@ export class OrderStatusFormComponent implements OnInit {
   }
 
   save(object: any) {
-    this._service.save3(object).subscribe((res: any) => {
+    this._service.saveOrderStatus(object).subscribe((res: any) => {
       if (res != null) {
         this.route.navigate(['/Adm/OrderStatusList'])
       } else {
@@ -33,7 +33,7 @@ export class OrderStatusFormComponent implements OnInit {
   }
 
   load(){
-    this._service.load3(this.id).subscribe((res: any) => {
+    this._service.loadOrderStatus(this.id).subscribe((res: any) => {
       this.object = res;
     });
   }
