@@ -37,6 +37,7 @@ public class UserRestController implements IAbstractController<User> {
 
     @Override
     @Operation(operationId = "LoadUser")
+    @ResponseBody
     @GetMapping(value = "/Load/{id}", produces = "application/json")
     public ResponseEntity<User> load(@PathVariable Long id)
     {
@@ -52,8 +53,6 @@ public class UserRestController implements IAbstractController<User> {
         userService.delete(id);
     }
 
-    @Operation(operationId = "SaveUser")
-    @PostMapping("/Save")
     @Override
     public ResponseEntity<User> save(@RequestBody User entity) throws Exception
     {
@@ -70,6 +69,7 @@ public class UserRestController implements IAbstractController<User> {
     }
 
     @Override
+    @ResponseBody
     @Operation(operationId = "GetAllUser")
     @GetMapping(value = "/GetAll", produces = "application/json")
     public ResponseEntity<List<User>> getAll() throws Exception
@@ -78,7 +78,7 @@ public class UserRestController implements IAbstractController<User> {
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
-    @Operation(operationId = "AddAndAssignUser")
+    @Operation(operationId = "SaveUser")
     @PostMapping("/save/{country_id}/{city_id}/{userstatus_id}/{usergender_id}/{usertype_id}")
     public ResponseEntity<User> addAndAssignUser(@RequestBody User user,@PathVariable Long country_id, @PathVariable Long city_id,@PathVariable Long userstatus_id,@PathVariable Long usergender_id,@PathVariable Long usertype_id) {
         User result = userService.saveAndAssign(usertype_id,usergender_id,userstatus_id,city_id,country_id,user) ;

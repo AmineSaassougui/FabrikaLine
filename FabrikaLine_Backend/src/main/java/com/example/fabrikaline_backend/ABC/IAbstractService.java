@@ -12,11 +12,11 @@ public interface IAbstractService<T> {
 
     List<T> saveAll(List<T> entities) throws Exception;
 
-    List<T> search(SearchCriteria criteria);
+//    List<T> search(SearchCriteria criteria);
 
-    long count();
+//    long count();
 
-    void validate(T entity) throws ValidationException;
+//    void validate(T entity) throws ValidationException;
 
     T getById(Long id);
 

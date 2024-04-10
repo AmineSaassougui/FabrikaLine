@@ -2,6 +2,7 @@ package com.example.fabrikaline_backend.Controllers;
 
 import com.example.fabrikaline_backend.ABC.IAbstractController;
 import com.example.fabrikaline_backend.Entities.Order;
+import com.example.fabrikaline_backend.Entities.User;
 import com.example.fabrikaline_backend.Services.OrderServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,13 +51,19 @@ public class OrderController implements IAbstractController<Order> {
         orderService.delete(id);
     }
 
-    @Operation(operationId = "SaveOrder")
-    @PostMapping("/Save")
     @Override
     public ResponseEntity<Order> save(@RequestBody Order entity) throws Exception
     {
         Order result = orderService.save(entity);
         return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+
+    @Operation(operationId = "SaveOrder")
+    @PostMapping("/save/{orderstatus_id}/{user_id}")
+    public ResponseEntity<Order> addAndAssignUser(@RequestBody Order order, @PathVariable Long orderstatus_id, @PathVariable Long user_id) {
+        Order result = orderService.saveAndAssign(user_id,orderstatus_id,order) ;
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 
     @Operation(operationId = "SaveAllOrder")

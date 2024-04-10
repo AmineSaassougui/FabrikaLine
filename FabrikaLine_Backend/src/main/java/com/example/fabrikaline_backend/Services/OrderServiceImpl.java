@@ -1,20 +1,18 @@
 package com.example.fabrikaline_backend.Services;
-
 import com.example.fabrikaline_backend.ABC.IAbstractService;
 import com.example.fabrikaline_backend.Entities.Order;
-import com.example.fabrikaline_backend.Entities.ComplaintCategory;
-import com.example.fabrikaline_backend.Entities.Order;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
-import com.example.fabrikaline_backend.Repositories.IComplaintCategoryRepository;
+import com.example.fabrikaline_backend.Entities.OrderStatus;
+import com.example.fabrikaline_backend.Entities.User;
 import com.example.fabrikaline_backend.Repositories.IOrderRepository;
+import com.example.fabrikaline_backend.Repositories.IOrderStatusRepository;
+import com.example.fabrikaline_backend.Repositories.IUserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
-import javax.validation.ValidationException;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 
@@ -24,6 +22,10 @@ import java.util.List;
 public class OrderServiceImpl implements IOrderService, IAbstractService<Order> {
     @Autowired
     IOrderRepository iOrderRepository;
+    @Autowired
+    IUserRepository iUserRepository ;
+    @Autowired
+    IOrderStatusRepository iOrderStatusRepository;
 
     public List<Order> advancedSearch(Long currentPos, Long step, String searchCriteria) throws Exception
     {
@@ -62,13 +64,14 @@ public class OrderServiceImpl implements IOrderService, IAbstractService<Order> 
     }
 
     @Override
-    public void delete(Long id) {
-
+    public void delete(Long id)
+    {
+        iOrderRepository.deleteById(id);
     }
 
     @Override
     public List<Order> getAll() {
-        return null;
+        return iOrderRepository.findAll();
     }
 
     @Override
@@ -76,23 +79,22 @@ public class OrderServiceImpl implements IOrderService, IAbstractService<Order> 
         return null;
     }
 
-    @Override
-    public List<Order> search(SearchCriteria criteria) {
-        return null;
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public void validate(Order entity) throws ValidationException {
-
-    }
 
     @Override
     public Order getById(Long id) {
-        return null;
+        return iOrderRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order with id :" + id + " not found"));
     }
+
+
+    public Order saveAndAssign(Long user_id, Long orderstatus_id, Order order) {
+        User user = iUserRepository.findById(user_id).orElseThrow(() -> new IllegalArgumentException("Invalid User Id"));
+        OrderStatus orderStatus = iOrderStatusRepository.findById(orderstatus_id).orElseThrow(() -> new IllegalArgumentException("Invalid OrderStatus Id"));
+        // Set the order date to the current timestamp
+        order.setOrderDate(new Date());
+        order.setUser(user);
+        order.setOrderStatus(orderStatus);
+        return iOrderRepository.save(order);
+    }
+
+
 }

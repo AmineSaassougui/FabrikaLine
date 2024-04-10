@@ -1,18 +1,14 @@
 package com.example.fabrikaline_backend.Services;
-
 import com.example.fabrikaline_backend.ABC.IAbstractService;
 import com.example.fabrikaline_backend.Entities.City;
 import com.example.fabrikaline_backend.Entities.Country;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Repositories.ICityRepository;
 import com.example.fabrikaline_backend.Repositories.ICountryRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
-import javax.validation.ValidationException;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,7 +21,6 @@ public class CityServiceImpl implements ICityService, IAbstractService<City> {
     ICityRepository iCityRepository;
     @Autowired
     ICountryRepository iCountryRepository;
-
 
     @Override
     public City saveAndAssign(Long countryId, City city){
@@ -51,21 +46,6 @@ public class CityServiceImpl implements ICityService, IAbstractService<City> {
     @Override
     public List<City> saveAll(List<City> entities) throws Exception {
         return null;
-    }
-
-    @Override
-    public List<City> search(SearchCriteria criteria) {
-        return null;
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public void validate(City entity) throws ValidationException {
-
     }
 
     @Override
