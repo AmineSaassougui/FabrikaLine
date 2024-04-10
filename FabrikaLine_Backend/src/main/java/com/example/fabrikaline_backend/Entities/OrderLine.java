@@ -24,11 +24,4 @@ public class OrderLine implements Serializable {
     @JoinColumn(name = "item_id",nullable = false)
     private Item item ;
 
-
-
-
-
-
-
-
 }
