@@ -3,7 +3,8 @@ import { Router } from "@angular/router";
 import {
   AttachmentRestControllerService, Item,
   ItemCategoryRestControllerService,
-  ItemRestControllerService
+  ItemRestControllerService,
+  OrderLine
 } from "../../../../../libs/openapi/src";
 import { CarouselAnimationEffect } from "@syncfusion/ej2-angular-navigations";
 import { cilList, cilShieldAlt, cilCheckCircle } from '@coreui/icons';
@@ -45,6 +46,55 @@ export class ItemDetailsComponent {
       this.object = this.newItem;
     }
   }
+
+
+
+
+  private cartKey = 'myCart';
+  
+
+  addToCart(item: Item): void {
+
+   let orderLine : OrderLine = {
+    item : item,
+    quantity: 2,
+  }
+
+  if (orderLine.quantity && orderLine.item?.price) {
+    orderLine.totalPrice = orderLine.item?.price * orderLine.quantity;
+  }
+  let res = localStorage.getItem(this.cartKey);
+  if (res ==null) {
+    localStorage.setItem(this.cartKey, '[]');
+  }
+      const existingCart = JSON.parse(localStorage.getItem(this.cartKey) || "") || [];
+      existingCart.push(orderLine);
+      localStorage.setItem(this.cartKey, JSON.stringify(existingCart));
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   load() {
     this._service.loadItem(this.id).subscribe((res: any) => {
       this.object = res;

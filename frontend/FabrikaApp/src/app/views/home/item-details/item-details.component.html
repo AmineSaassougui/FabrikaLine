@@ -46,7 +46,7 @@
 
         <div class="d-grid gap-2">
 
-          <button cButton color="light">AJOUTER AU PANIER</button>
+          <button cButton color="light" (click)="addToCart(this.object)">AJOUTER AU PANIER</button>
           <button class="cButton btn btn-success text-white">
             <svg [cIcon]="icons.cilCheckCircle" size="xl" title="List Icon"></svg>
             <i class="fa fa--cart"></i> VALIDER ET ACHETER
