@@ -1,16 +1,12 @@
 package com.example.fabrikaline_backend.Services;
-
 import com.example.fabrikaline_backend.ABC.IAbstractService;
 import com.example.fabrikaline_backend.Entities.ComplaintCategory;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Repositories.IComplaintCategoryRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import javax.persistence.EntityNotFoundException;
-import javax.validation.ValidationException;
 import java.util.Collections;
 import java.util.List;
 
@@ -41,20 +37,6 @@ public class ComplaintCategoryServiceImpl implements IComplaintCategoryService, 
         return null;
     }
 
-    @Override
-    public List<ComplaintCategory> search(SearchCriteria criteria) {
-        return null;
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public void validate(ComplaintCategory entity) throws ValidationException {
-
-    }
 
     @Override
     public ComplaintCategory getById(Long id) {

@@ -1,15 +1,12 @@
 package com.example.fabrikaline_backend.Services;
-
 import com.example.fabrikaline_backend.ABC.IAbstractService;
 import com.example.fabrikaline_backend.Entities.*;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Repositories.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.validation.ValidationException;
+import javax.persistence.EntityNotFoundException;
 import java.util.Collections;
 import java.util.List;
 
@@ -84,13 +81,15 @@ public class UserServiceImpl implements IUserService, IAbstractService<User> {
 
     @Override
     public void delete(Long id) {
-
+        iUserRepository.deleteById(id);
     }
 
     @Override
     public List<User> getAll() {
-        return null;
+        return iUserRepository.findAll();
     }
+
+
 
     @Override
     public List<User> saveAll(List<User> entities) throws Exception {
@@ -98,22 +97,9 @@ public class UserServiceImpl implements IUserService, IAbstractService<User> {
     }
 
     @Override
-    public List<User> search(SearchCriteria criteria) {
-        return null;
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public void validate(User entity) throws ValidationException {
-
-    }
-
-    @Override
     public User getById(Long id) {
-        return null;
+        return iUserRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User with id :" + id + " not found"));
     }
 }
+
+

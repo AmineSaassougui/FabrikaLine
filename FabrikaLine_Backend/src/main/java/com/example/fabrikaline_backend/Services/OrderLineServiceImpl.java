@@ -1,19 +1,17 @@
 package com.example.fabrikaline_backend.Services;
-
 import com.example.fabrikaline_backend.ABC.IAbstractService;
-import com.example.fabrikaline_backend.Entities.ItemCategory;
-import com.example.fabrikaline_backend.Entities.OrderLine;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
-import com.example.fabrikaline_backend.Repositories.IItemCategoryRepository;
+import com.example.fabrikaline_backend.Entities.*;
+import com.example.fabrikaline_backend.Repositories.IItemRepository;
 import com.example.fabrikaline_backend.Repositories.IOrderLineRepository;
+import com.example.fabrikaline_backend.Repositories.IOrderRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
-import javax.validation.ValidationException;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 
@@ -23,6 +21,11 @@ import java.util.List;
 public class OrderLineServiceImpl implements IOrderLineService, IAbstractService<OrderLine> {
     @Autowired
     IOrderLineRepository iOrderLineRepository;
+    @Autowired
+    IItemRepository iItemRepository;
+    @Autowired
+    IOrderRepository iOrderRepository;
+
 
     public List<OrderLine> advancedSearch(Long currentPos, Long step, String searchCriteria) throws Exception
     {
@@ -62,12 +65,12 @@ public class OrderLineServiceImpl implements IOrderLineService, IAbstractService
 
     @Override
     public void delete(Long id) {
-
+        iOrderLineRepository.deleteById(id);
     }
 
     @Override
     public List<OrderLine> getAll() {
-        return null;
+        return iOrderLineRepository.findAll();
     }
 
     @Override
@@ -75,23 +78,19 @@ public class OrderLineServiceImpl implements IOrderLineService, IAbstractService
         return null;
     }
 
-    @Override
-    public List<OrderLine> search(SearchCriteria criteria) {
-        return null;
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public void validate(OrderLine entity) throws ValidationException {
-
-    }
 
     @Override
     public OrderLine getById(Long id) {
-        return null;
+        return iOrderLineRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("OrderLine with id :" + id + " not found"));
+    }
+
+    public OrderLine saveAndAssign(Long order_id, Long item_id, OrderLine orderLine) {
+        Order order = iOrderRepository.findById(order_id).orElseThrow(() -> new IllegalArgumentException("Invalid Order Id"));
+        Item item = iItemRepository.findById(item_id).orElseThrow(() -> new IllegalArgumentException("Invalid Item Id"));
+        orderLine.setOrder(order);
+        orderLine.setItem(item);
+        return iOrderLineRepository.save(orderLine);
     }
 }
+
+

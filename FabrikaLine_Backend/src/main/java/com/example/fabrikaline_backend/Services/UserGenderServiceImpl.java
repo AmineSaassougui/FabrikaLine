@@ -1,21 +1,17 @@
 package com.example.fabrikaline_backend.Services;
-
 import com.example.fabrikaline_backend.ABC.IAbstractService;
 import com.example.fabrikaline_backend.Entities.UserGender;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
 import com.example.fabrikaline_backend.Repositories.IUserGenderRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import javax.persistence.EntityNotFoundException;
-import javax.validation.ValidationException;
-import java.util.Collections;
-import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+import javax.persistence.EntityNotFoundException;
+import java.util.Collections;
+import java.util.List;
 
 @Service
 @Slf4j
@@ -51,21 +47,6 @@ public class UserGenderServiceImpl implements IUserGenderService, IAbstractServi
     @Override
     public List<UserGender> saveAll(List<UserGender> entities) throws Exception {
         return null;
-    }
-
-    @Override
-    public List<UserGender> search(SearchCriteria criteria) {
-        return null;
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public void validate(UserGender entity) throws ValidationException {
-
     }
 
     @Override
