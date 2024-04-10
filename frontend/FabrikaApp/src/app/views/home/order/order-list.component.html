@@ -5,7 +5,7 @@
   <c-card-body>
     <c-row>
       <c-col sm="5">
-        <h4 class="card-title mb-0" id="traffic"> Catégory article </h4>
+        <h4 class="card-title mb-0" id="traffic"> Mes commandes </h4>
       </c-col>
     </c-row>
   <br>
@@ -34,8 +34,7 @@
         [allowExcelExport]='true' [allowPdfExport]='true' [allowReordering]='true'
         >
           <e-columns>
-              <e-column field='Code' headerText='Code pays' width=120></e-column>
-              <e-column field='Description' headerText='Nom' textAlign='Right' format='C2' width=90></e-column>
+              <e-column field='Description' headerText='Description' textAlign='Right' format='C2' autoFit="true"></e-column>
           </e-columns>
           </ejs-grid>`
       </div>

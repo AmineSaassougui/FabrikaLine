@@ -198,10 +198,10 @@
     </c-row>
 
     <div class="row">
-      <div class="col-sm-2" *ngFor="let article of articles" (click)="viewItemDetails(article.id)">
+      <div class="col-sm-2" *ngFor="let article of articles">
         <c-card class="mb-4" style="align-items: center;">
           <c-card-body style="align-items: center;">
-            <div>
+            <div  (click)="viewItemDetails(article.id)">
               <img src="{{ article.coverPic || 'https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg' }}" alt="cardinal" class="img-fluid rounded" style="border-radius: 5%;" />
             </div>
             <div style="padding-bottom: 20px;"></div>
@@ -214,7 +214,9 @@
                 <p style="color: red; font-weight: bold;" class="text-left">{{ article.price }} TND</p>
               </c-col>
               <c-col class="d-flex justify-content-end">
-                <button cButton color="success">ACHETER</button>
+                <button cButton color="light" (click)="addToCart(article)">Add</button>
+
+                <button cButton color="success"  (click)="viewItemDetails(article.id)">ACHETER</button>
               </c-col>
             </c-row>
           </c-card-body>

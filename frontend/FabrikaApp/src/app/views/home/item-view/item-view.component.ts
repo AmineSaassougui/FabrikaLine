@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ItemRestControllerService } from "../../../../../libs/openapi/src";
+import { Item, ItemRestControllerService, OrderLine } from "../../../../../libs/openapi/src";
 import {NavigationExtras, Router} from '@angular/router';
 import { cilList, cilShieldAlt, cilCheckCircle, cilSearch } from '@coreui/icons';
 
@@ -66,8 +66,30 @@ export class ItemViewComponent implements OnInit {
     };
 
     this.loadArticles();
+
+    
+  }
+  private cartKey = 'myCart';
+  
+
+  addToCart(item: Item): void {
+
+   let orderLine : OrderLine = {
+    item : item,
+    quantity: 2,
   }
 
+  if (orderLine.quantity && orderLine.item?.price) {
+    orderLine.totalPrice = orderLine.item?.price * orderLine.quantity;
+  }
+  let res = localStorage.getItem(this.cartKey);
+  if (res ==null) {
+    localStorage.setItem(this.cartKey, '[]');
+  }
+      const existingCart = JSON.parse(localStorage.getItem(this.cartKey) || "") || [];
+      existingCart.push(orderLine);
+      localStorage.setItem(this.cartKey, JSON.stringify(existingCart));
+  }
 
 
 

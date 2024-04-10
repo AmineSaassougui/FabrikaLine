@@ -58,17 +58,17 @@ public class OrderServiceImpl implements IOrderService, IAbstractService<Order> 
     }
     @Override
     public Order save(Order entity) throws Exception {
-        return null;
+        return iOrderRepository.save(entity);
     }
 
     @Override
     public void delete(Long id) {
-
+        iOrderRepository.deleteById(id);
     }
 
     @Override
     public List<Order> getAll() {
-        return null;
+        return iOrderRepository.findAll();
     }
 
     @Override
@@ -93,6 +93,7 @@ public class OrderServiceImpl implements IOrderService, IAbstractService<Order> 
 
     @Override
     public Order getById(Long id) {
-        return null;
+        return iOrderRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Order with id :" + id + " not found"));
+
     }
 }

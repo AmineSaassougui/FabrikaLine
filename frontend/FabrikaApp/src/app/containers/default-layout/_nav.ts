@@ -51,6 +51,11 @@ export const navItems: INavData[] = [
         name: 'Nos produits',
         url: '/home/ItemView'
       },
+
+      {
+        name: 'Mes commandes',
+        url: '/home/OrderList'
+      },
     ]
   },
   {
