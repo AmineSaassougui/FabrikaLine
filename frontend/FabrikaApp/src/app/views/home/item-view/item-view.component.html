@@ -211,13 +211,15 @@
             <div style="padding-bottom: 20px;"></div>
             <c-row>
               <c-col>
-                <p style="color: red; font-weight: bold;" class="text-left">{{ article.price }} TND</p>
+                <button disabled="true" cButton color="light" style="color: red; font-weight: bolder;" class="text-left" >{{ article.price }} TND</button>
+
+                <!-- <p style="color: red; font-weight: bold;" class="text-left">{{ article.price }} TND</p> -->
               </c-col>
-              <c-col class="d-flex justify-content-end">
+              <!-- <c-col class="d-flex justify-content-end">
                 <button cButton color="light" (click)="addToCart(article)">Add</button>
 
                 <button cButton color="success"  (click)="viewItemDetails(article.id)">ACHETER</button>
-              </c-col>
+              </c-col> -->
             </c-row>
           </c-card-body>
         </c-card>
