@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface IOrderLineRepository extends JpaRepository<OrderLine,Long> {
     List<OrderLine> findByQuantityContaining(String searchCriteria);
-
+    List<OrderLine> findByOrderId(Long orderId);
 }
