@@ -1,11 +1,6 @@
 package com.example.fabrikaline_backend.Controllers;
-
 import com.example.fabrikaline_backend.ABC.IAbstractController;
-import com.example.fabrikaline_backend.Entities.Order;
 import com.example.fabrikaline_backend.Entities.OrderLine;
-import com.example.fabrikaline_backend.Entities.OrderLine;
-import com.example.fabrikaline_backend.Models.SearchCriteria;
-import com.example.fabrikaline_backend.Services.OrderLineServiceImpl;
 import com.example.fabrikaline_backend.Services.OrderLineServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +39,14 @@ public class OrderLineRestController implements IAbstractController<OrderLine> {
     {
         OrderLine result = orderLineService.getById(id);
         return new ResponseEntity<>(result,HttpStatus.OK);
+    }
+
+    @Operation(operationId = "getByOrder")
+    @GetMapping(value = "/GetByOrder/{order_id}", produces = "application/json")
+    public ResponseEntity<List<OrderLine>> getByOrder(@PathVariable Long order_id)
+    {
+        List<OrderLine> result = orderLineService.getByOrder(order_id);
+        return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @Override

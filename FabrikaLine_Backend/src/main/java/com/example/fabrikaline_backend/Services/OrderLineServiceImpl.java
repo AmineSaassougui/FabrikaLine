@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 
@@ -82,6 +81,11 @@ public class OrderLineServiceImpl implements IOrderLineService, IAbstractService
     @Override
     public OrderLine getById(Long id) {
         return iOrderLineRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("OrderLine with id :" + id + " not found"));
+    }
+
+    @Override
+    public List<OrderLine> getByOrder(Long orderId) {
+        return iOrderLineRepository.findByOrderId(orderId);
     }
 
     public OrderLine saveAndAssign(Long order_id, Long item_id, OrderLine orderLine) {
