@@ -10,9 +10,11 @@
                   <e-carousel-item *ngFor="let item of imagesFile">
                     <ng-template #template>
                       <figure class="img-container">
-                          <img src="{{item.attachedFile || 'https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg' }}" alt="cardinal" class="img-fluid rounded" style="border-radius: 5%;" />
+                        <img
+                          src="{{item.attachedFile || 'https://st4.depositphotos.com/14953852/24787/v/450/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg' }}"
+                          alt="cardinal" class="img-fluid rounded" style="border-radius: 5%;" />
 
-                        </figure>
+                      </figure>
                     </ng-template>
                   </e-carousel-item>
                 </e-carousel-items>
@@ -42,16 +44,33 @@
         <label cLabel for="exampleFormControlInput1">Stock</label>
         <input cFormControl type="number" [(ngModel)]="object.quantity" readonly="true" name="quantity"
           placeholder="Quantité" style="margin-bottom: 10px;" />
-
-
-        <div class="d-grid gap-2">
-
-          <button cButton color="light" (click)="addToCart(this.object)">AJOUTER AU PANIER</button>
-          <button class="cButton btn btn-success text-white">
+        <div class="d-grid gap-2" *ngIf="!isInCart">
+          <button class="cButton btn btn-warning text-white" (click)="addToCart(this.object)"
+            style="text-transform: uppercase;">
             <svg [cIcon]="icons.cilCheckCircle" size="xl" title="List Icon"></svg>
-            <i class="fa fa--cart"></i> VALIDER ET ACHETER
+            J'achète
           </button>
 
+
+        </div>
+        <div class="d-grid gap-2" *ngIf="isInCart">
+          <c-row>
+            <c-col>
+              <button class="cButton btn btn-warning text-white" (click)="quantity(-1)"
+                style="text-transform: uppercase;">
+                <svg [cIcon]="icons.cilMinus" size="xl" title="List Icon"></svg>
+              </button>
+            </c-col>
+            <c-col>
+              <p>{{this.qte}}</p>
+            </c-col>
+            <c-col  style="align-items: end;">
+              <button class="cButton btn btn-warning text-white" (click)="quantity(+1)"
+                style="text-transform: uppercase;">
+                <svg [cIcon]="icons.cilPlus" size="xl" title="List Icon"></svg>
+              </button>
+            </c-col>
+          </c-row>
         </div>
       </c-col>
     </c-row>
