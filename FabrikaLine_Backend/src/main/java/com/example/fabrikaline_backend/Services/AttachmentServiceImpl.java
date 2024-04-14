@@ -58,6 +58,7 @@ public class AttachmentServiceImpl implements IAttachmentService, IAbstractServi
         return iAttachmentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Item with id :" + id + " not found"));
     }
 
+
     @Override
     public List<Attachment> advancedSearch(Long currentPos, Long step, String searchCriteria) throws Exception
     {
@@ -99,5 +100,23 @@ public class AttachmentServiceImpl implements IAttachmentService, IAbstractServi
         }
         return attachments;
     }
+
+
+    public Attachment getAttachmentByParentId(Long parentId) throws Exception {
+        Attachment attachment = null;
+
+        if (parentId != null) {
+            List<Attachment> attachments = iAttachmentRepository.findAttachmentsByParentId(parentId);
+            if (!attachments.isEmpty()) {
+                attachment = attachments.get(0);
+            }
+        }
+        return attachment;
+    }
+
+
+
+
+
 
 }

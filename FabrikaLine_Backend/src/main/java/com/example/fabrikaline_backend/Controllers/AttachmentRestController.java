@@ -40,6 +40,8 @@ public class AttachmentRestController implements IAbstractController<Attachment>
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
+
+
     @Override
     @Operation(operationId = "DeleteAttachment")
     @DeleteMapping("/Delete/{id}")
@@ -88,6 +90,28 @@ public class AttachmentRestController implements IAbstractController<Attachment>
         Attachment newattachment = attachmentService.saveAndAssign(attachmentCategoryId, attachment) ;
         return new ResponseEntity<>(newattachment, HttpStatus.CREATED);
     }
+
+
+
+
+    @Operation(operationId = "GetOneAttachmentByParentId")
+    @GetMapping(value = "/getOneAttachmentByParentId/{parentId}", produces = "application/json")
+    public ResponseEntity<Attachment> getOneAttachmentByParentId(@PathVariable Long parentId) {
+        try {
+            Attachment attachment = attachmentService.getAttachmentByParentId(parentId);
+            if (attachment != null) {
+                return new ResponseEntity<>(attachment, HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
+
 
 
 
