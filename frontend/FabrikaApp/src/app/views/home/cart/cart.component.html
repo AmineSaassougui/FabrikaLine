@@ -1,14 +1,16 @@
 <c-card class="mb-4">
   <c-card-body>
-    <H1>Mon panier &nbsp; </H1>
+    <!-- <H1>Mon panier &nbsp; </H1> -->
 
     <c-row>
     </c-row>
-    <c-row *ngIf="myItems.length !=0">
+    <c-row *ngIf="myCart.length !=0">
       <c-col xs>
         <c-card class="mb-4">
-          <c-card-header>List des articles <button style="align-items: end;" cButton color="danger" class="warning"
-              (click)="clearCart()">Clear cart</button></c-card-header>
+          <c-card-header>Panier
+            <!-- <button style="align-items: end;" cButton color="danger" class="warning"
+              (click)="clearCart()">Clear cart</button> -->
+            </c-card-header>
           <c-card-body>
             <table [hover]="true" [responsive]="true" [striped]="true" align="middle" cTable class="mb-0 border">
               <!-- <thead cTableColor="light">
@@ -21,7 +23,7 @@
                 </tr>
               </thead> -->
               <tbody>
-                <tr *ngFor="let item of myItems; index as i">
+                <tr *ngFor="let item of myCart; index as i">
                   <!-- <td>
                     <div>{{ item.item?.id }}</div>
                     <div class="small text-medium-emphasis text-nowrap">
@@ -29,22 +31,37 @@
                       </span>
                     </div>
                   </td> -->
+                  <td>
+                    <img src="{{item.coverPic}}" [width]="150" [height]="150">
+                  </td>
+                  <td class="text-left">
+                    <button cButton color="warning" size="sm" (click)="removeItem(item.item?.id)"
+                      style="text-transform: uppercase;">
+                      <!-- <svg [cIcon]="icons.cilDelete" size="small" title="List Icon"></svg> -->
+                      Supp.</button>
+                  </td>
                   <td class="text-left">
                     <div>{{item.item?.name}}</div>
                   </td>
-                 
+
                   <td class="text-left">
                     {{item.item?.description}}
                   </td>
                   <td class="text-center" [width]="150">
-                      {{item.item?.price}} TND
+                    {{item.item?.price}} TND
                   </td>
+                  <td align="right"> <button  size="sm" [disabled]="item.quantity == 1" class="cButton btn btn-warning text-white" (click)="quantity(-1, item.item?.id)"
+                      style="text-transform: uppercase;">
+                      <svg [cIcon]="icons.cilMinus" size="10px" title="List Icon"></svg>
+                    </button></td>
                   <td>
-                    <div class="text-center">{{ item.quantity }}</div>
+                    <div class="text-center"> {{ item.quantity }} </div>
                   </td>
-                  <td>
-                    <button cButton color="warning" style="text-transform: uppercase;"> Supprimer</button>
-                  </td>
+                  <td> <button class="cButton btn btn-warning text-white"  size="sm" (click)="quantity(+1, item.item?.id)"
+                      style="text-transform: uppercase;">
+                      <svg [cIcon]="icons.cilPlus" size="small" title="List Icon"></svg>
+                    </button></td>
+
                 </tr>
               </tbody>
             </table>
@@ -53,7 +70,7 @@
       </c-col>
     </c-row>
 
-    <c-row *ngIf="myItems.length !=0">
+    <c-row *ngIf="myCart.length !=0">
       <c-col xs>
         <c-card class="mb-4">
           <c-card-header>RÉSUMÉ DU PANIER </c-card-header>
@@ -71,6 +88,14 @@
                       <div>{{subTotal}} TND</div>
                     </b>
                   </td>
+                 
+                </tr>
+                <tr>
+                  <td class="text-center"> <button class="cButton btn btn-success text-white" (click)="Order()"
+                    style="text-transform: uppercase;">
+                    <svg [cIcon]="icons.cilCheckCircle" size="xl" title="List Icon"></svg>
+                    Commander ({{subTotal}} TND)
+                  </button></td>
                 </tr>
               </tbody>
             </table>
@@ -80,7 +105,7 @@
     </c-row>
 
 
-    <c-row *ngIf="myItems.length ==0">
+    <c-row *ngIf="myCart.length ==0">
       <div class="text-center">
         <i class="fa fa-info-circle text-muted fa-3x"></i>
         <h3 class="mt-3 mb-0">Votre panier est vide! <br> Parcourez nos catégories et découvrez nos meilleures offres!

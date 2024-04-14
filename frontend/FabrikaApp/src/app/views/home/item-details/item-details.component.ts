@@ -71,10 +71,29 @@ export class ItemDetailsComponent {
 
   quantity(num: number) {
     this.qte = this.qte + num;
+    if (this.qte == 0) {
+      this.removeItem(this.id)
+      this.isInCart = false
+      this.qte = 1
+    }
+    else
     this.updateItemInCart(this.id);
+
   }
 
   
+  
+  removeItemById(itemId: number  | undefined) {
+    const itemIndex = this.myCart.findIndex(item => item.item?.id === itemId);
+    if (itemIndex !== -1) {
+      this.myCart.splice(itemIndex, 1); // Remove the item
+        localStorage.setItem('myCart', JSON.stringify(this.myCart)); 
+      }
+    }
+
+    removeItem(itemId: number | undefined){
+      this.removeItemById(itemId)
+    }
 
   updateItemInCart(itemId: number) {
     const itemIndex = this.myCart.findIndex(item => item.item?.id === itemId);
@@ -97,9 +116,7 @@ export class ItemDetailsComponent {
       quantity: this.qte,
     }
 
-    if (orderLine.quantity && orderLine.item?.price) {
-      orderLine.totalPrice = orderLine.item?.price * orderLine.quantity;
-    }
+ 
     let res = localStorage.getItem(this.cartKey);
     if (res == null) {
       localStorage.setItem(this.cartKey, '[]');

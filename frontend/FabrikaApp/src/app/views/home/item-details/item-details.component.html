@@ -56,20 +56,18 @@
         <div class="d-grid gap-2" *ngIf="isInCart">
           <c-row>
             <c-col>
-              <button class="cButton btn btn-warning text-white" (click)="quantity(-1)"
+              <button [disabled]="this.qte == 0" class="cButton btn btn-warning text-white" (click)="quantity(-1)"
                 style="text-transform: uppercase;">
                 <svg [cIcon]="icons.cilMinus" size="xl" title="List Icon"></svg>
               </button>
-            </c-col>
-            <c-col>
-              <p>{{this.qte}}</p>
-            </c-col>
-            <c-col  style="align-items: end;">
+              &nbsp;&nbsp;{{this.qte}}&nbsp;&nbsp;
               <button class="cButton btn btn-warning text-white" (click)="quantity(+1)"
-                style="text-transform: uppercase;">
-                <svg [cIcon]="icons.cilPlus" size="xl" title="List Icon"></svg>
-              </button>
+              style="text-transform: uppercase;">
+              <svg [cIcon]="icons.cilPlus" size="xl" title="List Icon"></svg>
+            </button>
+            ( {{this.qte}} Produit(s) ajouté(s))
             </c-col>
+           
           </c-row>
         </div>
       </c-col>
