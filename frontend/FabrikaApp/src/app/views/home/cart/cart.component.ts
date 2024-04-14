@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Item, OrderLine } from 'libs/openapi/src';
+import { cilCheckCircle, cilList, cilMinus, cilPlus, cilShieldAlt, cilDelete, cilRecycle, cilClosedCaptioning } from '@coreui/icons';
+import { AttachmentRestControllerService, Item, OrderLine } from 'libs/openapi/src';
 
 @Component({
   selector: 'app-cart',
@@ -7,33 +8,102 @@ import { Item, OrderLine } from 'libs/openapi/src';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
+  icons = { cilList, cilShieldAlt, cilCheckCircle, cilPlus, cilMinus, cilDelete, cilClosedCaptioning };
 
-  myItems : OrderLine[] = [];
   subTotal: any = 0;
-  constructor() { }
+  public myCart: any[] = [];
+  public qte: any = 1 || undefined;
+  public item!: OrderLine
+  constructor( private attachementsService: AttachmentRestControllerService) { }
 
   ngOnInit() {
-  this.getCartItems();
+    this.getCartItems();
   }
+
+
+  Order(){}
 
   getCartItems() {
-    this.myItems = JSON.parse(localStorage.getItem('myCart')  || "") || [];
-    if (this.myItems.length != 0) {
+    this.myCart = JSON.parse(localStorage.getItem('myCart') || "") || [];
+    if (this.myCart.length != 0) {
       this.calculateSubTotal();
-    }
-}
-
-clearCart(): void {
-    localStorage.setItem('myCart', '[]');
-    
-    this.getCartItems();
-}
-
-calculateSubTotal(){
-  for (let item of this.myItems) {
-    if (item.quantity && item.item?.price) {
-      this.subTotal = this.subTotal + item?.totalPrice
+      this.getImage(this.myCart)
     }
   }
+
+  getImage(items : any[]){
+    for (let item of items){
+        let res = this.attachementsService.getAttachmentByParentIdAttachment(item.item.id).subscribe((data => {
+          if (data != null) {
+            item.coverPic = data[0].attachedFile;
+          }
+        }))
+
+    }
+  }
+
+  clearCart(): void {
+    localStorage.setItem('myCart', '[]');
+
+    this.getCartItems();
+  }
+
+  calculateSubTotal() {
+    this.subTotal = 0;
+    for (let item of this.myCart) {
+
+      if (item.quantity && item.item?.price) {
+        item.totalPrice = item.item?.price * item.quantity;
+      }
+      if (item.totalPrice) {
+        this.subTotal = this.subTotal + item?.totalPrice
+      }
+    }
+  }
+
+
+  removeItem(itemId: number | undefined){
+    this.removeItemById(itemId)
+  }
+
+  removeItemById(itemId: number  | undefined) {
+    const itemIndex = this.myCart.findIndex(item => item.item?.id === itemId);
+    if (itemIndex !== -1) {
+      this.myCart.splice(itemIndex, 1); // Remove the item
+        localStorage.setItem('myCart', JSON.stringify(this.myCart)); 
+        this.getCartItems();
+      }
+    }
+
+  // Function to get the item by its index
+  getItemByIndex(index: number): OrderLine {
+    return this.myCart[index];
+  }
+
+
+
+  quantity(num: number, itemId?: number) {
+    this.qte = this.getItemByIndex(this.myCart.findIndex(item => item.item?.id === itemId)).quantity;
+    this.qte = this.qte + num;
+    this.updateItemInCart(itemId);
+  }
+
+  
+
+  updateItemInCart(itemId?: number) {
+    const itemIndex = this.myCart.findIndex(item => item.item?.id === itemId);
+
+    this.item = this.myCart[itemIndex];
+    if (this.item != null || this.item != undefined) {
+      this.item!.quantity = this.qte
+      this.calculateSubTotal();
+    }
+
+    this.myCart[itemIndex] = this.item; // Update the item
+    localStorage.setItem('myCart', JSON.stringify(this.myCart)); // Update local storage
+  }
+
+
 }
-}
+
+
