@@ -425,14 +425,22 @@ export class OrderControllerService {
     }
 
     /**
+     * @param orderstatusId 
+     * @param userId 
      * @param order 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public saveOrder(order: Order, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<Order>;
-    public saveOrder(order: Order, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Order>>;
-    public saveOrder(order: Order, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Order>>;
-    public saveOrder(order: Order, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public saveOrder(orderstatusId: number, userId: number, order: Order, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<Order>;
+    public saveOrder(orderstatusId: number, userId: number, order: Order, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Order>>;
+    public saveOrder(orderstatusId: number, userId: number, order: Order, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Order>>;
+    public saveOrder(orderstatusId: number, userId: number, order: Order, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (orderstatusId === null || orderstatusId === undefined) {
+            throw new Error('Required parameter orderstatusId was null or undefined when calling saveOrder.');
+        }
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling saveOrder.');
+        }
         if (order === null || order === undefined) {
             throw new Error('Required parameter order was null or undefined when calling saveOrder.');
         }
@@ -482,7 +490,7 @@ export class OrderControllerService {
             }
         }
 
-        let localVarPath = `/Order/Save`;
+        let localVarPath = `/Order/save/${this.configuration.encodeParam({name: "orderstatusId", value: orderstatusId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "userId", value: userId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
         return this.httpClient.request<Order>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,

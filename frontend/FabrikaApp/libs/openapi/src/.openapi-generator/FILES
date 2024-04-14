@@ -5,7 +5,9 @@ api/api.ts
 api/attachmentCategoryRestController.service.ts
 api/attachmentRestController.service.ts
 api/cityRestController.service.ts
+api/claimRestController.service.ts
 api/complaintCategoryRestController.service.ts
+api/complaintTypeController.service.ts
 api/countryRestController.service.ts
 api/itemCategoryRestController.service.ts
 api/itemRestController.service.ts
@@ -23,7 +25,9 @@ index.ts
 model/attachment.ts
 model/attachmentCategory.ts
 model/city.ts
+model/claim.ts
 model/complaintCategory.ts
+model/complaintType.ts
 model/country.ts
 model/item.ts
 model/itemCategory.ts

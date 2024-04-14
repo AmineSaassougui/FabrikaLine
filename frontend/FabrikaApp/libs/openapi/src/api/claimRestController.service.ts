@@ -19,7 +19,7 @@ import { CustomHttpParameterCodec }                          from '../encoder';
 import { Observable }                                        from 'rxjs';
 
 // @ts-ignore
-import { User } from '../model/user';
+import { Claim } from '../model/claim';
 
 // @ts-ignore
 import { BASE_PATH, COLLECTION_FORMATS }                     from '../variables';
@@ -30,7 +30,7 @@ import { Configuration }                                     from '../configurat
 @Injectable({
   providedIn: 'root'
 })
-export class UserRestControllerService {
+export class ClaimRestControllerService {
 
     protected basePath = 'http://localhost:8083';
     public defaultHeaders = new HttpHeaders();
@@ -98,10 +98,10 @@ export class UserRestControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public advancedSearchUser(currentPos?: number, step?: number, searchCriteria?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<Array<User>>;
-    public advancedSearchUser(currentPos?: number, step?: number, searchCriteria?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<User>>>;
-    public advancedSearchUser(currentPos?: number, step?: number, searchCriteria?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<User>>>;
-    public advancedSearchUser(currentPos?: number, step?: number, searchCriteria?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public advancedSearchClaim(currentPos?: number, step?: number, searchCriteria?: string, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<Array<Claim>>;
+    public advancedSearchClaim(currentPos?: number, step?: number, searchCriteria?: string, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<Claim>>>;
+    public advancedSearchClaim(currentPos?: number, step?: number, searchCriteria?: string, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<Claim>>>;
+    public advancedSearchClaim(currentPos?: number, step?: number, searchCriteria?: string, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
         if (currentPos !== undefined && currentPos !== null) {
@@ -153,8 +153,8 @@ export class UserRestControllerService {
             }
         }
 
-        let localVarPath = `/User/advancedSearch`;
-        return this.httpClient.request<Array<User>>('get', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/Claim/advancedSearch`;
+        return this.httpClient.request<Array<Claim>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -173,12 +173,12 @@ export class UserRestControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public deleteUser(id: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any>;
-    public deleteUser(id: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
-    public deleteUser(id: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<any>>;
-    public deleteUser(id: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public deleteClaim(id: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any>;
+    public deleteClaim(id: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<any>>;
+    public deleteClaim(id: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<any>>;
+    public deleteClaim(id: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: undefined, context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling deleteUser.');
+            throw new Error('Required parameter id was null or undefined when calling deleteClaim.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -216,7 +216,7 @@ export class UserRestControllerService {
             }
         }
 
-        let localVarPath = `/User/Delete/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
+        let localVarPath = `/Claim/Delete/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
         return this.httpClient.request<any>('delete', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
@@ -234,10 +234,10 @@ export class UserRestControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAllUser(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<User>>;
-    public getAllUser(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<User>>>;
-    public getAllUser(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<User>>>;
-    public getAllUser(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public getAllClaim(observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Array<Claim>>;
+    public getAllClaim(observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<Claim>>>;
+    public getAllClaim(observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<Claim>>>;
+    public getAllClaim(observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
 
         let localVarHeaders = this.defaultHeaders;
 
@@ -275,8 +275,8 @@ export class UserRestControllerService {
             }
         }
 
-        let localVarPath = `/User/GetAll`;
-        return this.httpClient.request<Array<User>>('get', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/Claim/GetAll`;
+        return this.httpClient.request<Array<Claim>>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -294,12 +294,12 @@ export class UserRestControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public loadUser(id: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<User>;
-    public loadUser(id: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<User>>;
-    public loadUser(id: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<User>>;
-    public loadUser(id: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public loadClaim(id: number, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<Claim>;
+    public loadClaim(id: number, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Claim>>;
+    public loadClaim(id: number, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Claim>>;
+    public loadClaim(id: number, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: 'application/json', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (id === null || id === undefined) {
-            throw new Error('Required parameter id was null or undefined when calling loadUser.');
+            throw new Error('Required parameter id was null or undefined when calling loadClaim.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -338,8 +338,8 @@ export class UserRestControllerService {
             }
         }
 
-        let localVarPath = `/User/Load/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
-        return this.httpClient.request<User>('get', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/Claim/Load/${this.configuration.encodeParam({name: "id", value: id, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
+        return this.httpClient.request<Claim>('get', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 responseType: <any>responseType_,
@@ -357,12 +357,12 @@ export class UserRestControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public saveAllUser(entities: Array<User>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<Array<User>>;
-    public saveAllUser(entities: Array<User>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<User>>>;
-    public saveAllUser(entities: Array<User>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<User>>>;
-    public saveAllUser(entities: Array<User>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public saveAllClaim(entities: Array<Claim>, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<Array<Claim>>;
+    public saveAllClaim(entities: Array<Claim>, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Array<Claim>>>;
+    public saveAllClaim(entities: Array<Claim>, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Array<Claim>>>;
+    public saveAllClaim(entities: Array<Claim>, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (entities === null || entities === undefined) {
-            throw new Error('Required parameter entities was null or undefined when calling saveAllUser.');
+            throw new Error('Required parameter entities was null or undefined when calling saveAllClaim.');
         }
 
         let localVarQueryParameters = new HttpParams({encoder: this.encoder});
@@ -409,8 +409,8 @@ export class UserRestControllerService {
             }
         }
 
-        let localVarPath = `/User/SaveAll`;
-        return this.httpClient.request<Array<User>>('post', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/Claim/SaveAll`;
+        return this.httpClient.request<Array<Claim>>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
                 params: localVarQueryParameters,
@@ -425,36 +425,32 @@ export class UserRestControllerService {
     }
 
     /**
-     * @param countryId 
-     * @param cityId 
-     * @param userstatusId 
-     * @param usergenderId 
-     * @param usertypeId 
-     * @param user 
+     * @param orderId 
+     * @param userId 
+     * @param complainttypeId 
+     * @param complaintcategoryId 
+     * @param claim 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public saveUser(countryId: number, cityId: number, userstatusId: number, usergenderId: number, usertypeId: number, user: User, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<User>;
-    public saveUser(countryId: number, cityId: number, userstatusId: number, usergenderId: number, usertypeId: number, user: User, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<User>>;
-    public saveUser(countryId: number, cityId: number, userstatusId: number, usergenderId: number, usertypeId: number, user: User, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<User>>;
-    public saveUser(countryId: number, cityId: number, userstatusId: number, usergenderId: number, usertypeId: number, user: User, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
-        if (countryId === null || countryId === undefined) {
-            throw new Error('Required parameter countryId was null or undefined when calling saveUser.');
+    public saveClaim(orderId: number, userId: number, complainttypeId: number, complaintcategoryId: number, claim: Claim, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<Claim>;
+    public saveClaim(orderId: number, userId: number, complainttypeId: number, complaintcategoryId: number, claim: Claim, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<Claim>>;
+    public saveClaim(orderId: number, userId: number, complainttypeId: number, complaintcategoryId: number, claim: Claim, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<Claim>>;
+    public saveClaim(orderId: number, userId: number, complainttypeId: number, complaintcategoryId: number, claim: Claim, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+        if (orderId === null || orderId === undefined) {
+            throw new Error('Required parameter orderId was null or undefined when calling saveClaim.');
         }
-        if (cityId === null || cityId === undefined) {
-            throw new Error('Required parameter cityId was null or undefined when calling saveUser.');
+        if (userId === null || userId === undefined) {
+            throw new Error('Required parameter userId was null or undefined when calling saveClaim.');
         }
-        if (userstatusId === null || userstatusId === undefined) {
-            throw new Error('Required parameter userstatusId was null or undefined when calling saveUser.');
+        if (complainttypeId === null || complainttypeId === undefined) {
+            throw new Error('Required parameter complainttypeId was null or undefined when calling saveClaim.');
         }
-        if (usergenderId === null || usergenderId === undefined) {
-            throw new Error('Required parameter usergenderId was null or undefined when calling saveUser.');
+        if (complaintcategoryId === null || complaintcategoryId === undefined) {
+            throw new Error('Required parameter complaintcategoryId was null or undefined when calling saveClaim.');
         }
-        if (usertypeId === null || usertypeId === undefined) {
-            throw new Error('Required parameter usertypeId was null or undefined when calling saveUser.');
-        }
-        if (user === null || user === undefined) {
-            throw new Error('Required parameter user was null or undefined when calling saveUser.');
+        if (claim === null || claim === undefined) {
+            throw new Error('Required parameter claim was null or undefined when calling saveClaim.');
         }
 
         let localVarHeaders = this.defaultHeaders;
@@ -502,11 +498,11 @@ export class UserRestControllerService {
             }
         }
 
-        let localVarPath = `/User/save/${this.configuration.encodeParam({name: "countryId", value: countryId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "cityId", value: cityId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "userstatusId", value: userstatusId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "usergenderId", value: usergenderId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "usertypeId", value: usertypeId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
-        return this.httpClient.request<User>('post', `${this.configuration.basePath}${localVarPath}`,
+        let localVarPath = `/Claim/save/${this.configuration.encodeParam({name: "orderId", value: orderId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "userId", value: userId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "complainttypeId", value: complainttypeId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "complaintcategoryId", value: complaintcategoryId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
+        return this.httpClient.request<Claim>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,
-                body: user,
+                body: claim,
                 responseType: <any>responseType_,
                 withCredentials: this.configuration.withCredentials,
                 headers: localVarHeaders,

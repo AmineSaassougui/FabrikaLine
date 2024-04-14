@@ -24,13 +24,13 @@ export class OrderFormComponent implements OnInit {
 
   save(object: any) {
   
-    this._service.saveOrder(object).subscribe((res: any) => {
-      if (res != null) {
-        this.route.navigate(['/Adm/OrderList'])
-      } else {
-        alert("Something went wrong!")
-      }
-    });
+    // this._service.saveOrder(object).subscribe((res: any) => {
+    //   if (res != null) {
+    //     this.route.navigate(['/Adm/OrderList'])
+    //   } else {
+    //     alert("Something went wrong!")
+    //   }
+    // });
   }
 
   load(){
