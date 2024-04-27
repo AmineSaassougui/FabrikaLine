@@ -7,6 +7,7 @@ export * from './complaintType';
 export * from './country';
 export * from './item';
 export * from './itemCategory';
+export * from './itemQuantityObject';
 export * from './itemWithAttachmentsDTO';
 export * from './order';
 export * from './orderLine';

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { cilCheckCircle, cilList, cilMinus, cilPlus, cilShieldAlt, cilDelete, cilRecycle, cilClosedCaptioning } from '@coreui/icons';
-import { AttachmentRestControllerService, Item, OrderLine } from 'libs/openapi/src';
+import { AttachmentRestControllerService, Item, OrderLine, OrderLineRestControllerService } from 'libs/openapi/src';
+import { ItemQuantityObject } from './../../../../../libs/openapi/src/model/itemQuantityObject';
 
 @Component({
   selector: 'app-cart',
@@ -14,14 +15,35 @@ export class CartComponent implements OnInit {
   public myCart: any[] = [];
   public qte: any = 1 || undefined;
   public item!: OrderLine
-  constructor( private attachementsService: AttachmentRestControllerService) { }
+  constructor(private attachementsService: AttachmentRestControllerService, private orderLineRestControllerService: OrderLineRestControllerService) { }
 
   ngOnInit() {
     this.getCartItems();
   }
 
 
-  Order(){}
+  Order() {
+    let orderLine : OrderLine[] = [];
+
+    let res : ItemQuantityObject[] = [];
+
+
+    
+    for(let i of this.myCart ){
+        let x : ItemQuantityObject = {itemId: i.item['id'], quantity: i.quantity}
+        res.push(x);
+    }
+    this.orderLineRestControllerService.saveOrderLineCart(res).subscribe((data => {
+      if (data != null) {
+        alert('Votre commande à été enregistré avec succès! Consulter vos commandes') 
+        this.clearCart();
+      }
+    }))
+
+
+
+
+  }
 
   getCartItems() {
     this.myCart = JSON.parse(localStorage.getItem('myCart') || "") || [];
@@ -31,13 +53,13 @@ export class CartComponent implements OnInit {
     }
   }
 
-  getImage(items : any[]){
-    for (let item of items){
-        let res = this.attachementsService.getAttachmentByParentIdAttachment(item.item.id).subscribe((data => {
-          if (data != null) {
-            item.coverPic = data[0].attachedFile;
-          }
-        }))
+  getImage(items: any[]) {
+    for (let item of items) {
+      let res = this.attachementsService.getAttachmentByParentIdAttachment(item.item.id).subscribe((data => {
+        if (data != null) {
+          item.coverPic = data[0].attachedFile;
+        }
+      }))
 
     }
   }
@@ -62,18 +84,18 @@ export class CartComponent implements OnInit {
   }
 
 
-  removeItem(itemId: number | undefined){
+  removeItem(itemId: number | undefined) {
     this.removeItemById(itemId)
   }
 
-  removeItemById(itemId: number  | undefined) {
+  removeItemById(itemId: number | undefined) {
     const itemIndex = this.myCart.findIndex(item => item.item?.id === itemId);
     if (itemIndex !== -1) {
       this.myCart.splice(itemIndex, 1); // Remove the item
-        localStorage.setItem('myCart', JSON.stringify(this.myCart)); 
-        this.getCartItems();
-      }
+      localStorage.setItem('myCart', JSON.stringify(this.myCart));
+      this.getCartItems();
     }
+  }
 
   // Function to get the item by its index
   getItemByIndex(index: number): OrderLine {
@@ -88,7 +110,7 @@ export class CartComponent implements OnInit {
     this.updateItemInCart(itemId);
   }
 
-  
+
 
   updateItemInCart(itemId?: number) {
     const itemIndex = this.myCart.findIndex(item => item.item?.id === itemId);
