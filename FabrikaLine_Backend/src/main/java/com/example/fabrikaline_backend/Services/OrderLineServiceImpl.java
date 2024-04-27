@@ -1,9 +1,11 @@
 package com.example.fabrikaline_backend.Services;
 import com.example.fabrikaline_backend.ABC.IAbstractService;
+import com.example.fabrikaline_backend.DTO.ItemQuantityObject;
 import com.example.fabrikaline_backend.Entities.*;
 import com.example.fabrikaline_backend.Repositories.IItemRepository;
 import com.example.fabrikaline_backend.Repositories.IOrderLineRepository;
 import com.example.fabrikaline_backend.Repositories.IOrderRepository;
+import com.example.fabrikaline_backend.Repositories.IOrderStatusRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 
@@ -22,9 +25,51 @@ public class OrderLineServiceImpl implements IOrderLineService, IAbstractService
     IOrderLineRepository iOrderLineRepository;
     @Autowired
     IItemRepository iItemRepository;
+
+    @Autowired
+    ItemServiceImpl itemService;
     @Autowired
     IOrderRepository iOrderRepository;
 
+    @Autowired
+    OrderStatusServiceImpl iOrderStatusService;
+
+    @Autowired
+    UserServiceImpl userService;
+
+
+    @Override
+    public  boolean SaveOrderLineCart( List<ItemQuantityObject> itemQuantityObjects) throws Exception
+    {
+        // 1) Create new  order
+        Order order = new Order();
+
+
+        long statusId = 1;
+        long userId = 1;
+        OrderStatus orderStatus = this.iOrderStatusService.getById(statusId);
+        User user = userService.getById(userId);
+
+        order.setOrderStatus(orderStatus);
+        order.setUser(user);
+        order.setOrderDate(new Date());
+        order = this.iOrderRepository.save(order);
+
+        // 2) Save orderLine (ItemId, Qte) we should create an object with  2 fields[ItemId : Long, Quantity: Long]
+        for (ItemQuantityObject itemQuantityObject : itemQuantityObjects) {
+            OrderLine orderLine = new OrderLine();
+
+            //get Item
+            Item item = itemService.getById(itemQuantityObject.getItemId());
+            orderLine.setOrder(order);
+            orderLine.setItem(item);
+            orderLine.setQuantity(itemQuantityObject.getQuantity());
+            orderLine.setTotalPrice(item.getPrice() * itemQuantityObject.getQuantity());
+
+            iOrderLineRepository.save(orderLine);
+        }
+        return true;
+    }
 
     public List<OrderLine> advancedSearch(Long currentPos, Long step, String searchCriteria) throws Exception
     {

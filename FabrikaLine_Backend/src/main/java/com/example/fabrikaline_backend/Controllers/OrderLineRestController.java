@@ -1,5 +1,6 @@
 package com.example.fabrikaline_backend.Controllers;
 import com.example.fabrikaline_backend.ABC.IAbstractController;
+import com.example.fabrikaline_backend.DTO.ItemQuantityObject;
 import com.example.fabrikaline_backend.Entities.OrderLine;
 import com.example.fabrikaline_backend.Services.OrderLineServiceImpl;
 import io.swagger.v3.oas.annotations.Operation;
@@ -19,6 +20,21 @@ public class OrderLineRestController implements IAbstractController<OrderLine> {
 
     @Autowired
     OrderLineServiceImpl orderLineService;
+
+
+
+    @Operation(operationId = "saveOrderLineCart")
+    @PostMapping(value = "/SaveOrderLineCart", produces = "application/json")
+    public ResponseEntity<Boolean> SaveOrderLineCart(@RequestBody List<ItemQuantityObject> itemQuantityObjects)
+    {
+        try {
+           boolean res = orderLineService.SaveOrderLineCart(itemQuantityObjects);
+            return new ResponseEntity<>(res, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     @Operation(operationId = "AdvancedSearchOrderLine")
     @GetMapping("/advancedSearch")
@@ -78,7 +94,8 @@ public class OrderLineRestController implements IAbstractController<OrderLine> {
     @Override
     public ResponseEntity<List<OrderLine>> saveAll(List<OrderLine> entities) throws Exception
     {
-        return null;
+        List<OrderLine> res = orderLineService.saveAll(entities);
+        return new ResponseEntity<>(res, HttpStatus.CREATED);
     }
 
     @Override

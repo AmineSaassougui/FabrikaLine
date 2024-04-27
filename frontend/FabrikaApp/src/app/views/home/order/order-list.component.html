@@ -34,7 +34,9 @@
         [allowExcelExport]='true' [allowPdfExport]='true' [allowReordering]='true'
         >
           <e-columns>
-              <e-column field='Description' headerText='Description' textAlign='Right' format='C2' autoFit="true"></e-column>
+            <e-column field='id' headerText='Numéro commande' textAlign='Left'  autoFit="true"></e-column>
+            <e-column field='orderDate' headerText='Effectué le' textAlign='Left'  autoFit="true"></e-column>
+            <e-column field='orderStatus.description' format="YYYY-MM-DD HH:MM:SS" headerText='Status' textAlign='Left'  autoFit="true"></e-column>
           </e-columns>
           </ejs-grid>`
       </div>
