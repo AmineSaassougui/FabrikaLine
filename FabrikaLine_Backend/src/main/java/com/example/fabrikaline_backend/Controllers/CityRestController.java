@@ -13,7 +13,7 @@ import java.util.List;
 
 @RequestMapping("/City")
 @RestController
-
+@CrossOrigin("*")
 
 public class CityRestController implements IAbstractController<City> {
 
@@ -78,4 +78,14 @@ public class CityRestController implements IAbstractController<City> {
         List<City> cities = cityService.getAll();
         return new ResponseEntity<>(cities,HttpStatus.OK);
     }
+
+
+
+    @Operation(operationId = "GetCitiesByCountry")
+    @GetMapping("/by-country/{countryId}")
+    public ResponseEntity<List<City>> getAllByCountry(@PathVariable Long countryId) {
+        List<City> cities = cityService.getAllByCountry(countryId);
+        return new ResponseEntity<>(cities, HttpStatus.OK);
+    }
+
 }

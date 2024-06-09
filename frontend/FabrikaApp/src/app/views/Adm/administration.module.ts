@@ -12,6 +12,8 @@ import { IconModule } from '@coreui/icons-angular';
 import { AdministrationComponent } from './administration.component';
 import { AdministrationRoutingModule } from './administration-routing.module';
 import { UserListComponent } from './user-list/user-list.component';
+import { UserFormComponent } from './user-list/user-form.component';
+
 import { CountryListComponent } from './country-list/country-list.component';
 import { UserGenderListComponent } from './user-gender/user-gender-list.component';
 import { UserGenderFormComponent } from './user-gender/user-gender-form.component';
@@ -55,6 +57,7 @@ import {
   UtilitiesModule,
 
 } from '@coreui/angular';
+import {ComplaintTypeFormComponent} from "./complaint-type-list/complaint-type-form.component";
 @NgModule({
   imports: [
     CardModule,
@@ -86,11 +89,11 @@ import {
     DropDownListAllModule,
     ButtonAllModule, SwitchAllModule
   ],
-  declarations: [ComplaintTypeListComponent,OrderStatusListComponent,OrderStatusFormComponent, AttachementListComponent, AttachementFormComponent, AdministrationComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent
+  declarations: [ComplaintTypeListComponent,ComplaintTypeFormComponent,OrderStatusListComponent,OrderStatusFormComponent,UserFormComponent, AttachementListComponent, AttachementFormComponent, AdministrationComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent
   ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
 
-  exports: [ComplaintTypeListComponent,OrderStatusListComponent,OrderStatusFormComponent, UserListComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent]
+  exports: [ComplaintTypeListComponent,ComplaintTypeFormComponent,OrderStatusListComponent,OrderStatusFormComponent, UserListComponent,UserFormComponent, CountryListComponent, UserGenderListComponent, UserGenderFormComponent, ItemFormComponent, ItemListComponent, ItemCategoryListComponent, ItemCategoryFormComponent]
 })
 export class AdministrationModule {
 }

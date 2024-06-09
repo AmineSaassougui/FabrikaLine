@@ -68,6 +68,9 @@ public class UserRestController implements IAbstractController<User> {
         return null;
     }
 
+
+
+
     @Override
     @ResponseBody
     @Operation(operationId = "GetAllUser")
@@ -77,11 +80,11 @@ public class UserRestController implements IAbstractController<User> {
         List<User> result = userService.getAll();
         return new ResponseEntity<>(result,HttpStatus.OK);
     }
-
+// just chenged the city becuase it causes problem when assigning a city in the front end
     @Operation(operationId = "SaveUser")
-    @PostMapping("/save/{country_id}/{city_id}/{userstatus_id}/{usergender_id}/{usertype_id}")
-    public ResponseEntity<User> addAndAssignUser(@RequestBody User user,@PathVariable Long country_id, @PathVariable Long city_id,@PathVariable Long userstatus_id,@PathVariable Long usergender_id,@PathVariable Long usertype_id) {
-        User result = userService.saveAndAssign(usertype_id,usergender_id,userstatus_id,city_id,country_id,user) ;
+    @PostMapping("/save/{country_id}/{userstatus_id}/{usergender_id}/{usertype_id}")
+    public ResponseEntity<User> addAndAssignUser(@RequestBody User user, @PathVariable Long country_id, @PathVariable Long userstatus_id, @PathVariable Long usergender_id, @PathVariable Long usertype_id) {
+        User result = userService.saveAndAssign(usertype_id, usergender_id, userstatus_id, country_id, user);
         return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
 }

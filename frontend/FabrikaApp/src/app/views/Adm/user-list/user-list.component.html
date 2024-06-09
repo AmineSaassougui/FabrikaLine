@@ -1,3 +1,52 @@
-<p>
-  user-list works!
-</p>
+<c-card class="mb-4">
+  <c-card-body>
+    <c-row>
+      <c-col sm="5">
+        <h4 class="card-title mb-0" id="traffic"> utilisateur </h4>
+      </c-col>
+    </c-row>
+    <br>
+    <div>
+      <ng-content select="app-yes-parameters"></ng-content>
+    </div>
+    <div>
+      <!-- Action here like : add, delete,... -->
+      <button cButton color="info" routerLink="/Adm/UserForm">Ajouter</button> &nbsp;
+      <button cButton color="info" (click)="modify()">Modifier</button> &nbsp;
+      <button cButton color="info" (click)="delete()">Supprimer</button> &nbsp;
+      <button cButton color="info" (click)="load()">Refrech</button> &nbsp;
+      <button cButton color="light" align="Right" (click)="load()">More</button>
+    </div>
+    <div>
+      <br />
+      <ejs-grid #grid (recordDoubleClick)="onDoubleClick($event)" [allowPaging]="true" [allowSorting]='true'
+        [allowMultiSorting]='true' printMode='CurrentPage' [allowGrouping]="false"
+        (recordDoubleClick)="onDoubleClick($event)" (load)='load()' [allowExcelExport]='true' [allowPdfExport]='true'
+        [allowReordering]='true'>
+        <e-columns>
+          <e-column field='name' headerText='Nom' textAlign='Right' width='150'>Amine</e-column>
+          <e-column field='age' headerText='Age' textAlign='Right' width='150'>24</e-column>
+          <e-column field='description' headerText='Description' textAlign='Right' width='90'>always wining</e-column>
+          <e-column field='zipcode' headerText='Code postal' textAlign='Right' width='90'>2094</e-column>
+          <e-column field='note' headerText='Note' textAlign='Right' width='90'>hey there </e-column>
+          <e-column field='userType.description' headerText='user Type' textAlign='Right' width='90'>Client</e-column>
+          <e-column field='userGender.description' headerText='user Gender' textAlign='Right' width='90'>Client</e-column>
+          <e-column field='userStatus.description' headerText='user Status' textAlign='Right' width='90'>Client</e-column>
+          <e-column field='city.description' headerText='city' textAlign='Right' width='90'>Client</e-column>
+          <e-column field='country.description' headerText='country' textAlign='Right' width='90'>Client</e-column>
+
+
+        </e-columns>
+
+      </ejs-grid>`
+    </div>
+  </c-card-body>
+  <c-card-footer>
+    <c-row class="text-center" [md]="5" [xs]="1">
+      <c-col class="mb-sm-2 mb-0">
+      </c-col>
+      <c-col class="mb-sm-2 mb-0">
+      </c-col>
+    </c-row>
+  </c-card-footer>
+</c-card>

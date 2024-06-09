@@ -1,0 +1,145 @@
+<!-- <c-toaster   [placement]="position" class="p-3" position="fixed">
+  <c-toast
+    (timer)="onTimerChange($event)"
+    (visibleChange)="onVisibleChange($event)"
+    [visible]="visible">
+    <c-toast-header>
+      Ajout
+    </c-toast-header>
+    <c-toast-body>
+      <p>Added with succes</p>
+      <c-progress thin>
+        <c-progress-bar [value]="percentage"></c-progress-bar>
+      </c-progress>
+    </c-toast-body>
+  </c-toast>
+</c-toaster>
+
+<button (click)="toggleToast()" cButton class="m-1">Send a toast</button> -->
+
+<c-card class="mb-4">
+
+  <c-card-body>
+
+    <c-row>
+      <c-col sm="5">
+        <h4 class="card-title mb-0" id="traffic"> Form </h4>
+      </c-col>
+    </c-row>
+    <br>
+    <div>
+      <ng-content select="app-yes-parameters"></ng-content>
+    </div>
+    <form #f="ngForm">
+      <div class="control-section template-carousel-section" >
+        <div class="col-lg-12 content-wrapper" >
+          <div class="carousel-sample center" >
+            <ejs-carousel #carousel cssClass="templateCarousel" [animationEffect]="carouselAnimation" >
+              <e-carousel-items>
+                <e-carousel-item *ngFor="let item of imagesFile">
+                  <ng-template #template >
+                    <figure class="img-container">
+                      <img src="{{item.attachedFile}}" alt="cardinal" style="height: 400px; width: 100%; border-radius:5%; " />
+                    </figure>
+                  </ng-template>
+                </e-carousel-item>
+              </e-carousel-items>
+            </ejs-carousel>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!-- Action here like : add, delete,... -->
+        <button type="button" class="btn btn-success waves-effect"
+                [disabled]=' object.description=="" || object.description== null  || object.complaintCategory.description ==null || this.object.complaintCategory.description == undefined' (click)="save(f.value)">Save</button> &nbsp;
+        <button type="button" class="btn btn-info waves-effect" (click)="cancel()">Annuler</button> &nbsp;
+
+      </div>
+      <br />
+      <div>
+        <div>
+*
+          <label cLabel for="exampleFormControlInput1">Code</label>
+          <input cFormControl type="text" [(ngModel)]="object.code" name="code" placeholder="Code" style="margin-bottom: 10px;" />
+          <label cLabel for="exampleFormControlInput1">Description</label>
+          <input cFormControl type="text" [(ngModel)]="object.description" name="description" placeholder="Description" style="margin-bottom: 10px;" />
+          <label cLabel for="exampleFormControlInput1">Catégorie article</label>
+          <c-dropdown cFormControl  style="width: 100%;" style="margin-bottom: 10px;">
+            <a cButton cDropdownToggle color="secondary" size="sm" >
+              {{ this.object == null ? "": this.object!.complaintCategory!.description}}
+            </a>
+            <ul cDropdownMenu style="width: 100%;">
+              <li *ngFor="let menuItem of complaintCategoryList">
+                <a (click)="selectCategory(menuItem)" cDropdownItem>{{menuItem.description}}</a>
+              </li>
+            </ul>
+          </c-dropdown>
+          <!-- check  : {{this.object.availability}}
+          <c-form-check >
+            <input cFormCheckInput  [checked]="this.object.availability" (click)="checkAvailability()" [(ngModel)]="this.object.availability" type="checkbox"  >
+            <label cFormCheckLabel  >Disponibilité</label>
+          </c-form-check> -->
+        </div>
+        <!-- Fetch attached files -->
+        <!-- <div *ngFor="let item of imagesFile">
+          <div *ngIf="item.attachedFile">
+            <h5 cCardTitle>Images attaché</h5>
+            <c-card class="w-50 ">
+              <img cCardImg="top" src="{{item.attachedFile}}" alt="Uploaded Image">
+              <c-card-body>
+                <p cCardText>
+                  {{item.description}} </p>
+                <button cButton color="light">Go somewhere</button>
+              </c-card-body>
+            </c-card>
+          </div>
+      </div> -->
+        <!-- End Fetch attached files -->
+        <!-- <ejs-carousel cssClass="default-carousel">
+          <e-carousel-items>
+              <e-carousel-item>
+                  <ng-template #template>
+                    <figure class="img-container">
+                      <img src="https://ej2.syncfusion.com/angular/demos/assets/carousel/images/bridge.jpg" alt="bridge" style="height:100%;width:100%;" />
+                      <figcaption class="img-caption">Golden Gate Bridge, San Francisco</figcaption>
+                    </figure>
+                  </ng-template>
+                </e-carousel-item>
+                <e-carousel-item>
+                  <ng-template #template>
+                    <figure class="img-container">
+                      <img src="https://ej2.syncfusion.com/angular/demos/assets/carousel/images/trees.jpg" alt="spring_trees" style="height:100%;width:100%;" />
+                      <figcaption class="img-caption">Spring Flower Trees</figcaption>
+                    </figure>
+                  </ng-template>
+                </e-carousel-item>
+                <e-carousel-item>
+                  <ng-template #template>
+                    <figure class="img-container">
+                      <img src="https://ej2.syncfusion.com/angular/demos/assets/carousel/images/waterfall.jpg" alt="waterfall" style="height:100%;width:100%;" />
+                      <figcaption class="img-caption">Oddadalen Waterfalls, Norway</figcaption>
+                    </figure>
+                  </ng-template>
+              </e-carousel-item>
+          </e-carousel-items>
+      </ejs-carousel> -->
+
+
+
+
+        <br>
+      </div>
+    </form>
+
+
+
+  </c-card-body>
+  <c-card-footer>
+    <c-row class="text-center" [md]="5" [xs]="1">
+      <c-col class="mb-sm-2 mb-0">
+      </c-col>
+      <c-col class="mb-sm-2 mb-0">
+      </c-col>
+    </c-row>
+  </c-card-footer>
+</c-card>

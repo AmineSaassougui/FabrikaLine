@@ -1,22 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Router, NavigationExtras } from '@angular/router';
+import { User } from './../../../../../libs/openapi/src/model/user';
 import {
-    City,
-    CityRestControllerService, CountryRestControllerService,
-    User,
-    UserGenderRestControllerService,
-    UserRestControllerService, UserStatusRestControllerService,
-    UserTypeRestControllerService
-} from "../../../../../libs/openapi/src";
-import {CarouselAnimationEffect} from "@syncfusion/ej2-angular-navigations";
-import {Router} from "@angular/router";
+  City,
+  CityRestControllerService,
+  CountryRestControllerService,
+  UserGenderRestControllerService,
+  UserRestControllerService,
+  UserStatusRestControllerService,
+  UserTypeRestControllerService
+} from 'libs/openapi/src';
+import { CarouselAnimationEffect } from '@syncfusion/ej2-angular-navigations';
+
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-user-form',
+  templateUrl: './user-form.component.html',
 })
-export class RegisterComponent {
-  object: any = {}; // Initialize object with empty object
+export class UserFormComponent implements OnInit {
+   object: any = {}; // Initialize object with empty object
   ok = true;
   userTypeId: number = 0;
   userGenderId: number = 0;
@@ -170,7 +172,7 @@ export class RegisterComponent {
 
 
   save(object: any) {
-    this._service.saveUser(1,1,1,this.object.userType.id, object).subscribe((res: any) => {
+    this._service.saveUser(this.object.userType.id,this.object.userGender.id,this.object.userStatus.id,this.object.country.id, object).subscribe((res: any) => {
       if (res != null) {
         this.route.navigate(['/Adm/UserList'])
       } else {
@@ -190,3 +192,19 @@ export class RegisterComponent {
   }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

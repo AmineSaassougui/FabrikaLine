@@ -1,0 +1,100 @@
+<c-card class="mb-4">
+  <c-card-body>
+    <c-row>
+      <c-col sm="5">
+        <h4 class="card-title mb-0" id="traffic">User Form</h4>
+      </c-col>
+    </c-row>
+    <br>
+    <form #f="ngForm">
+      <div>
+        <div>
+          <input cFormControl type="text" hidden="true" [(ngModel)]="object.id" name="id" placeholder="Id" />
+          <label cLabel for="exampleFormControlInput1">Name</label>
+          <input cFormControl type="text" [(ngModel)]="object.name" name="name" placeholder="Name" style="margin-bottom: 10px;" />
+          <label cLabel for="exampleFormControlInput1">Description</label>
+          <input cFormControl type="text" [(ngModel)]="object.description" name="description" placeholder="Description" style="margin-bottom: 10px;" />
+          <label cLabel for="exampleFormControlInput1">Age</label>
+          <input cFormControl type="number" [(ngModel)]="object.age" name="age" placeholder="Age" style="margin-bottom: 10px;" />
+          <label cLabel for="exampleFormControlInput1">Zipcode</label>
+          <input cFormControl type="number" [(ngModel)]="object.zipcode" name="zipcode" placeholder="Zipcode" style="margin-bottom: 10px;" />
+          <label cLabel for="exampleFormControlInput1">Note</label>
+          <input cFormControl type="text" [(ngModel)]="object.note" name="note" placeholder="Note" style="margin-bottom: 10px;" />
+          <label cLabel for="exampleFormControlInput1">Contact Number</label>
+          <input cFormControl type="text" [(ngModel)]="object.contactNumber" name="contactNumber" placeholder="Contact Number" style="margin-bottom: 10px;" />
+          <label cLabel for="exampleFormControlInput1">Email</label>
+          <input cFormControl type="email" [(ngModel)]="object.email" name="email" placeholder="Email" style="margin-bottom: 10px;" />
+          <label cLabel for="exampleFormControlInput1">Password</label>
+          <input cFormControl type="password" [(ngModel)]="object.password" name="password" placeholder="Password" style="margin-bottom: 10px;" />
+
+          <label cLabel for="exampleFormControlInput1">User Type</label>
+          <c-dropdown cFormControl style="width: 100%; margin-bottom: 10px;">
+            <a cButton cDropdownToggle color="secondary" size="sm">
+              {{ object?.userType?.description || "" }}
+            </a>
+            <ul cDropdownMenu style="width: 100%;">
+              <li *ngFor="let userType of userTypeList">
+                <a (click)="selectType(userType)" cDropdownItem>{{ userType.description }}</a>
+              </li>
+            </ul>
+          </c-dropdown>
+
+          <label cLabel for="exampleFormControlInput1">Gender</label>
+          <c-dropdown cFormControl style="width: 100%; margin-bottom: 10px;">
+            <a cButton cDropdownToggle color="secondary" size="sm">
+              {{ object?.userGender?.description || "" }}
+            </a>
+            <ul cDropdownMenu style="width: 100%;">
+              <li *ngFor="let userGender of userGenderList">
+                <a (click)="selectGender(userGender)" cDropdownItem>{{ userGender.description }}</a>
+              </li>
+            </ul>
+          </c-dropdown>
+
+          <label cLabel for="exampleFormControlInput1">Status</label>
+          <c-dropdown cFormControl style="width: 100%; margin-bottom: 10px;">
+            <a cButton cDropdownToggle color="secondary" size="sm">
+              {{ object?.userStatus?.description || "" }}
+            </a>
+            <ul cDropdownMenu style="width: 100%;">
+              <li *ngFor="let userStatus of userStatusList">
+                <a (click)="selectStatus(userStatus)" cDropdownItem>{{ userStatus.description }}</a>
+              </li>
+            </ul>
+          </c-dropdown>
+
+          <label cLabel for="exampleFormControlInput1">Country</label>
+          <c-dropdown cFormControl style="width: 100%; margin-bottom: 10px;">
+            <a cButton cDropdownToggle color="secondary" size="sm">
+              {{ object?.country?.description || "" }}
+            </a>
+            <ul cDropdownMenu style="width: 100%;">
+              <li *ngFor="let userCountry of countryList">
+                <a (click)="selectCountry(userCountry)" cDropdownItem>{{ userCountry.description }}</a>
+              </li>
+            </ul>
+          </c-dropdown>
+
+<!--          <label cLabel for="exampleFormControlInput1">City</label>-->
+<!--          <c-dropdown cFormControl style="width: 100%; margin-bottom: 10px;">-->
+<!--            <a cButton cDropdownToggle color="secondary" size="sm">-->
+<!--              {{ object?.city?.description || "" }}-->
+<!--            </a>-->
+<!--            <ul cDropdownMenu style="width: 100%;">-->
+<!--              <li *ngFor="let userCity of cityList">-->
+<!--                <a (click)="selectCity(userCity)" cDropdownItem>{{ userCity.description }}</a>-->
+<!--              </li>-->
+<!--            </ul>-->
+<!--          </c-dropdown>-->
+
+          <button type="button" class="btn btn-success waves-effect"
+                  [disabled]='object.name == null || object.description == null || object.age == null || object.zipcode == null || object.note == null || object.contactNumber == null || object.email == null || object.password == null || object.userType == null || object.userGender == null || object.userStatus == null || object.country == null'
+                  (click)="save(f.value)">Save</button> &nbsp;
+          <button type="button" class="btn btn-info waves-effect" (click)="cancel()">Annuler</button> &nbsp;
+
+
+        </div>
+      </div>
+    </form>
+  </c-card-body>
+</c-card>

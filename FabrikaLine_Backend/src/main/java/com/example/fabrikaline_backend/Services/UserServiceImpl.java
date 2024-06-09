@@ -57,12 +57,11 @@ public class UserServiceImpl implements IUserService, IAbstractService<User> {
 
     
     @Override
-   // just for tests perposes nothing else
-    public User saveAndAssign(Long usertype_id, Long usergender_id, Long userstatus_id, Long city_id, Long country_id, User user) {
+    public User saveAndAssign(Long usertype_id, Long usergender_id, Long userstatus_id, Long country_id, User user) {
         UserType userType = iUserTypeRepository.findById(usertype_id).orElseThrow(() -> new IllegalArgumentException("Invalid UserType Id"));
         UserGender userGender = iUserGenderRepository.findById(usergender_id).orElseThrow(() -> new IllegalArgumentException("Invalid UserGender Id"));
         UserStatus userStatus = iUserStatusRepository.findById(userstatus_id).orElseThrow(() -> new IllegalArgumentException("Invalid UserStatus Id"));
-        City city = iCityRepository.findById(city_id).orElseThrow(() -> new IllegalArgumentException("Invalid City Id"));
+        City city = iCityRepository.findById(1L).orElseThrow(() -> new IllegalArgumentException("Invalid City Id")); // Hardcoded city ID to 1
         Country country = iCountryRepository.findById(country_id).orElseThrow(() -> new IllegalArgumentException("Invalid Country Id"));
         user.setUserType(userType);
         user.setUserGender(userGender);

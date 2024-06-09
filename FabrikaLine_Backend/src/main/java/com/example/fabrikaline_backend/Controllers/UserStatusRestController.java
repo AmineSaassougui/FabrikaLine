@@ -16,6 +16,9 @@ import java.util.List;
 
 @RequestMapping("/UserStatus")
 @RestController
+@CrossOrigin("*")
+
+
 
 
 public class UserStatusRestController implements IAbstractController<UserStatus> {

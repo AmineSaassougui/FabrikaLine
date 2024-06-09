@@ -1,41 +1,95 @@
-<div class="bg-light min-vh-100 d-flex flex-row align-items-center">
-  <c-container>
-    <c-row class="justify-content-center">
-      <c-col lg="7" md="9" xl="6">
-        <c-card class="mx-4">
-          <c-card-body class="p-4">
-            <form cForm>
-              <h1>Register</h1>
-              <p class="text-medium-emphasis">Create your account</p>
-              <c-input-group class="mb-3">
+<!--<div class="bg-light min-vh-100 d-flex flex-row align-items-center">-->
+    <div class="bg-light min-vh-100 d-flex flex-row align-items-center login-bg">
+
+
+    <!--    <div class="text-center mb-4">-->
+<!--      <div class="shining-container">-->
+<!--        <img id="focusLogo" src="assets/images/angular.jpg" alt="Focus Logo">-->
+<!--      </div>-->
+<!--    </div>-->
+
+      <c-container>
+        <c-row class="justify-content-end">
+          <c-col lg="7" md="9" xl="6">
+            <c-card class="mx-4">
+              <c-card-body class="p-4">
+                <form cForm>
+                  <h1>Register chez FabrikaLine</h1>
+                  <p class="text-medium-emphasis">Create your account</p>
+                  <c-input-group class="mb-3">
                 <span cInputGroupText>
                   <svg cIcon name="cilUser"></svg>
                 </span>
-                <input autoComplete="name" cFormControl placeholder="Username" />
-              </c-input-group>
-              <c-input-group class="mb-3">
-                <span cInputGroupText>&#64;</span>
-                <input autoComplete="email" cFormControl placeholder="Email" />
-              </c-input-group>
-              <c-input-group class="mb-3">
+                    <input cFormControl type="text" [(ngModel)]="object.name" name="name" placeholder="UserName" autoComplete="name" />
+                  </c-input-group>
+                  <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilUser"></svg>
+                </span>
+                    <input cFormControl type="text" [(ngModel)]="object.description" name="description" placeholder="Full Name" autoComplete="name" />
+                  </c-input-group>
+                  <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilEnvelopeClosed"></svg>
+                </span>
+                    <input cFormControl type="email" [(ngModel)]="object.email" name="email" placeholder="Email" autoComplete="email" />
+                  </c-input-group>
+                  <c-input-group class="mb-3">
+                <span cInputGroupText>
+                  <svg cIcon name="cilBookmark"></svg>
+                </span>
+                    <input cFormControl type="text" [(ngModel)]="object.contactNumber" name="contactNumber" placeholder="Contact Number" autoComplete="contactNumber" />
+                  </c-input-group>
+
+                  <label cLabel for="exampleFormControlInput1">User Type</label>
+                  <c-dropdown cFormControl style="width: 100%; margin-bottom: 10px;">
+                    <a cButton cDropdownToggle color="secondary" size="sm">
+                      {{ object?.userType?.description || "" }}
+                    </a>
+                    <ul cDropdownMenu style="width: 100%;">
+                      <li *ngFor="let userType of userTypeList">
+                        <a (click)="selectType(userType)" cDropdownItem>{{ userType.description }}</a>
+                      </li>
+                    </ul>
+                  </c-dropdown>
+
+<!--                  <label cLabel for="exampleFormControlInput1">User Gender</label>-->
+<!--                  <c-dropdown cFormControl style="width: 100%; margin-bottom: 10px;">-->
+<!--                    <a cButton cDropdownToggle color="primary" size="sm">-->
+<!--                      {{ object?.userGender?.description || "" }}-->
+<!--                    </a>-->
+<!--                    <ul cDropdownMenu style="width: 100%;">-->
+<!--                      <li *ngFor="let userGender of userGenderList">-->
+<!--                        <a (click)="selectType(userGender)" cDropdownItem>{{ userGender.description }}</a>-->
+<!--                      </li>-->
+<!--                    </ul>-->
+<!--                  </c-dropdown>-->
+
+                  <c-input-group class="mb-3">
                 <span cInputGroupText>
                   <svg cIcon name="cilLockLocked"></svg>
                 </span>
-                <input autoComplete="new-password" cFormControl placeholder="Password" type="password" />
-              </c-input-group>
-              <c-input-group class="mb-4">
+                    <input cFormControl type="password" [(ngModel)]="object.password" name="password" placeholder="Password" autoComplete="new-password" />
+                  </c-input-group>
+                  <c-input-group class="mb-4">
                 <span cInputGroupText>
                   <svg cIcon name="cilLockLocked"></svg>
                 </span>
-                <input autoComplete="new-password" cFormControl placeholder="Repeat password" type="password" />
-              </c-input-group>
-              <div class="d-grid">
-                <button cButton color="success">Create Account</button>
-              </div>
-            </form>
-          </c-card-body>
-        </c-card>
-      </c-col>
-    </c-row>
-  </c-container>
-</div>
+                    <input cFormControl type="password" placeholder="Repeat password" autoComplete="new-password" />
+                  </c-input-group>
+                  <!-- Added Age input field -->
+                  <label cLabel for="exampleFormControlInput1">Age</label>
+                  <input cFormControl type="number" [(ngModel)]="object.age" name="age" placeholder="Age" style="margin-bottom: 10px;" />
+
+                  <div class="d-grid">
+                    <button cButton color="success" (click)="save(object)">Create Account</button>
+                  </div>
+                </form>
+              </c-card-body>
+            </c-card>
+          </c-col>
+        </c-row>
+      </c-container>
+    </div>
+
+

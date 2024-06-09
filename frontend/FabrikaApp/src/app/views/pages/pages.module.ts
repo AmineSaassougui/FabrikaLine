@@ -6,8 +6,9 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { Page404Component } from './page404/page404.component';
 import { Page500Component } from './page500/page500.component';
-import { ButtonModule, CardModule, FormModule, GridModule } from '@coreui/angular';
+import {ButtonModule, CardModule, DropdownComponent, FormModule, GridModule} from '@coreui/angular';
 import { IconModule } from '@coreui/icons-angular';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -17,15 +18,17 @@ import { IconModule } from '@coreui/icons-angular';
     Page404Component,
     Page500Component
   ],
-  imports: [
-    CommonModule,
-    PagesRoutingModule,
-    CardModule,
-    ButtonModule,
-    GridModule,
-    IconModule,
-    FormModule
-  ]
+    imports: [
+        CommonModule,
+        PagesRoutingModule,
+        CardModule,
+        ButtonModule,
+        GridModule,
+        IconModule,
+        FormModule,
+        FormsModule,
+        DropdownComponent
+    ]
 })
 export class PagesModule {
 }

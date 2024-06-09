@@ -426,7 +426,6 @@ export class UserRestControllerService {
 
     /**
      * @param countryId 
-     * @param cityId 
      * @param userstatusId 
      * @param usergenderId 
      * @param usertypeId 
@@ -434,15 +433,12 @@ export class UserRestControllerService {
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public saveUser(countryId: number, cityId: number, userstatusId: number, usergenderId: number, usertypeId: number, user: User, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<User>;
-    public saveUser(countryId: number, cityId: number, userstatusId: number, usergenderId: number, usertypeId: number, user: User, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<User>>;
-    public saveUser(countryId: number, cityId: number, userstatusId: number, usergenderId: number, usertypeId: number, user: User, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<User>>;
-    public saveUser(countryId: number, cityId: number, userstatusId: number, usergenderId: number, usertypeId: number, user: User, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
+    public saveUser(countryId: number, userstatusId: number, usergenderId: number, usertypeId: number, user: User, observe?: 'body', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<User>;
+    public saveUser(countryId: number, userstatusId: number, usergenderId: number, usertypeId: number, user: User, observe?: 'response', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpResponse<User>>;
+    public saveUser(countryId: number, userstatusId: number, usergenderId: number, usertypeId: number, user: User, observe?: 'events', reportProgress?: boolean, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<HttpEvent<User>>;
+    public saveUser(countryId: number, userstatusId: number, usergenderId: number, usertypeId: number, user: User, observe: any = 'body', reportProgress: boolean = false, options?: {httpHeaderAccept?: '*/*', context?: HttpContext, transferCache?: boolean}): Observable<any> {
         if (countryId === null || countryId === undefined) {
             throw new Error('Required parameter countryId was null or undefined when calling saveUser.');
-        }
-        if (cityId === null || cityId === undefined) {
-            throw new Error('Required parameter cityId was null or undefined when calling saveUser.');
         }
         if (userstatusId === null || userstatusId === undefined) {
             throw new Error('Required parameter userstatusId was null or undefined when calling saveUser.');
@@ -502,7 +498,7 @@ export class UserRestControllerService {
             }
         }
 
-        let localVarPath = `/User/save/${this.configuration.encodeParam({name: "countryId", value: countryId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "cityId", value: cityId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "userstatusId", value: userstatusId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "usergenderId", value: usergenderId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "usertypeId", value: usertypeId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
+        let localVarPath = `/User/save/${this.configuration.encodeParam({name: "countryId", value: countryId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "userstatusId", value: userstatusId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "usergenderId", value: usergenderId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}/${this.configuration.encodeParam({name: "usertypeId", value: usertypeId, in: "path", style: "simple", explode: false, dataType: "number", dataFormat: "int64"})}`;
         return this.httpClient.request<User>('post', `${this.configuration.basePath}${localVarPath}`,
             {
                 context: localVarHttpContext,

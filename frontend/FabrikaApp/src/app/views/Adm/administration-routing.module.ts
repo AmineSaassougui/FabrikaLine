@@ -15,6 +15,8 @@ import { AttachementFormComponent } from './attachement/attachement-form.compone
 import { ComplaintTypeListComponent } from './complaint-type-list/complaint-type-list.component';
 import {OrderStatusListComponent} from "./order-status/order-status-list.component";
 import {OrderStatusFormComponent} from "./order-status/order-status-form.component";
+import {ComplaintTypeFormComponent} from "./complaint-type-list/complaint-type-form.component";
+import { UserFormComponent } from './user-list/user-form.component';
 
 const routes: Routes = [
   {
@@ -67,6 +69,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'UserForm',
+    component: UserFormComponent,
+    data: {
+      title: 'Utilisateur'
+    }
+  },
+  {
     path: 'CountryList',
     component: CountryListComponent,
     data: {
@@ -104,6 +113,12 @@ const routes: Routes = [
   {
     path: 'ComplaintTypeList',
     component: ComplaintTypeListComponent,
+    data: {
+      title: 'Claim'
+    }
+  },{
+    path: 'ComplaintTypeForm',
+    component: ComplaintTypeFormComponent,
     data: {
       title: 'Claim'
     }

@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface ICityRepository extends JpaRepository<City,Long> {
     List<City> findByDescriptionContaining(String description);
+    List<City> findByCountryId(Long countryId);
+
 }

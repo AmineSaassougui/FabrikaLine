@@ -16,6 +16,7 @@ import java.util.List;
 
 @RequestMapping("/UserType")
 @RestController
+@CrossOrigin("*")
 public class UserTypeRestController implements IAbstractController<UserType> {
    
     @Autowired

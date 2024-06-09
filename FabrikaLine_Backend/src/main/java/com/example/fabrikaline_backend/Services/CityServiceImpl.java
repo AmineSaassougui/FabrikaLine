@@ -85,4 +85,12 @@ public class CityServiceImpl implements ICityService, IAbstractService<City> {
         }
         return listCity;
     }
+
+    @Override
+    public List<City> getAllByCountry(Long countryId) {
+        return iCityRepository.findByCountryId(countryId);
+    }
+
+
+
 }
